@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Wilba Rants | Bird Dog Cartoons</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,35 +20,33 @@
       color: #f5f5f5;
       font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
     }
 
     .site-wrapper {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
+      margin: auto;
       padding: 40px 24px 60px;
     }
 
+    /* HEADER */
+
     header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .brand {
       font-size: 1rem;
-      letter-spacing: 0.25rem;
-      text-transform: uppercase;
+      letter-spacing: .25rem;
       color: #aaa;
       margin-bottom: 12px;
     }
 
     h1 {
-      font-family: Arial, Helvetica, sans-serif;
       font-size: clamp(2.5rem, 7vw, 5rem);
       font-weight: 900;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     h1 .rants {
@@ -55,113 +55,435 @@
 
     .tagline {
       color: #bbb;
-  font-size: 1.1rem;
-  font-style: italic;
+      font-size: 1.1rem;
+      font-style: italic;
     }
 
-    .screening-card {
-      background: #1b1b1b;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 20px;
+    /* NAVIGATION */
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 35px 0 45px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 15px;
     }
 
-    .video-wrapper {
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: bold;
+      letter-spacing: .12rem;
+      transition: color .2s;
+    }
+
+    nav a:hover {
+      color: #e6b400;
+    }
+
+    nav a.active {
+      color: #e6b400;
+    }
+
+    /* VIDEO GRID */
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .video-card {
+      cursor: pointer;
+    }
+
+    .thumbnail {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #000;
+      background: #222;
       border-radius: 8px;
       overflow: hidden;
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.025);
+      box-shadow: 0 8px 25px rgba(0,0,0,.5);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* PLAY ICON */
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 60px;
+      height: 60px;
+
+      background: rgba(0,0,0,.7);
+      border-radius: 50%;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
+      font-size: 25px;
+      color: white;
+
+      opacity: 0;
+      transition: opacity .2s;
     }
 
-    .video-placeholder {
-      color: #777;
-      text-align: center;
-      padding: 30px;
+    .thumbnail:hover .play-button {
+      opacity: 1;
     }
 
-    .episode-info {
-      padding: 24px 4px 4px;
+    .video-title {
+      margin-top: 12px;
+      font-size: 1.05rem;
+      font-weight: bold;
     }
 
-    .episode-info h2 {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
+    .video-description {
+      margin-top: 5px;
+      color: #888;
+      font-size: .9rem;
     }
 
-    .episode-info p {
-      color: #bbb;
-      line-height: 1.6;
+    /* VIDEO MODAL */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+      z-index: 1000;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: rgba(0,0,0,.92);
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 40px;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 1100px;
+      position: relative;
+    }
+
+    .modal-video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .modal-video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close-button {
+      position: absolute;
+      right: 0;
+      top: -45px;
+
+      color: white;
+      font-size: 35px;
+
+      cursor: pointer;
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 60px;
       color: #666;
-      font-size: 0.85rem;
+      font-size: .85rem;
     }
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
+      .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
     }
+
+    @media (max-width: 550px) {
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        gap: 18px;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <div class="site-wrapper">
+<div class="site-wrapper">
 
-    <header>
-      <div class="brand">Bird Dog Animation Presents...</div>
+  <header>
 
-      <h1>WILBA <span class="rants">RANTS</span></h1>
+    <div class="brand">
+      BIRD DOG CARTOONS
+    </div>
 
-      <p class="tagline">Bold and honest conversations<br/>between a man and his dog.</p>
-    </header>
+    <h1>
+      WILBA <span class="rants">RANTS</span>
+    </h1>
 
-    <main>
+    <p class="tagline">
+      Confessions between a man and his dog.
+    </p>
 
-      <section class="screening-card">
+  </header>
 
-        <div class="video-wrapper">
 
-          <!--
-            BUNNY STREAM VIDEO GOES HERE.
+  <nav>
 
-            Later, replace this placeholder with the iframe
-            embed code Bunny gives you.
-          -->
+    <a href="index.html" class="active">
+      CURRENT RANTS
+    </a>
 
-          <div class="video-placeholder">
-            Wilba Rants video player goes here.
+    <a href="classics.html">
+      CLASSIC RANTS
+    </a>
+
+  </nav>
+
+
+  <main>
+
+    <div class="video-grid">
+
+
+      <!-- VIDEO 1 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('YOUR-BUNNY-VIDEO-URL-HERE')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="thumbnail1.jpg"
+            alt="Rant One"
+          >
+
+          <div class="play-button">
+            ▶
           </div>
 
         </div>
 
-        <div class="episode-info">
-          <h2>Dad! Can You Breathe Son?!</h2>
-
-          <p>
-            Wilba reflects on his fathers lifelong infatuation with large women.
-          </p>
+        <div class="video-title">
+          Rant One
         </div>
 
-      </section>
+        <div class="video-description">
+          Wilba Rants
+        </div>
 
-    </main>
+      </div>
 
-    <footer>
-      © 2026 Bird Dog Animation
 
-    </footer>
+      <!-- VIDEO 2 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('YOUR-BUNNY-VIDEO-URL-HERE')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="thumbnail2.jpg"
+            alt="Rant Two"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Rant Two
+        </div>
+
+        <div class="video-description">
+          Wilba Rants
+        </div>
+
+      </div>
+
+
+      <!-- VIDEO 3 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('YOUR-BUNNY-VIDEO-URL-HERE')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="thumbnail3.jpg"
+            alt="Five Days"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Five Days
+        </div>
+
+        <div class="video-description">
+          Wilba Rants
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <footer>
+    © 2026 Bird Dog Cartoons
+  </footer>
+
+</div>
+
+
+
+<!-- VIDEO POPUP -->
+
+<div
+  id="videoModal"
+  class="modal"
+  onclick="closeVideo(event)"
+>
+
+  <div class="modal-content">
+
+    <div
+      class="close-button"
+      onclick="closeVideo()"
+    >
+      ×
+    </div>
+
+    <div
+      id="modalVideo"
+      class="modal-video"
+    >
+    </div>
 
   </div>
+
+</div>
+
+
+
+<script>
+
+  function openVideo(videoURL) {
+
+    const modal =
+      document.getElementById("videoModal");
+
+    const video =
+      document.getElementById("modalVideo");
+
+    video.innerHTML = `
+      <iframe
+        src="${videoURL}"
+        allow="accelerometer;
+               gyroscope;
+               autoplay;
+               encrypted-media;
+               picture-in-picture;"
+        allowfullscreen>
+      </iframe>
+    `;
+
+    modal.style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+  }
+
+
+  function closeVideo(event) {
+
+    const modal =
+      document.getElementById("videoModal");
+
+    if (
+      event &&
+      event.target !== modal
+    ) {
+      return;
+    }
+
+    modal.style.display = "none";
+
+    document.getElementById("modalVideo")
+      .innerHTML = "";
+
+    document.body.style.overflow = "auto";
+  }
+
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Escape") {
+        closeVideo();
+      }
+
+    }
+  );
+
+</script>
+
 
 </body>
 </html>
