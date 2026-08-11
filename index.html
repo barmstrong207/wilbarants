@@ -29,6 +29,7 @@
       padding: 40px 24px 60px;
     }
 
+
     /* HEADER */
 
     header {
@@ -59,6 +60,7 @@
       font-style: italic;
     }
 
+
     /* NAVIGATION */
 
     nav {
@@ -71,21 +73,22 @@
     }
 
     nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: .9rem;
-  font-weight: bold;
-  letter-spacing: .12rem;
-  transition: color .2s;
-}
+      color: #ffffff;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: bold;
+      letter-spacing: .12rem;
+      transition: color .2s;
+    }
 
-nav a:hover {
-  color: #e6b400;
-}
+    nav a:hover {
+      color: #e6b400;
+    }
 
-nav a.active {
-  color: #e6b400;
-}
+    nav a.active {
+      color: #e6b400;
+    }
+
 
     /* VIDEO GRID */
 
@@ -106,6 +109,7 @@ nav a.active {
       background: #222;
       border-radius: 8px;
       overflow: hidden;
+
       transition:
         transform .2s ease,
         box-shadow .2s ease;
@@ -123,18 +127,22 @@ nav a.active {
       display: block;
     }
 
+
     /* PLAY ICON */
 
     .play-button {
       position: absolute;
+
       top: 50%;
       left: 50%;
+
       transform: translate(-50%, -50%);
 
       width: 60px;
       height: 60px;
 
       background: rgba(0,0,0,.7);
+
       border-radius: 50%;
 
       display: flex;
@@ -145,12 +153,16 @@ nav a.active {
       color: white;
 
       opacity: 0;
+
       transition: opacity .2s;
     }
 
     .thumbnail:hover .play-button {
       opacity: 1;
     }
+
+
+    /* VIDEO INFORMATION */
 
     .video-title {
       margin-top: 12px;
@@ -163,6 +175,7 @@ nav a.active {
       color: #888;
       font-size: .9rem;
     }
+
 
     /* VIDEO MODAL */
 
@@ -206,6 +219,7 @@ nav a.active {
 
     .close-button {
       position: absolute;
+
       right: 0;
       top: -45px;
 
@@ -215,12 +229,16 @@ nav a.active {
       cursor: pointer;
     }
 
+
+    /* FOOTER */
+
     footer {
       text-align: center;
       margin-top: 60px;
       color: #666;
       font-size: .85rem;
     }
+
 
     /* MOBILE */
 
@@ -245,12 +263,17 @@ nav a.active {
     }
 
   </style>
+
 </head>
 
 
 <body>
 
+
 <div class="site-wrapper">
+
+
+  <!-- HEADER -->
 
   <header>
 
@@ -269,11 +292,28 @@ nav a.active {
   </header>
 
 
-<nav>
-  <a href="index.html" class="active">NEW RANTS</a>
-  <a href="classics.html">CLASSIC RANTS</a>
-</nav>
+  <!-- NAVIGATION -->
 
+  <nav>
+
+    <a
+      href="index.html"
+      id="new-rants-link"
+    >
+      NEW RANTS
+    </a>
+
+    <a
+      href="classics.html"
+      id="classic-rants-link"
+    >
+      CLASSIC RANTS
+    </a>
+
+  </nav>
+
+
+  <!-- VIDEO GALLERY -->
 
   <main>
 
@@ -378,9 +418,12 @@ nav a.active {
   </main>
 
 
+  <!-- FOOTER -->
+
   <footer>
     © 2026 Bird Dog Cartoons
   </footer>
+
 
 </div>
 
@@ -417,6 +460,37 @@ nav a.active {
 
 <script>
 
+
+  /* ---------------------------------
+     ACTIVE NAVIGATION TAB
+  --------------------------------- */
+
+  const currentPage =
+    window.location.pathname.split("/").pop();
+
+  const newRantsLink =
+    document.getElementById("new-rants-link");
+
+  const classicRantsLink =
+    document.getElementById("classic-rants-link");
+
+
+  if (currentPage === "classics.html") {
+
+    classicRantsLink.classList.add("active");
+
+  } else {
+
+    newRantsLink.classList.add("active");
+
+  }
+
+
+
+  /* ---------------------------------
+     OPEN VIDEO
+  --------------------------------- */
+
   function openVideo(videoURL) {
 
     const modal =
@@ -425,58 +499,93 @@ nav a.active {
     const video =
       document.getElementById("modalVideo");
 
+
     video.innerHTML = `
+
       <iframe
         src="${videoURL}"
-        allow="accelerometer;
-               gyroscope;
-               autoplay;
-               encrypted-media;
-               picture-in-picture;"
+        allow="
+          accelerometer;
+          gyroscope;
+          autoplay;
+          encrypted-media;
+          picture-in-picture;
+        "
         allowfullscreen>
       </iframe>
+
     `;
+
 
     modal.style.display = "flex";
 
     document.body.style.overflow = "hidden";
+
   }
 
+
+
+  /* ---------------------------------
+     CLOSE VIDEO
+  --------------------------------- */
 
   function closeVideo(event) {
 
     const modal =
       document.getElementById("videoModal");
 
+
+    /* If the user clicked inside the
+       video itself, don't close it. */
+
     if (
       event &&
       event.target !== modal
     ) {
+
       return;
+
     }
+
 
     modal.style.display = "none";
 
-    document.getElementById("modalVideo")
+
+    /* Removing the iframe also stops
+       the video from continuing to play. */
+
+    document
+      .getElementById("modalVideo")
       .innerHTML = "";
 
+
     document.body.style.overflow = "auto";
+
   }
 
+
+
+  /* ---------------------------------
+     ESCAPE KEY CLOSES VIDEO
+  --------------------------------- */
 
   document.addEventListener(
     "keydown",
     function(event) {
 
       if (event.key === "Escape") {
+
         closeVideo();
+
       }
 
     }
   );
 
+
 </script>
 
 
 </body>
+
 </html>
