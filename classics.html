@@ -418,7 +418,7 @@
        NAVIGATION
   ================================= -->
 
-  <nav>
+ <nav>
 
   <a href="index.html" id="fresh-link">
     FRESHLY PUBLISHED
@@ -926,27 +926,36 @@
      ACTIVE NAVIGATION TAB
   ================================= */
 
-  const currentPath =
-    window.location.pathname.toLowerCase();
+const currentPath =
+  window.location.pathname.toLowerCase();
+
+const freshLink =
+  document.getElementById("fresh-link");
+
+const classicLink =
+  document.getElementById("classic-link");
+
+const aboutLink =
+  document.getElementById("about-link");
 
 
-  const newRantsLink =
-    document.getElementById("new-rants-link");
+if (currentPath.includes("about")) {
 
+  aboutLink.classList.add("active");
 
-  const classicRantsLink =
-    document.getElementById("classic-rants-link");
+}
 
+else if (currentPath.includes("classics")) {
 
-  if (currentPath.includes("classics")) {
+  classicLink.classList.add("active");
 
-    classicRantsLink.classList.add("active");
+}
 
-  } else {
+else {
 
-    newRantsLink.classList.add("active");
+  freshLink.classList.add("active");
 
-  }
+}
 
 
 
