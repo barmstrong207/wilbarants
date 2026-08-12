@@ -294,7 +294,7 @@
 
   <!-- NAVIGATION -->
 
-  <nav>
+<nav>
 
   <a href="index.html" id="fresh-link">
     FRESHLY PUBLISHED
@@ -463,25 +463,36 @@
      ACTIVE NAVIGATION TAB
   --------------------------------- */
 
-  const currentPage =
-    window.location.pathname.split("/").pop();
+const currentPath =
+  window.location.pathname.toLowerCase();
 
-  const newRantsLink =
-    document.getElementById("new-rants-link");
+const freshLink =
+  document.getElementById("fresh-link");
 
-  const classicRantsLink =
-    document.getElementById("classic-rants-link");
+const classicLink =
+  document.getElementById("classic-link");
+
+const aboutLink =
+  document.getElementById("about-link");
 
 
-  if (currentPage === "classics.html") {
+if (currentPath.includes("about")) {
 
-    classicRantsLink.classList.add("active");
+  aboutLink.classList.add("active");
 
-  } else {
+}
 
-    newRantsLink.classList.add("active");
+else if (currentPath.includes("classics")) {
 
-  }
+  classicLink.classList.add("active");
+
+}
+
+else {
+
+  freshLink.classList.add("active");
+
+}
 
 
 
