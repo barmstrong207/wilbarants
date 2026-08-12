@@ -152,39 +152,6 @@
 
 
     /* =================================
-       VIDEO PLACEHOLDER
-    ================================= */
-
-    .thumbnail-placeholder {
-      width: 100%;
-      height: 100%;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 25px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #282828,
-          #171717
-        );
-
-      color: #e6b400;
-
-      font-size: 1rem;
-      font-weight: bold;
-
-      letter-spacing: .12rem;
-    }
-
-
-    /* =================================
        PLAY ICON
     ================================= */
 
@@ -267,6 +234,7 @@
 
     .modal-content {
       width: 100%;
+
       max-width: 1100px;
 
       position: relative;
@@ -428,18 +396,19 @@
 
       <!-- =================================
            RANT 1
+           DAD! CAN YOU BREATHE SON?!
       ================================= -->
 
       <div
         class="video-card"
-        onclick="openVideo('YOUR-BUNNY-VIDEO-URL-HERE')"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/92be681f-00f6-46c2-a48d-5215fce15f03')"
       >
 
         <div class="thumbnail">
 
           <img
-            src="thumbnail1.jpg"
-            alt="Dad! Can You Breathe, Son?!"
+            src="images/BreatheSon.png"
+            alt="Dad! Can You Breathe Son?!"
           >
 
           <div class="play-button">
@@ -449,7 +418,7 @@
         </div>
 
         <div class="video-title">
-          Rant One
+          Dad! Can You Breathe Son?!
         </div>
 
         <div class="video-description">
@@ -461,17 +430,18 @@
 
       <!-- =================================
            RANT 2
+           MONEY, GOLD, AND DIAMONDS
       ================================= -->
 
       <div
         class="video-card"
-        onclick="openVideo('YOUR-BUNNY-VIDEO-URL-HERE')"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/bcba5cf7-eb65-485b-aab4-7870cde8c0b9')"
       >
 
         <div class="thumbnail">
 
           <img
-            src="thumbnail2.jpg"
+            src="images/MGDThumbnail.png"
             alt="Money, Gold, and Diamonds"
           >
 
@@ -482,7 +452,7 @@
         </div>
 
         <div class="video-title">
-          Rant Two
+          Money, Gold, and Diamonds
         </div>
 
         <div class="video-description">
@@ -492,38 +462,41 @@
       </div>
 
 
-<!-- =================================
-     RANT 3
-     FIVE DAYS
-================================= -->
+      <!-- =================================
+           RANT 3
+           FIVE DAYS
+      ================================= -->
 
-<div
-  class="video-card"
-  onclick="openVideo('https://player.mediadelivery.net/play/726343/fffe327c-27f2-4637-aa9b-9f6ae8a9f713')"
->
+      <div
+        class="video-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/fffe327c-27f2-4637-aa9b-9f6ae8a9f713')"
+      >
 
-  <div class="thumbnail">
+        <div class="thumbnail">
 
-    <img
-      src="images/5_Days_Thumbnail.png"
-      alt="Five Days"
-    >
+          <img
+            src="images/5_Days_Thumbnail.jpg"
+            alt="Five Days"
+          >
 
-    <div class="play-button">
-      ▶
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Five Days
+        </div>
+
+        <div class="video-description">
+          Wilba Rants
+        </div>
+
+      </div>
+
+
     </div>
-
-  </div>
-
-  <div class="video-title">
-    Five Days
-  </div>
-
-  <div class="video-description">
-    Wilba Rants
-  </div>
-
-</div>
 
   </main>
 
@@ -621,19 +594,6 @@
 
   function openVideo(videoURL) {
 
-
-    /* Don't open unfinished cards. */
-
-    if (
-      !videoURL ||
-      videoURL.startsWith("YOUR-BUNNY")
-    ) {
-
-      return;
-
-    }
-
-
     const modal =
       document.getElementById("videoModal");
 
@@ -674,7 +634,6 @@
   ================================= */
 
   function closeVideo(event) {
-
 
     const modal =
       document.getElementById("videoModal");
