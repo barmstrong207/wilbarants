@@ -30,9 +30,9 @@
     }
 
 
-    /* ---------------------------------
+    /* =================================
        HEADER
-    --------------------------------- */
+    ================================= */
 
     header {
       text-align: center;
@@ -63,16 +63,18 @@
     }
 
 
-    /* ---------------------------------
+    /* =================================
        NAVIGATION
-    --------------------------------- */
+    ================================= */
 
     nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 18px 30px;
+
       margin: 35px 0 45px;
+
       border-bottom: 1px solid #333;
       padding-bottom: 15px;
     }
@@ -80,9 +82,12 @@
     nav a {
       color: #ffffff;
       text-decoration: none;
+
       font-size: .9rem;
       font-weight: bold;
+
       letter-spacing: .12rem;
+
       transition: color .2s;
     }
 
@@ -95,31 +100,41 @@
     }
 
 
-    /* ---------------------------------
+    /* =================================
        CLASSIC RANTS INTRO
-    --------------------------------- */
+    ================================= */
 
     .classic-intro {
       max-width: 950px;
+
       margin: 0 auto 55px;
+
       background: #181818;
+
       border: 1px solid #2d2d2d;
       border-radius: 10px;
+
       padding: 35px 40px;
     }
 
     .classic-intro h2 {
       color: #e6b400;
+
       font-size: 1.65rem;
+
       margin-bottom: 25px;
+
       text-align: center;
+
       letter-spacing: .06rem;
     }
 
     .classic-intro p {
       color: #d0d0d0;
+
       font-size: 1.02rem;
       line-height: 1.75;
+
       margin-bottom: 20px;
     }
 
@@ -128,14 +143,13 @@
     }
 
 
-    /* ---------------------------------
+    /* =================================
        VIDEO GRID
-    --------------------------------- */
+    ================================= */
 
     .video-grid {
       display: grid;
 
-      /* THREE VIDEOS PER ROW */
       grid-template-columns: repeat(3, 1fr);
 
       gap: 32px 28px;
@@ -147,10 +161,15 @@
 
     .thumbnail {
       position: relative;
+
       width: 100%;
+
       aspect-ratio: 16 / 9;
+
       background: #222;
+
       border-radius: 8px;
+
       overflow: hidden;
 
       transition:
@@ -160,26 +179,31 @@
 
     .thumbnail:hover {
       transform: scale(1.025);
-      box-shadow: 0 8px 25px rgba(0,0,0,.5);
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.5);
     }
 
     .thumbnail img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       display: block;
     }
 
 
-    /* ---------------------------------
+    /* =================================
        PLACEHOLDER THUMBNAILS
-    --------------------------------- */
+    ================================= */
 
     .thumbnail-placeholder {
       width: 100%;
       height: 100%;
 
       display: flex;
+
       justify-content: center;
       align-items: center;
 
@@ -197,13 +221,14 @@
       color: #777;
 
       font-size: .9rem;
+
       letter-spacing: .05rem;
     }
 
 
-    /* ---------------------------------
-       PLAY ICON
-    --------------------------------- */
+    /* =================================
+       PLAY BUTTON
+    ================================= */
 
     .play-button {
       position: absolute;
@@ -221,10 +246,12 @@
       border-radius: 50%;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       font-size: 25px;
+
       color: white;
 
       opacity: 0;
@@ -237,15 +264,18 @@
     }
 
 
-    /* ---------------------------------
+    /* =================================
        VIDEO INFORMATION
-    --------------------------------- */
+    ================================= */
 
     .video-number {
       color: #777;
+
       font-size: .75rem;
       font-weight: bold;
+
       letter-spacing: .12rem;
+
       margin-top: 13px;
       margin-bottom: 5px;
     }
@@ -253,18 +283,20 @@
     .video-title {
       font-size: 1.05rem;
       font-weight: bold;
+
       line-height: 1.35;
     }
 
 
-    /* ---------------------------------
+    /* =================================
        VIDEO MODAL
-    --------------------------------- */
+    ================================= */
 
     .modal {
       display: none;
 
       position: fixed;
+
       z-index: 1000;
 
       top: 0;
@@ -283,19 +315,24 @@
 
     .modal-content {
       width: 100%;
+
       max-width: 1100px;
+
       position: relative;
     }
 
     .modal-video {
       width: 100%;
+
       aspect-ratio: 16 / 9;
+
       background: #000;
     }
 
     .modal-video iframe {
       width: 100%;
       height: 100%;
+
       border: none;
     }
 
@@ -306,27 +343,35 @@
       top: -45px;
 
       color: white;
+
       font-size: 35px;
 
       cursor: pointer;
     }
 
+    .close-button:hover {
+      color: #e6b400;
+    }
 
-    /* ---------------------------------
+
+    /* =================================
        FOOTER
-    --------------------------------- */
+    ================================= */
 
     footer {
       text-align: center;
+
       margin-top: 70px;
+
       color: #666;
+
       font-size: .85rem;
     }
 
 
-    /* ---------------------------------
-       TABLETS
-    --------------------------------- */
+    /* =================================
+       TABLET
+    ================================= */
 
     @media (max-width: 850px) {
 
@@ -341,9 +386,9 @@
     }
 
 
-    /* ---------------------------------
-       PHONES
-    --------------------------------- */
+    /* =================================
+       PHONE
+    ================================= */
 
     @media (max-width: 550px) {
 
@@ -363,6 +408,10 @@
         font-size: .97rem;
       }
 
+      .modal {
+        padding: 20px;
+      }
+
     }
 
   </style>
@@ -378,12 +427,12 @@
 
   <!-- =================================
        HEADER
-  ================================== -->
+  ================================= -->
 
   <header>
 
     <div class="brand">
-      BIRD DOG ANIMATION PRESENTS
+      BIRD DOG CARTOONS
     </div>
 
     <h1>
@@ -399,7 +448,7 @@
 
   <!-- =================================
        NAVIGATION
-  ================================== -->
+  ================================= -->
 
   <nav>
 
@@ -421,8 +470,8 @@
 
 
   <!-- =================================
-       CLASSIC RANTS INTRODUCTION
-  ================================== -->
+       INTRODUCTION
+  ================================= -->
 
   <section class="classic-intro">
 
@@ -430,34 +479,39 @@
       THE ORIGINAL WILBA RANTS
     </h2>
 
+
     <p>
       The original series of Wilba Rants were published on YouTube
       between July 4th, 2014 and ended, with Wilba's passing, a year
       later, on July 4th 2015.
     </p>
 
+
     <p>
       There are bits of wisdom hidden within the absurdity of these
-      original Rants. From the opening lines, where he unveils his
-      philosophy of "I Did It All On Purpose" to his prophesying 
-      of his own untimely death in the closing lines of
+      original 12 Rants. From the opening lines, where he unveils his
+      philosophy of "I Did It All On Purpose" to his seemingly eerie
+      prophesying of his own untimely death in the closing lines of
       "I Had It In My Mouth, But I Forgot To Drag It."
     </p>
 
+
     <p>
       In these Rants you'll uncover his confusion regarding science,
-      religion, the origins of holidays, and everything else. Laugh at
-      his ignorance and use it to recognize your own so that you can
-      laugh at yourself as well.
+      religion, the origins of holidays, and everything else.
+      Laugh at his ignorance and use it to recognize your own so
+      that you can laugh at yourself.
     </p>
+
 
     <p>
       These Rants were never meant to be the full story, and you can
-      see the incredibly raw art and animation style, that somehow
+      see the incredibly amateur art and animation style, that somehow
       works so well with Wilba's nonsense. Everyone involved in these
       Rants is incredibly proud of them and friends of Wilba hold onto
       them dearly.
     </p>
+
 
     <p>
       Thank you for enjoying the company of our good friend and
@@ -468,8 +522,8 @@
 
 
   <!-- =================================
-       CLASSIC RANTS VIDEO GALLERY
-  ================================== -->
+       VIDEO GALLERY
+  ================================= -->
 
   <main>
 
@@ -477,58 +531,62 @@
 
 
       <!-- =================================
-           CLASSIC RANT 1
-      ================================== -->
+           CLASSIC RANT 01
+           I DID IT ALL ON PURPOSE
+      ================================= -->
 
-     <div
-  class="video-card"
-  onclick="openVideo('https://www.youtube.com/embed/NjvMkQVNЕPA')"
->
+      <div
+        class="video-card"
+        onclick="openVideo('https://www.youtube.com/embed/NjvMkQVNEPA')"
+      >
 
-  <div class="thumbnail">
+        <div class="thumbnail">
 
-    <img
-      src="https://img.youtube.com/vi/NjvMkQVNЕPA/hqdefault.jpg"
-      alt="I Did It All On Purpose"
-    >
+          <img
+            src="https://img.youtube.com/vi/NjvMkQVNEPA/hqdefault.jpg"
+            alt="I Did It All On Purpose"
+          >
 
-    <div class="play-button">
-      ▶
-    </div>
+          <div class="play-button">
+            ▶
+          </div>
 
-  </div>
+        </div>
 
-  <div class="video-number">
-    CLASSIC RANT 01
-  </div>
+        <div class="video-number">
+          CLASSIC RANT 01
+        </div>
 
-  <div class="video-title">
-    I Did It All On Purpose
-  </div>
+        <div class="video-title">
+          I Did It All On Purpose
+        </div>
 
-</div>
-
+      </div>
 
 
       <!-- =================================
-           CLASSIC RANT 2
-      ================================== -->
+           CLASSIC RANT 02
+      ================================= -->
 
-      <div class="thumbnail">
+      <div
+        class="video-card"
+        onclick="openVideo('YOUR-VIDEO-URL-2')"
+      >
 
-  <img
-    src="https://img.youtube.com/vi/NjvMkQVNЕPA/hqdefault.jpg"
-    alt="I Did It All On Purpose"
-  >
+        <div class="thumbnail">
 
-  <div class="play-button">
-    ▶
-  </div>
+          <div class="thumbnail-placeholder">
+            CLASSIC RANT 2
+          </div>
 
-</div>
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 02
         </div>
 
         <div class="video-title">
@@ -538,14 +596,13 @@
       </div>
 
 
-
       <!-- =================================
-           CLASSIC RANT 3
-      ================================== -->
+           CLASSIC RANT 03
+      ================================= -->
 
       <div
         class="video-card"
-        onclick="openVideo('https://www.youtube.com/watch?v=W0VkHAXRiEk')"
+        onclick="openVideo('YOUR-VIDEO-URL-3')"
       >
 
         <div class="thumbnail">
@@ -561,7 +618,7 @@
         </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 03
         </div>
 
         <div class="video-title">
@@ -571,14 +628,13 @@
       </div>
 
 
-
       <!-- =================================
-           CLASSIC RANT 4
-      ================================== -->
+           CLASSIC RANT 04
+      ================================= -->
 
       <div
         class="video-card"
-        onclick="openVideo('https://www.youtube.com/watch?v=OsDlj61tJe8')"
+        onclick="openVideo('YOUR-VIDEO-URL-4')"
       >
 
         <div class="thumbnail">
@@ -594,7 +650,7 @@
         </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 04
         </div>
 
         <div class="video-title">
@@ -604,10 +660,9 @@
       </div>
 
 
-
       <!-- =================================
-           CLASSIC RANT 5
-      ================================== -->
+           CLASSIC RANT 05
+      ================================= -->
 
       <div
         class="video-card"
@@ -627,7 +682,7 @@
         </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 05
         </div>
 
         <div class="video-title">
@@ -637,10 +692,9 @@
       </div>
 
 
-
       <!-- =================================
-           CLASSIC RANT 6
-      ================================== -->
+           CLASSIC RANT 06
+      ================================= -->
 
       <div
         class="video-card"
@@ -660,7 +714,7 @@
         </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 06
         </div>
 
         <div class="video-title">
@@ -670,10 +724,9 @@
       </div>
 
 
-
       <!-- =================================
-           CLASSIC RANT 7
-      ================================== -->
+           CLASSIC RANT 07
+      ================================= -->
 
       <div
         class="video-card"
@@ -693,7 +746,7 @@
         </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 07
         </div>
 
         <div class="video-title">
@@ -703,10 +756,9 @@
       </div>
 
 
-
       <!-- =================================
-           CLASSIC RANT 8
-      ================================== -->
+           CLASSIC RANT 08
+      ================================= -->
 
       <div
         class="video-card"
@@ -726,7 +778,7 @@
         </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 08
         </div>
 
         <div class="video-title">
@@ -736,10 +788,9 @@
       </div>
 
 
-
       <!-- =================================
-           CLASSIC RANT 9
-      ================================== -->
+           CLASSIC RANT 09
+      ================================= -->
 
       <div
         class="video-card"
@@ -759,7 +810,7 @@
         </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 09
         </div>
 
         <div class="video-title">
@@ -769,10 +820,9 @@
       </div>
 
 
-
       <!-- =================================
            CLASSIC RANT 10
-      ================================== -->
+      ================================= -->
 
       <div
         class="video-card"
@@ -792,7 +842,7 @@
         </div>
 
         <div class="video-number">
-          
+          CLASSIC RANT 10
         </div>
 
         <div class="video-title">
@@ -802,10 +852,9 @@
       </div>
 
 
-
       <!-- =================================
            CLASSIC RANT 11
-      ================================== -->
+      ================================= -->
 
       <div
         class="video-card"
@@ -825,7 +874,7 @@
         </div>
 
         <div class="video-number">
-         
+          CLASSIC RANT 11
         </div>
 
         <div class="video-title">
@@ -835,10 +884,9 @@
       </div>
 
 
-
       <!-- =================================
            CLASSIC RANT 12
-      ================================== -->
+      ================================= -->
 
       <div
         class="video-card"
@@ -858,7 +906,7 @@
         </div>
 
         <div class="video-number">
-         
+          CLASSIC RANT 12
         </div>
 
         <div class="video-title">
@@ -875,7 +923,7 @@
 
   <!-- =================================
        FOOTER
-  ================================== -->
+  ================================= -->
 
   <footer>
     © 2026 Bird Dog Cartoons
@@ -885,10 +933,9 @@
 </div>
 
 
-
 <!-- =================================
      VIDEO POPUP
-================================== -->
+================================= -->
 
 <div
   id="videoModal"
@@ -916,25 +963,26 @@
 </div>
 
 
-
 <script>
 
 
   /* =================================
      ACTIVE NAVIGATION TAB
-  ================================== */
+  ================================= */
 
-  const currentPage =
-    window.location.pathname.split("/").pop();
+  const currentPath =
+    window.location.pathname.toLowerCase();
+
 
   const newRantsLink =
     document.getElementById("new-rants-link");
+
 
   const classicRantsLink =
     document.getElementById("classic-rants-link");
 
 
-  if (currentPage === "classics.html") {
+  if (currentPath.includes("classics")) {
 
     classicRantsLink.classList.add("active");
 
@@ -948,11 +996,13 @@
 
   /* =================================
      OPEN VIDEO
-  ================================== */
+  ================================= */
 
   function openVideo(videoURL) {
 
-    /* Don't attempt to open placeholder URLs. */
+
+    /* Do nothing if this is still
+       one of our placeholder URLs. */
 
     if (
       !videoURL ||
@@ -967,6 +1017,7 @@
     const modal =
       document.getElementById("videoModal");
 
+
     const video =
       document.getElementById("modalVideo");
 
@@ -974,14 +1025,18 @@
     video.innerHTML = `
 
       <iframe
-        src="${videoURL}"
+        src="${videoURL}?autoplay=1"
+        title="Wilba Rants Video Player"
         allow="
           accelerometer;
-          gyroscope;
           autoplay;
+          clipboard-write;
           encrypted-media;
+          gyroscope;
           picture-in-picture;
+          web-share;
         "
+        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen>
       </iframe>
 
@@ -989,6 +1044,7 @@
 
 
     modal.style.display = "flex";
+
 
     document.body.style.overflow = "hidden";
 
@@ -998,9 +1054,10 @@
 
   /* =================================
      CLOSE VIDEO
-  ================================== */
+  ================================= */
 
   function closeVideo(event) {
+
 
     const modal =
       document.getElementById("videoModal");
@@ -1032,7 +1089,7 @@
 
   /* =================================
      ESCAPE KEY CLOSES VIDEO
-  ================================== */
+  ================================= */
 
   document.addEventListener(
     "keydown",
