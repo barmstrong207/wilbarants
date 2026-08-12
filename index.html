@@ -30,7 +30,9 @@
     }
 
 
-    /* HEADER */
+    /* =================================
+       HEADER
+    ================================= */
 
     header {
       text-align: center;
@@ -61,13 +63,18 @@
     }
 
 
-    /* NAVIGATION */
+    /* =================================
+       NAVIGATION
+    ================================= */
 
     nav {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      flex-wrap: wrap;
+      gap: 18px 30px;
+
       margin: 35px 0 45px;
+
       border-bottom: 1px solid #333;
       padding-bottom: 15px;
     }
@@ -75,9 +82,12 @@
     nav a {
       color: #ffffff;
       text-decoration: none;
+
       font-size: .9rem;
       font-weight: bold;
+
       letter-spacing: .12rem;
+
       transition: color .2s;
     }
 
@@ -90,11 +100,15 @@
     }
 
 
-    /* VIDEO GRID */
+    /* =================================
+       VIDEO GRID
+    ================================= */
 
     .video-grid {
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 28px;
     }
 
@@ -104,10 +118,15 @@
 
     .thumbnail {
       position: relative;
+
       width: 100%;
+
       aspect-ratio: 16 / 9;
+
       background: #222;
+
       border-radius: 8px;
+
       overflow: hidden;
 
       transition:
@@ -117,18 +136,57 @@
 
     .thumbnail:hover {
       transform: scale(1.025);
-      box-shadow: 0 8px 25px rgba(0,0,0,.5);
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.5);
     }
 
     .thumbnail img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       display: block;
     }
 
 
-    /* PLAY ICON */
+    /* =================================
+       VIDEO PLACEHOLDER
+    ================================= */
+
+    .thumbnail-placeholder {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #282828,
+          #171717
+        );
+
+      color: #e6b400;
+
+      font-size: 1rem;
+      font-weight: bold;
+
+      letter-spacing: .12rem;
+    }
+
+
+    /* =================================
+       PLAY ICON
+    ================================= */
 
     .play-button {
       position: absolute;
@@ -162,27 +220,35 @@
     }
 
 
-    /* VIDEO INFORMATION */
+    /* =================================
+       VIDEO INFORMATION
+    ================================= */
 
     .video-title {
       margin-top: 12px;
+
       font-size: 1.05rem;
       font-weight: bold;
     }
 
     .video-description {
       margin-top: 5px;
+
       color: #888;
+
       font-size: .9rem;
     }
 
 
-    /* VIDEO MODAL */
+    /* =================================
+       VIDEO MODAL
+    ================================= */
 
     .modal {
       display: none;
 
       position: fixed;
+
       z-index: 1000;
 
       top: 0;
@@ -202,18 +268,22 @@
     .modal-content {
       width: 100%;
       max-width: 1100px;
+
       position: relative;
     }
 
     .modal-video {
       width: 100%;
+
       aspect-ratio: 16 / 9;
+
       background: #000;
     }
 
     .modal-video iframe {
       width: 100%;
       height: 100%;
+
       border: none;
     }
 
@@ -224,23 +294,37 @@
       top: -45px;
 
       color: white;
+
       font-size: 35px;
 
       cursor: pointer;
+
+      transition: color .2s;
+    }
+
+    .close-button:hover {
+      color: #e6b400;
     }
 
 
-    /* FOOTER */
+    /* =================================
+       FOOTER
+    ================================= */
 
     footer {
       text-align: center;
+
       margin-top: 60px;
+
       color: #666;
+
       font-size: .85rem;
     }
 
 
-    /* MOBILE */
+    /* =================================
+       TABLET
+    ================================= */
 
     @media (max-width: 850px) {
 
@@ -250,6 +334,11 @@
 
     }
 
+
+    /* =================================
+       PHONE
+    ================================= */
+
     @media (max-width: 550px) {
 
       .video-grid {
@@ -257,7 +346,11 @@
       }
 
       nav {
-        gap: 18px;
+        gap: 15px 20px;
+      }
+
+      .modal {
+        padding: 20px;
       }
 
     }
@@ -273,7 +366,9 @@
 <div class="site-wrapper">
 
 
-  <!-- HEADER -->
+  <!-- =================================
+       HEADER
+  ================================= -->
 
   <header>
 
@@ -292,33 +387,48 @@
   </header>
 
 
-  <!-- NAVIGATION -->
+  <!-- =================================
+       NAVIGATION
+  ================================= -->
 
-<nav>
+  <nav>
 
-  <a href="index.html" id="fresh-link">
-    FRESHLY PUBLISHED
-  </a>
+    <a
+      href="index.html"
+      id="fresh-link"
+    >
+      FRESHLY PUBLISHED
+    </a>
 
-  <a href="classics.html" id="classic-link">
-    CLASSIC RANTS
-  </a>
+    <a
+      href="classics.html"
+      id="classic-link"
+    >
+      CLASSIC RANTS
+    </a>
 
-  <a href="about.html" id="about-link">
-    ABOUT WILBA
-  </a>
+    <a
+      href="about.html"
+      id="about-link"
+    >
+      ABOUT WILBA
+    </a>
 
-</nav>
+  </nav>
 
 
-  <!-- VIDEO GALLERY -->
+  <!-- =================================
+       VIDEO GALLERY
+  ================================= -->
 
   <main>
 
     <div class="video-grid">
 
 
-      <!-- VIDEO 1 -->
+      <!-- =================================
+           RANT 1
+      ================================= -->
 
       <div
         class="video-card"
@@ -349,7 +459,9 @@
       </div>
 
 
-      <!-- VIDEO 2 -->
+      <!-- =================================
+           RANT 2
+      ================================= -->
 
       <div
         class="video-card"
@@ -380,19 +492,21 @@
       </div>
 
 
-      <!-- VIDEO 3 -->
+      <!-- =================================
+           RANT 3
+           FIVE DAYS
+      ================================= -->
 
       <div
         class="video-card"
-        onclick="openVideo('YOUR-BUNNY-VIDEO-URL-HERE')"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/fffe327c-27f2-4637-aa9b-9f6ae8a9f713')"
       >
 
         <div class="thumbnail">
 
-          <img
-            src="thumbnail3.jpg"
-            alt="Five Days"
-          >
+          <div class="thumbnail-placeholder">
+            FIVE DAYS
+          </div>
 
           <div class="play-button">
             ▶
@@ -416,7 +530,9 @@
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =================================
+       FOOTER
+  ================================= -->
 
   <footer>
     © 2026 Bird Dog Cartoons
@@ -427,7 +543,9 @@
 
 
 
-<!-- VIDEO POPUP -->
+<!-- =================================
+     VIDEO POPUP
+================================= -->
 
 <div
   id="videoModal"
@@ -459,51 +577,68 @@
 <script>
 
 
-  /* ---------------------------------
+  /* =================================
      ACTIVE NAVIGATION TAB
-  --------------------------------- */
+  ================================= */
 
-const currentPath =
-  window.location.pathname.toLowerCase();
-
-const freshLink =
-  document.getElementById("fresh-link");
-
-const classicLink =
-  document.getElementById("classic-link");
-
-const aboutLink =
-  document.getElementById("about-link");
+  const currentPath =
+    window.location.pathname.toLowerCase();
 
 
-if (currentPath.includes("about")) {
-
-  aboutLink.classList.add("active");
-
-}
-
-else if (currentPath.includes("classics")) {
-
-  classicLink.classList.add("active");
-
-}
-
-else {
-
-  freshLink.classList.add("active");
-
-}
+  const freshLink =
+    document.getElementById("fresh-link");
 
 
+  const classicLink =
+    document.getElementById("classic-link");
 
-  /* ---------------------------------
+
+  const aboutLink =
+    document.getElementById("about-link");
+
+
+  if (currentPath.includes("about")) {
+
+    aboutLink.classList.add("active");
+
+  }
+
+  else if (currentPath.includes("classics")) {
+
+    classicLink.classList.add("active");
+
+  }
+
+  else {
+
+    freshLink.classList.add("active");
+
+  }
+
+
+
+  /* =================================
      OPEN VIDEO
-  --------------------------------- */
+  ================================= */
 
   function openVideo(videoURL) {
 
+
+    /* Don't open unfinished cards. */
+
+    if (
+      !videoURL ||
+      videoURL.startsWith("YOUR-BUNNY")
+    ) {
+
+      return;
+
+    }
+
+
     const modal =
       document.getElementById("videoModal");
+
 
     const video =
       document.getElementById("modalVideo");
@@ -513,11 +648,12 @@ else {
 
       <iframe
         src="${videoURL}"
+        title="Wilba Rants Video Player"
         allow="
           accelerometer;
-          gyroscope;
           autoplay;
           encrypted-media;
+          gyroscope;
           picture-in-picture;
         "
         allowfullscreen>
@@ -528,24 +664,23 @@ else {
 
     modal.style.display = "flex";
 
+
     document.body.style.overflow = "hidden";
 
   }
 
 
 
-  /* ---------------------------------
+  /* =================================
      CLOSE VIDEO
-  --------------------------------- */
+  ================================= */
 
   function closeVideo(event) {
+
 
     const modal =
       document.getElementById("videoModal");
 
-
-    /* If the user clicked inside the
-       video itself, don't close it. */
 
     if (
       event &&
@@ -560,9 +695,6 @@ else {
     modal.style.display = "none";
 
 
-    /* Removing the iframe also stops
-       the video from continuing to play. */
-
     document
       .getElementById("modalVideo")
       .innerHTML = "";
@@ -574,9 +706,9 @@ else {
 
 
 
-  /* ---------------------------------
+  /* =================================
      ESCAPE KEY CLOSES VIDEO
-  --------------------------------- */
+  ================================= */
 
   document.addEventListener(
     "keydown",
