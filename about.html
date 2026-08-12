@@ -394,30 +394,21 @@
        NAVIGATION
   ================================= -->
 
-  <nav>
+<nav>
 
-    <a
-      href="index.html"
-      id="fresh-link"
-    >
-      FRESHLY PUBLISHED
-    </a>
+  <a href="index.html" id="fresh-link">
+    FRESHLY PUBLISHED
+  </a>
 
-    <a
-      href="classics.html"
-      id="classic-link"
-    >
-      CLASSIC RANTS
-    </a>
+  <a href="classics.html" id="classic-link">
+    CLASSIC RANTS
+  </a>
 
-    <a
-      href="about.html"
-      id="about-link"
-    >
-      ABOUT WILBA
-    </a>
+  <a href="about.html" id="about-link">
+    ABOUT WILBA
+  </a>
 
-  </nav>
+</nav>
 
 
   <!-- =================================
@@ -726,38 +717,35 @@
   ================================= */
 
   const currentPath =
-    window.location.pathname.toLowerCase();
+  window.location.pathname.toLowerCase();
+
+const freshLink =
+  document.getElementById("fresh-link");
+
+const classicLink =
+  document.getElementById("classic-link");
+
+const aboutLink =
+  document.getElementById("about-link");
 
 
-  const freshLink =
-    document.getElementById("fresh-link");
+if (currentPath.includes("about")) {
 
+  aboutLink.classList.add("active");
 
-  const classicLink =
-    document.getElementById("classic-link");
+}
 
+else if (currentPath.includes("classics")) {
 
-  const aboutLink =
-    document.getElementById("about-link");
+  classicLink.classList.add("active");
 
+}
 
-  if (currentPath.includes("about")) {
+else {
 
-    aboutLink.classList.add("active");
+  freshLink.classList.add("active");
 
-  }
-
-  else if (currentPath.includes("classics")) {
-
-    classicLink.classList.add("active");
-
-  }
-
-  else {
-
-    freshLink.classList.add("active");
-
-  }
+}
 
 
 </script>
