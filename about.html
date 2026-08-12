@@ -1,1 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Wilba | Wilba Rants</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #111;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    .site-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 24px 60px;
+    }
+
+
+    /* =================================
+       HEADER
+    ================================= */
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      letter-spacing: .25rem;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    h1 .rants {
+      color: #e6b400;
+    }
+
+    .tagline {
+      color: #bbb;
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+
+
+    /* =================================
+       NAVIGATION
+    ================================= */
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px 30px;
+
+      margin: 35px 0 45px;
+
+      border-bottom: 1px solid #333;
+      padding-bottom: 15px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+
+      font-size: .9rem;
+      font-weight: bold;
+
+      letter-spacing: .12rem;
+
+      transition: color .2s;
+    }
+
+    nav a:hover {
+      color: #e6b400;
+    }
+
+    nav a.active {
+      color: #e6b400;
+    }
+
+
+    /* =================================
+       ABOUT PAGE
+    ================================= */
+
+    .about-wrapper {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+
+    .about-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .about-title h2 {
+      color: #e6b400;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      letter-spacing: .07rem;
+      margin-bottom: 10px;
+    }
+
+    .about-title p {
+      color: #777;
+      font-size: .9rem;
+      letter-spacing: .08rem;
+    }
+
+
+    /* =================================
+       ARTICLE
+    ================================= */
+
+    .about-story {
+      background: #181818;
+
+      border: 1px solid #2d2d2d;
+      border-radius: 10px;
+
+      padding: 45px 55px;
+    }
+
+    .about-story p {
+      color: #d0d0d0;
+
+      font-size: 1.05rem;
+      line-height: 1.85;
+
+      margin-bottom: 24px;
+    }
+
+    .about-story p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-story em {
+      color: #f0f0f0;
+    }
+
+    .about-story strong {
+      color: #f5f5f5;
+    }
+
+
+    /* =================================
+       EMPHASIS LINES
+    ================================= */
+
+    .story-beat {
+      color: #ffffff !important;
+
+      font-size: 1.15rem !important;
+      font-weight: bold;
+
+      margin-top: 34px;
+      margin-bottom: 34px !important;
+    }
+
+
+    /* =================================
+       QUOTE
+    ================================= */
+
+    .wilba-quote {
+      margin: 38px 0;
+
+      padding: 25px 30px;
+
+      border-left: 4px solid #e6b400;
+
+      background: #131313;
+
+      color: #f0f0f0;
+
+      font-size: 1.3rem;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+
+    /* =================================
+       PHOTO
+    ================================= */
+
+    .photo-block {
+      margin: 45px auto;
+
+      width: 100%;
+
+      text-align: center;
+    }
+
+    .photo-block img {
+      max-width: 100%;
+      max-height: 650px;
+
+      display: block;
+
+      margin: 0 auto;
+
+      border-radius: 8px;
+
+      object-fit: contain;
+
+      box-shadow:
+        0 10px 35px rgba(0,0,0,.45);
+    }
+
+    .photo-placeholder {
+      width: 100%;
+
+      min-height: 350px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px;
+
+      border: 1px dashed #444;
+      border-radius: 8px;
+
+      background: #141414;
+
+      color: #666;
+
+      font-size: .85rem;
+      letter-spacing: .08rem;
+    }
+
+    .photo-caption {
+      color: #777;
+
+      font-size: .8rem;
+      font-style: italic;
+
+      margin-top: 12px;
+    }
+
+
+    /* =================================
+       ENDING
+    ================================= */
+
+    .ending {
+      margin-top: 35px;
+    }
+
+    .ending-lines {
+      margin: 35px 0;
+
+      color: #f5f5f5;
+
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    .final-line {
+      color: #e6b400 !important;
+
+      font-size: 1.3rem !important;
+      font-weight: bold;
+
+      margin-top: 30px;
+    }
+
+    .signature {
+      margin-top: 40px !important;
+
+      color: #888 !important;
+
+      font-size: .95rem !important;
+      font-style: italic;
+
+      text-align: right;
+    }
+
+
+    /* =================================
+       FOOTER
+    ================================= */
+
+    footer {
+      text-align: center;
+
+      margin-top: 70px;
+
+      color: #666;
+
+      font-size: .85rem;
+    }
+
+
+    /* =================================
+       TABLET
+    ================================= */
+
+    @media (max-width: 850px) {
+
+      .about-story {
+        padding: 38px 35px;
+      }
+
+    }
+
+
+    /* =================================
+       PHONE
+    ================================= */
+
+    @media (max-width: 550px) {
+
+      nav {
+        gap: 15px 20px;
+      }
+
+      .about-story {
+        padding: 28px 22px;
+      }
+
+      .about-story p {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .wilba-quote {
+        font-size: 1.15rem;
+        padding: 20px;
+      }
+
+      .photo-placeholder {
+        min-height: 250px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="site-wrapper">
+
+
+  <!-- =================================
+       HEADER
+  ================================= -->
+
+  <header>
+
+    <div class="brand">
+      BIRD DOG ANIMATION PRESESNTS
+    </div>
+
+    <h1>
+      WILBA <span class="rants">RANTS</span>
+    </h1>
+
+    <p class="tagline">
+      Honest conversations between a man and his dog.
+    </p>
+
+  </header>
+
+
+  <!-- =================================
+       NAVIGATION
+  ================================= -->
+
+  <nav>
+
+    <a
+      href="index.html"
+      id="fresh-link"
+    >
+      FRESHLY PUBLISHED
+    </a>
+
+    <a
+      href="classics.html"
+      id="classic-link"
+    >
+      CLASSIC RANTS
+    </a>
+
+    <a
+      href="about.html"
+      id="about-link"
+    >
+      ABOUT WILBA
+    </a>
+
+  </nav>
+
+
+  <!-- =================================
+       ABOUT WILBA
+  ================================= -->
+
+  <main class="about-wrapper">
+
+
+    <div class="about-title">
+
+      <h2>
+        THE SOUL OF WILBA RANTS
+      </h2>
+
+    </div>
+
+
+    <article class="about-story">
+
+
+      <p class="story-beat">
+        <em>Wilba Rants</em> was never supposed to be a cartoon.
+      </p>
+
+
+      <p>
+        It began with two friends sitting around talking. Our good friend
+        Nick recorded the first one, and when he played it for me, I knew
+        we had to get more of it. All of it.
+      </p>
+
+
+      <p>
+        Wilba would get going on something—science, religion, women,
+        fatherhood, holidays, whatever happened to wander into his
+        head—and I would record him. Most of the time, I was the guy on
+        the other side of the conversation trying not to laugh.
+      </p>
+
+
+      <p>
+        So I recorded. Day and night, whenever I got the chance to be
+        with him, I recorded.
+      </p>
+
+
+      <p>
+        There was a strange sense of urgency to it that I cannot
+        understand, even now.
+      </p>
+
+
+      <!-- =================================
+           OPTIONAL PHOTO 1
+
+           Replace this entire placeholder
+           with an image later.
+
+           Example:
+
+           <img src="wilba1.jpg" alt="Wilba">
+      ================================= -->
+
+      <div class="photo-block">
+
+        <div class="photo-placeholder">
+          PHOTO OF WILBA
+        </div>
+
+      </div>
+
+
+      <p>
+        We thought the recordings were funny. Our good friend Chris
+        joined us often, and mostly we just enjoyed each other’s company.
+        We got stoned, told stories, and laughed. We saved the recordings
+        to share with friends. That was about as ambitious as the plan got.
+      </p>
+
+
+      <p class="story-beat">
+        Eventually, we decided to animate a few.
+      </p>
+
+
+      <p>
+        Once we started, we realized we had to explain my constant,
+        goofy laugh in the background. So we created a cartoon version
+        of Wilba’s real-life dog to sit beside him. Suddenly, the jokes
+        landed harder. Now it was just a man sitting around, confidently
+        explaining the universe to his dog.
+      </p>
+
+
+      <p>
+        The fact that Wilba’s nickname for me was <strong>Dog</strong>
+        is one of the great coincidences of my life and our friendship.
+      </p>
+
+
+      <p>
+        The drawings were crude. The animation was amateur. Neither of
+        us really knew what we were doing. Somehow, that made them
+        better. Our friend Rob moved home from California and dove
+        headfirst into the project with us. The simplicity left Wilba
+        exactly where he belonged: at the center of everything, talking
+        complete nonsense with the absolute confidence of a man
+        delivering eternal truths.
+      </p>
+
+
+      <p class="story-beat">
+        And every once in a while, he actually did.
+      </p>
+
+
+      <!-- =================================
+           OPTIONAL PHOTO 2
+      ================================= -->
+
+      <div class="photo-block">
+
+        <div class="photo-placeholder">
+          PHOTO OF WILBA / ORIGINAL RANTS ERA
+        </div>
+
+      </div>
+
+
+      <p class="story-beat">
+        Wilba died unexpectedly in June of 2015.
+      </p>
+
+
+      <p>
+        Among the recordings he left behind was one we had never
+        intended to animate. In it, his cigarette goes out because,
+        as he puts it:
+      </p>
+
+
+      <div class="wilba-quote">
+        “I had it in my mouth, but I forgot to drag it.”
+      </div>
+
+
+      <p>
+        Moments later, he imagines his own funeral and tells us exactly
+        what to do when the day comes: stop crying, grab the shovels,
+        smile, crack a joke, tell a story about Uncle Wilba, hug
+        everybody, go home, and enjoy the rest of our lives.
+      </p>
+
+
+      <p class="story-beat">
+        So we animated it.
+      </p>
+
+
+      <p class="story-beat">
+        Then I put <em>Wilba Rants</em> away.
+      </p>
+
+
+      <p>
+        For years, those cartoons remained where we had left them,
+        until my son Nicholas found them on YouTube. He loved them.
+        We began quoting them to each other throughout the day.
+        Through him, I encountered my old friend again—not simply as
+        someone I had lost, but as someone who could still make a kid
+        who never really knew him laugh.
+      </p>
+
+
+      <!-- =================================
+           OPTIONAL PHOTO 3
+      ================================= -->
+
+      <div class="photo-block">
+
+        <div class="photo-placeholder">
+          PHOTO OF WILBA / FRIENDS / PROJECT
+        </div>
+
+      </div>
+
+
+      <p>
+        So, I picked up the recordings again. I dug through all of the
+        hours of raw audio I never listened to because I had spent a
+        decade avoiding them.
+      </p>
+
+
+      <p>
+        The new <em>Wilba Rants</em> are built from what he left behind,
+        animated frame by frame with a care we never imagined giving
+        them when they were made. They aren't an attempt to clean Wilba
+        up, explain him, or turn a dead friend into a saint.
+      </p>
+
+
+      <p>
+        He was vulgar. He was ignorant. He was contradictory,
+        ridiculous, loving, infuriating, and very, very funny.
+      </p>
+
+
+      <p class="story-beat">
+        That's the point.
+      </p>
+
+
+      <p>
+        There is something deeply human hiding inside all that nonsense.
+        Wilba could misunderstand nearly everything and occasionally
+        stumble into something true.
+      </p>
+
+
+      <p>
+        Maybe that's all of us.
+      </p>
+
+
+      <p>
+        Laugh at his ignorance long enough and eventually you may
+        recognize your own.
+      </p>
+
+
+      <p>
+        And maybe that's why one stupid sentence about a forgotten
+        cigarette has stayed with me:
+      </p>
+
+
+      <div class="wilba-quote">
+        “I had it in my mouth, but I forgot to drag it.”
+      </div>
+
+
+      <p>
+        Maybe we get distracted. Maybe we fail to appreciate what is
+        already between our lips. Maybe we're having such a good time
+        that we simply forget to notice it burning away.
+      </p>
+
+
+      <p class="story-beat">
+        Either way, it goes out.
+      </p>
+
+
+      <p>
+        And when it does, Wilba already told us what to do.
+      </p>
+
+
+      <div class="ending">
+
+        <div class="ending-lines">
+          Tell a story.<br>
+          Crack a joke.<br>
+          Hug everybody.<br>
+          Enjoy the rest of your life.
+        </div>
+
+
+        <p class="final-line">
+          And spark that motherfucker back up.
+        </p>
+
+
+        <p class="signature">
+          — Brent Armstrong, Dog
+        </p>
+
+      </div>
+
+
+    </article>
+
+
+  </main>
+
+
+  <!-- =================================
+       FOOTER
+  ================================= -->
+
+  <footer>
+    © 2026 Bird Dog Cartoons
+  </footer>
+
+
+</div>
+
+
+<script>
+
+
+  /* =================================
+     ACTIVE NAVIGATION TAB
+  ================================= */
+
+  const currentPath =
+    window.location.pathname.toLowerCase();
+
+
+  const freshLink =
+    document.getElementById("fresh-link");
+
+
+  const classicLink =
+    document.getElementById("classic-link");
+
+
+  const aboutLink =
+    document.getElementById("about-link");
+
+
+  if (currentPath.includes("about")) {
+
+    aboutLink.classList.add("active");
+
+  }
+
+  else if (currentPath.includes("classics")) {
+
+    classicLink.classList.add("active");
+
+  }
+
+  else {
+
+    freshLink.classList.add("active");
+
+  }
+
+
+</script>
+
+
+</body>
+
+</html>
