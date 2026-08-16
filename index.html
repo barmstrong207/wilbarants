@@ -37,7 +37,9 @@
     }
 
 
-    /* HEADER */
+    /* =================================
+       HEADER
+    ================================= */
 
     header {
       text-align: center;
@@ -68,9 +70,11 @@
     }
 
 
-    /* NAVIGATION */
+    /* =================================
+       DESKTOP NAVIGATION
+    ================================= */
 
-    nav {
+    .desktop-nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -82,7 +86,7 @@
       padding-bottom: 15px;
     }
 
-    nav a {
+    .desktop-nav a {
       color: #ffffff;
       text-decoration: none;
 
@@ -93,21 +97,117 @@
       transition: color .2s;
     }
 
-    nav a:hover {
+    .desktop-nav a:hover {
       color: #e6b400;
     }
 
-    nav a.active {
+    .desktop-nav a.active {
       color: #e6b400;
     }
 
-    /* Hidden on desktop */
-    .mobile-only-nav {
+
+    /* =================================
+       MOBILE HAMBURGER NAVIGATION
+    ================================= */
+
+    .mobile-nav {
       display: none;
+
+      margin: 30px 0 40px;
+
+      border-bottom: 1px solid #333;
+
+      padding-bottom: 15px;
+    }
+
+    .mobile-nav-bar {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .menu-button {
+      appearance: none;
+
+      background: transparent;
+
+      border: 0;
+
+      color: #ffffff;
+
+      font-size: 32px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      padding: 5px 4px;
+
+      transition: color .2s;
+    }
+
+    .menu-button:hover {
+      color: #e6b400;
+    }
+
+    .mobile-menu {
+      display: none;
+
+      width: 100%;
+
+      margin-top: 15px;
+
+      background: #181818;
+
+      border: 1px solid #333;
+      border-radius: 8px;
+
+      overflow: hidden;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+
+      width: 100%;
+
+      padding: 17px 20px;
+
+      color: #ffffff;
+
+      text-decoration: none;
+
+      font-size: .9rem;
+      font-weight: bold;
+
+      letter-spacing: .12rem;
+
+      border-bottom: 1px solid #2d2d2d;
+
+      transition:
+        color .2s,
+        background .2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: #e6b400;
+
+      background: #202020;
+    }
+
+    .mobile-menu a.active {
+      color: #e6b400;
     }
 
 
-    /* THE WHOLE THING */
+    /* =================================
+       THE WHOLE THING
+    ================================= */
 
     .whole-thing-section {
       margin-bottom: 65px;
@@ -158,7 +258,9 @@
     }
 
 
-    /* INDIVIDUAL RANTS HEADING */
+    /* =================================
+       INDIVIDUAL RANTS HEADING
+    ================================= */
 
     .individual-heading {
       display: flex;
@@ -198,7 +300,9 @@
     }
 
 
-    /* VIDEO GRID */
+    /* =================================
+       VIDEO GRID
+    ================================= */
 
     .video-grid {
       display: grid;
@@ -247,7 +351,9 @@
     }
 
 
-    /* PLAY ICON */
+    /* =================================
+       PLAY ICON
+    ================================= */
 
     .play-button {
       position: absolute;
@@ -288,7 +394,9 @@
     }
 
 
-    /* VIDEO INFORMATION */
+    /* =================================
+       VIDEO INFORMATION
+    ================================= */
 
     .video-title {
       margin-top: 12px;
@@ -306,7 +414,9 @@
     }
 
 
-    /* MORE RANTS */
+    /* =================================
+       MORE RANTS
+    ================================= */
 
     .more-rants {
       text-align: center;
@@ -322,7 +432,9 @@
     }
 
 
-    /* VIDEO MODAL */
+    /* =================================
+       VIDEO MODAL
+    ================================= */
 
     .modal {
       display: none;
@@ -389,7 +501,9 @@
     }
 
 
-    /* FOOTER */
+    /* =================================
+       FOOTER
+    ================================= */
 
     footer {
       text-align: center;
@@ -402,7 +516,9 @@
     }
 
 
-    /* TABLET */
+    /* =================================
+       TABLET
+    ================================= */
 
     @media (max-width: 850px) {
 
@@ -417,26 +533,29 @@
     }
 
 
-    /* PHONE */
+    /* =================================
+       PHONE
+    ================================= */
 
     @media (max-width: 550px) {
 
-      /* Hide featured compilation */
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      /* The Whole Thing remains its own
+         destination on mobile. */
+
       .whole-thing-section {
         display: none;
       }
 
-      /* Show Whole Thing navigation tab */
-      .mobile-only-nav {
-        display: inline;
-      }
-
       .video-grid {
         grid-template-columns: 1fr;
-      }
-
-      nav {
-        gap: 15px 20px;
       }
 
       .individual-heading::before {
@@ -450,7 +569,9 @@
     }
 
 
-    /* MOBILE / TOUCH VIDEO PLAYER */
+    /* =================================
+       MOBILE / TOUCH VIDEO PLAYER
+    ================================= */
 
     @media (hover: none) and (pointer: coarse) {
 
@@ -528,7 +649,9 @@
     }
 
 
-    /* LANDSCAPE FALLBACK */
+    /* =================================
+       LANDSCAPE FALLBACK
+    ================================= */
 
     @media (max-width: 1024px) and (orientation: landscape) {
 
@@ -586,6 +709,10 @@
 <div class="site-wrapper">
 
 
+  <!-- =================================
+       HEADER
+  ================================= -->
+
   <header>
 
     <div class="brand">
@@ -603,37 +730,103 @@
   </header>
 
 
-  <!-- NAVIGATION -->
+  <!-- =================================
+       DESKTOP NAVIGATION
+  ================================= -->
 
-  <nav>
+  <nav class="desktop-nav">
 
-    <a href="index.html" id="fresh-link">
+    <a
+      href="index.html"
+      id="desktop-fresh-link"
+    >
       FRESHLY PUBLISHED
     </a>
 
     <a
-      href="wholething.html"
-      id="whole-link"
-      class="mobile-only-nav"
+      href="classics.html"
+      id="desktop-classic-link"
     >
-      THE WHOLE THING
-    </a>
-
-    <a href="classics.html" id="classic-link">
       CLASSIC RANTS
     </a>
 
-    <a href="about.html" id="about-link">
+    <a
+      href="about.html"
+      id="desktop-about-link"
+    >
       ABOUT WILBA
     </a>
 
   </nav>
 
 
+  <!-- =================================
+       MOBILE NAVIGATION
+  ================================= -->
+
+  <div class="mobile-nav">
+
+    <div class="mobile-nav-bar">
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        onclick="toggleMenu()"
+      >
+        ☰
+      </button>
+
+    </div>
+
+
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+    >
+
+      <a
+        href="index.html"
+        id="mobile-fresh-link"
+      >
+        FRESHLY PUBLISHED
+      </a>
+
+      <a
+        href="wholething.html"
+        id="mobile-whole-link"
+      >
+        THE WHOLE THING
+      </a>
+
+      <a
+        href="classics.html"
+        id="mobile-classic-link"
+      >
+        CLASSIC RANTS
+      </a>
+
+      <a
+        href="about.html"
+        id="mobile-about-link"
+      >
+        ABOUT WILBA
+      </a>
+
+    </div>
+
+  </div>
+
+
   <main>
 
 
-    <!-- THE WHOLE THING -->
+    <!-- =================================
+         THE WHOLE THING
+    ================================= -->
 
     <section class="whole-thing-section">
 
@@ -672,7 +865,9 @@
     </section>
 
 
-    <!-- INDIVIDUAL RANTS -->
+    <!-- =================================
+         INDIVIDUAL RANTS
+    ================================= -->
 
     <div class="individual-heading">
       INDIVIDUAL RANTS
@@ -682,7 +877,9 @@
     <div class="video-grid">
 
 
-      <!-- RANT 1 -->
+      <!-- =================================
+           RANT 1
+      ================================= -->
 
       <div
         class="video-card"
@@ -709,7 +906,9 @@
       </div>
 
 
-      <!-- RANT 2 -->
+      <!-- =================================
+           RANT 2
+      ================================= -->
 
       <div
         class="video-card"
@@ -736,7 +935,9 @@
       </div>
 
 
-      <!-- RANT 3 -->
+      <!-- =================================
+           RANT 3
+      ================================= -->
 
       <div
         class="video-card"
@@ -766,6 +967,10 @@
     </div>
 
 
+    <!-- =================================
+         MORE RANTS
+    ================================= -->
+
     <div class="more-rants">
       MORE RANTS COMING SOON...
     </div>
@@ -773,6 +978,10 @@
 
   </main>
 
+
+  <!-- =================================
+       FOOTER
+  ================================= -->
 
   <footer>
     © 2026 Bird Dog Cartoons
@@ -782,7 +991,10 @@
 </div>
 
 
-<!-- VIDEO POPUP -->
+
+<!-- =================================
+     VIDEO POPUP
+================================= -->
 
 <div
   id="videoModal"
@@ -801,7 +1013,8 @@
 
     <div
       id="modalVideo"
-      class="modal-video">
+      class="modal-video"
+    >
     </div>
 
   </div>
@@ -809,52 +1022,118 @@
 </div>
 
 
+
 <script>
 
-  /* ACTIVE NAVIGATION */
+
+  /* =================================
+     ACTIVE NAVIGATION
+  ================================= */
 
   const currentPath =
     window.location.pathname.toLowerCase();
 
-  const freshLink =
-    document.getElementById("fresh-link");
 
-  const wholeLink =
-    document.getElementById("whole-link");
+  const desktopFreshLink =
+    document.getElementById("desktop-fresh-link");
 
-  const classicLink =
-    document.getElementById("classic-link");
+  const desktopClassicLink =
+    document.getElementById("desktop-classic-link");
 
-  const aboutLink =
-    document.getElementById("about-link");
+  const desktopAboutLink =
+    document.getElementById("desktop-about-link");
+
+
+  const mobileFreshLink =
+    document.getElementById("mobile-fresh-link");
+
+  const mobileWholeLink =
+    document.getElementById("mobile-whole-link");
+
+  const mobileClassicLink =
+    document.getElementById("mobile-classic-link");
+
+  const mobileAboutLink =
+    document.getElementById("mobile-about-link");
 
 
   if (currentPath.includes("wholething")) {
 
-    wholeLink.classList.add("active");
+    mobileWholeLink.classList.add("active");
 
   }
 
   else if (currentPath.includes("about")) {
 
-    aboutLink.classList.add("active");
+    desktopAboutLink.classList.add("active");
+    mobileAboutLink.classList.add("active");
 
   }
 
   else if (currentPath.includes("classics")) {
 
-    classicLink.classList.add("active");
+    desktopClassicLink.classList.add("active");
+    mobileClassicLink.classList.add("active");
 
   }
 
   else {
 
-    freshLink.classList.add("active");
+    desktopFreshLink.classList.add("active");
+    mobileFreshLink.classList.add("active");
 
   }
 
 
-  /* OPEN VIDEO */
+  /* =================================
+     MOBILE MENU
+  ================================= */
+
+  function toggleMenu() {
+
+    const menu =
+      document.getElementById("mobileMenu");
+
+    const button =
+      document.getElementById("menuButton");
+
+
+    const isOpen =
+      menu.classList.toggle("open");
+
+
+    button.setAttribute(
+      "aria-expanded",
+      isOpen
+    );
+
+
+    if (isOpen) {
+
+      button.innerHTML = "×";
+      button.setAttribute(
+        "aria-label",
+        "Close navigation menu"
+      );
+
+    }
+
+    else {
+
+      button.innerHTML = "☰";
+      button.setAttribute(
+        "aria-label",
+        "Open navigation menu"
+      );
+
+    }
+
+  }
+
+
+  /* =================================
+     OPEN VIDEO
+  ================================= */
 
   function openVideo(videoURL) {
 
@@ -891,7 +1170,9 @@
   }
 
 
-  /* CLOSE VIDEO */
+  /* =================================
+     CLOSE VIDEO
+  ================================= */
 
   function closeVideo(event) {
 
@@ -922,7 +1203,9 @@
   }
 
 
-  /* ESCAPE KEY CLOSES VIDEO */
+  /* =================================
+     ESCAPE KEY CLOSES VIDEO
+  ================================= */
 
   document.addEventListener(
     "keydown",
