@@ -67,6 +67,11 @@
       color: #bbb;
       font-size: 1.1rem;
       font-style: italic;
+      text-align: center;
+    }
+
+    .tagline-line {
+      display: inline;
     }
 
 
@@ -196,7 +201,6 @@
 
     .mobile-menu a:hover {
       color: #e6b400;
-
       background: #202020;
     }
 
@@ -547,8 +551,15 @@
         display: block;
       }
 
-      /* The Whole Thing remains its own
-         destination on mobile. */
+      /* Force tagline into two centered lines */
+
+      .tagline-line {
+        display: block;
+        text-align: center;
+      }
+
+      /* The Whole Thing is accessed
+         through the mobile menu */
 
       .whole-thing-section {
         display: none;
@@ -724,7 +735,8 @@
     </h1>
 
     <p class="tagline">
-      Honest conversations between a man and his dog.
+      <span class="tagline-line">Honest conversations</span>
+      <span class="tagline-line">between a man and his dog.</span>
     </p>
 
   </header>
@@ -877,9 +889,7 @@
     <div class="video-grid">
 
 
-      <!-- =================================
-           RANT 1
-      ================================= -->
+      <!-- RANT 1 -->
 
       <div
         class="video-card"
@@ -906,9 +916,7 @@
       </div>
 
 
-      <!-- =================================
-           RANT 2
-      ================================= -->
+      <!-- RANT 2 -->
 
       <div
         class="video-card"
@@ -935,9 +943,7 @@
       </div>
 
 
-      <!-- =================================
-           RANT 3
-      ================================= -->
+      <!-- RANT 3 -->
 
       <div
         class="video-card"
@@ -1111,6 +1117,7 @@
     if (isOpen) {
 
       button.innerHTML = "×";
+
       button.setAttribute(
         "aria-label",
         "Close navigation menu"
@@ -1121,6 +1128,7 @@
     else {
 
       button.innerHTML = "☰";
+
       button.setAttribute(
         "aria-label",
         "Open navigation menu"
