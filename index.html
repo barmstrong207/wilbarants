@@ -37,9 +37,7 @@
     }
 
 
-    /* =================================
-       HEADER
-    ================================= */
+    /* HEADER */
 
     header {
       text-align: center;
@@ -70,9 +68,7 @@
     }
 
 
-    /* =================================
-       NAVIGATION
-    ================================= */
+    /* NAVIGATION */
 
     nav {
       display: flex;
@@ -92,7 +88,6 @@
 
       font-size: .9rem;
       font-weight: bold;
-
       letter-spacing: .12rem;
 
       transition: color .2s;
@@ -106,10 +101,13 @@
       color: #e6b400;
     }
 
+    /* Hidden on desktop */
+    .mobile-only-nav {
+      display: none;
+    }
 
-    /* =================================
-       THE WHOLE THING
-    ================================= */
+
+    /* THE WHOLE THING */
 
     .whole-thing-section {
       margin-bottom: 65px;
@@ -160,9 +158,7 @@
     }
 
 
-    /* =================================
-       INDIVIDUAL RANTS HEADING
-    ================================= */
+    /* INDIVIDUAL RANTS HEADING */
 
     .individual-heading {
       display: flex;
@@ -202,9 +198,7 @@
     }
 
 
-    /* =================================
-       VIDEO GRID
-    ================================= */
+    /* VIDEO GRID */
 
     .video-grid {
       display: grid;
@@ -253,9 +247,7 @@
     }
 
 
-    /* =================================
-       PLAY ICON
-    ================================= */
+    /* PLAY ICON */
 
     .play-button {
       position: absolute;
@@ -296,9 +288,7 @@
     }
 
 
-    /* =================================
-       VIDEO INFORMATION
-    ================================= */
+    /* VIDEO INFORMATION */
 
     .video-title {
       margin-top: 12px;
@@ -316,9 +306,7 @@
     }
 
 
-    /* =================================
-       MORE RANTS
-    ================================= */
+    /* MORE RANTS */
 
     .more-rants {
       text-align: center;
@@ -334,10 +322,7 @@
     }
 
 
-    /* =================================
-       VIDEO MODAL
-       DESKTOP
-    ================================= */
+    /* VIDEO MODAL */
 
     .modal {
       display: none;
@@ -404,9 +389,7 @@
     }
 
 
-    /* =================================
-       FOOTER
-    ================================= */
+    /* FOOTER */
 
     footer {
       text-align: center;
@@ -419,9 +402,7 @@
     }
 
 
-    /* =================================
-       TABLET
-    ================================= */
+    /* TABLET */
 
     @media (max-width: 850px) {
 
@@ -436,14 +417,18 @@
     }
 
 
-    /* =================================
-       PHONE
-    ================================= */
+    /* PHONE */
 
     @media (max-width: 550px) {
 
+      /* Hide featured compilation */
       .whole-thing-section {
         display: none;
+      }
+
+      /* Show Whole Thing navigation tab */
+      .mobile-only-nav {
+        display: inline;
       }
 
       .video-grid {
@@ -465,9 +450,7 @@
     }
 
 
-    /* =================================
-       MOBILE / TOUCH VIDEO PLAYER
-    ================================= */
+    /* MOBILE / TOUCH VIDEO PLAYER */
 
     @media (hover: none) and (pointer: coarse) {
 
@@ -545,9 +528,7 @@
     }
 
 
-    /* =================================
-       LANDSCAPE FALLBACK
-    ================================= */
+    /* LANDSCAPE FALLBACK */
 
     @media (max-width: 1024px) and (orientation: landscape) {
 
@@ -605,10 +586,6 @@
 <div class="site-wrapper">
 
 
-  <!-- =================================
-       HEADER
-  ================================= -->
-
   <header>
 
     <div class="brand">
@@ -626,30 +603,27 @@
   </header>
 
 
-  <!-- =================================
-       NAVIGATION
-  ================================= -->
+  <!-- NAVIGATION -->
 
   <nav>
 
-    <a
-      href="index.html"
-      id="fresh-link"
-    >
+    <a href="index.html" id="fresh-link">
       FRESHLY PUBLISHED
     </a>
 
     <a
-      href="classics.html"
-      id="classic-link"
+      href="wholething.html"
+      id="whole-link"
+      class="mobile-only-nav"
     >
+      THE WHOLE THING
+    </a>
+
+    <a href="classics.html" id="classic-link">
       CLASSIC RANTS
     </a>
 
-    <a
-      href="about.html"
-      id="about-link"
-    >
+    <a href="about.html" id="about-link">
       ABOUT WILBA
     </a>
 
@@ -659,9 +633,7 @@
   <main>
 
 
-    <!-- =================================
-         THE WHOLE THING
-    ================================= -->
+    <!-- THE WHOLE THING -->
 
     <section class="whole-thing-section">
 
@@ -700,9 +672,7 @@
     </section>
 
 
-    <!-- =================================
-         INDIVIDUAL RANTS
-    ================================= -->
+    <!-- INDIVIDUAL RANTS -->
 
     <div class="individual-heading">
       INDIVIDUAL RANTS
@@ -712,10 +682,7 @@
     <div class="video-grid">
 
 
-      <!-- =================================
-           RANT 1
-           DAD! CAN YOU BREATHE SON?!
-      ================================= -->
+      <!-- RANT 1 -->
 
       <div
         class="video-card"
@@ -739,16 +706,10 @@
           Dad! Can You Breathe Son?!
         </div>
 
-        <div class="video-description">
-        </div>
-
       </div>
 
 
-      <!-- =================================
-           RANT 2
-           MONEY, GOLD, AND DIAMONDS
-      ================================= -->
+      <!-- RANT 2 -->
 
       <div
         class="video-card"
@@ -772,16 +733,10 @@
           Money, Gold, and Diamonds
         </div>
 
-        <div class="video-description">
-        </div>
-
       </div>
 
 
-      <!-- =================================
-           RANT 3
-           FIVE DAYS
-      ================================= -->
+      <!-- RANT 3 -->
 
       <div
         class="video-card"
@@ -805,18 +760,11 @@
           Five Days
         </div>
 
-        <div class="video-description">
-        </div>
-
       </div>
 
 
     </div>
 
-
-    <!-- =================================
-         MORE RANTS
-    ================================= -->
 
     <div class="more-rants">
       MORE RANTS COMING SOON...
@@ -826,10 +774,6 @@
   </main>
 
 
-  <!-- =================================
-       FOOTER
-  ================================= -->
-
   <footer>
     © 2026 Bird Dog Cartoons
   </footer>
@@ -838,10 +782,7 @@
 </div>
 
 
-
-<!-- =================================
-     VIDEO POPUP
-================================= -->
+<!-- VIDEO POPUP -->
 
 <div
   id="videoModal"
@@ -868,31 +809,33 @@
 </div>
 
 
-
 <script>
 
-
-  /* =================================
-     ACTIVE NAVIGATION TAB
-  ================================= */
+  /* ACTIVE NAVIGATION */
 
   const currentPath =
     window.location.pathname.toLowerCase();
 
-
   const freshLink =
     document.getElementById("fresh-link");
 
+  const wholeLink =
+    document.getElementById("whole-link");
 
   const classicLink =
     document.getElementById("classic-link");
-
 
   const aboutLink =
     document.getElementById("about-link");
 
 
-  if (currentPath.includes("about")) {
+  if (currentPath.includes("wholething")) {
+
+    wholeLink.classList.add("active");
+
+  }
+
+  else if (currentPath.includes("about")) {
 
     aboutLink.classList.add("active");
 
@@ -911,16 +854,12 @@
   }
 
 
-
-  /* =================================
-     OPEN VIDEO
-  ================================= */
+  /* OPEN VIDEO */
 
   function openVideo(videoURL) {
 
     const modal =
       document.getElementById("videoModal");
-
 
     const video =
       document.getElementById("modalVideo");
@@ -947,16 +886,12 @@
 
     modal.style.display = "flex";
 
-
     document.body.style.overflow = "hidden";
 
   }
 
 
-
-  /* =================================
-     CLOSE VIDEO
-  ================================= */
+  /* CLOSE VIDEO */
 
   function closeVideo(event) {
 
@@ -987,10 +922,7 @@
   }
 
 
-
-  /* =================================
-     ESCAPE KEY CLOSES VIDEO
-  ================================= */
+  /* ESCAPE KEY CLOSES VIDEO */
 
   document.addEventListener(
     "keydown",
