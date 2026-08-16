@@ -108,6 +108,76 @@
 
 
     /* =================================
+       THE WHOLE THING
+    ================================= */
+
+    .whole-thing-section {
+      margin-bottom: 65px;
+      text-align: center;
+    }
+
+    .whole-thing-heading {
+      color: #e6b400;
+
+      font-size: 1.5rem;
+      font-weight: 900;
+
+      letter-spacing: .12rem;
+
+      margin-bottom: 10px;
+    }
+
+    .whole-thing-subtitle {
+      color: #888;
+
+      font-size: .95rem;
+      font-style: italic;
+
+      margin-bottom: 25px;
+    }
+
+    .whole-thing-card {
+      width: 100%;
+      max-width: 900px;
+
+      margin: 0 auto;
+
+      cursor: pointer;
+    }
+
+    .whole-thing-card .thumbnail {
+      box-shadow: 0 10px 35px rgba(0,0,0,.35);
+    }
+
+    .whole-thing-title {
+      margin-top: 14px;
+
+      font-size: 1.2rem;
+      font-weight: bold;
+
+      text-align: left;
+    }
+
+
+    /* =================================
+       INDIVIDUAL RANTS HEADING
+    ================================= */
+
+    .individual-heading {
+      text-align: center;
+
+      margin-bottom: 28px;
+
+      color: #aaa;
+
+      font-size: .85rem;
+      font-weight: bold;
+
+      letter-spacing: .16rem;
+    }
+
+
+    /* =================================
        VIDEO GRID
     ================================= */
 
@@ -191,6 +261,13 @@
 
     .thumbnail:hover .play-button {
       opacity: 1;
+    }
+
+    .whole-thing-card .play-button {
+      width: 72px;
+      height: 72px;
+
+      font-size: 30px;
     }
 
 
@@ -327,6 +404,10 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .whole-thing-section {
+        margin-bottom: 55px;
+      }
+
     }
 
 
@@ -344,14 +425,26 @@
         gap: 15px 20px;
       }
 
+      .whole-thing-heading {
+        font-size: 1.25rem;
+      }
+
+      .whole-thing-subtitle {
+        font-size: .9rem;
+      }
+
+      .whole-thing-card .play-button {
+        width: 60px;
+        height: 60px;
+
+        font-size: 25px;
+      }
+
     }
 
 
     /* =================================
        MOBILE / TOUCH VIDEO PLAYER
-
-       This applies even after the phone
-       rotates into landscape.
     ================================= */
 
     @media (hover: none) and (pointer: coarse) {
@@ -431,10 +524,7 @@
 
 
     /* =================================
-       FALLBACK FOR SMALL SCREENS
-
-       Helps browsers that don't report
-       touch input correctly.
+       LANDSCAPE FALLBACK
     ================================= */
 
     @media (max-width: 1024px) and (orientation: landscape) {
@@ -544,11 +634,59 @@
   </nav>
 
 
-  <!-- =================================
-       VIDEO GALLERY
-  ================================= -->
-
   <main>
+
+
+    <!-- =================================
+         THE WHOLE THING
+    ================================= -->
+
+    <section class="whole-thing-section">
+
+      <div class="whole-thing-heading">
+        THE WHOLE THING
+      </div>
+
+      <div class="whole-thing-subtitle">
+        Every freshly published Wilba Rant. One after another.
+      </div>
+
+
+      <div
+        class="whole-thing-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/9046da8f-c3ed-42de-b6ac-af7857254388')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/The Whole Thing Thumbnail.png"
+            alt="The Whole Thing"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="whole-thing-title">
+          The Whole Thing
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         INDIVIDUAL RANTS
+    ================================= -->
+
+    <div class="individual-heading">
+      INDIVIDUAL RANTS
+    </div>
+
 
     <div class="video-grid">
 
@@ -581,7 +719,6 @@
         </div>
 
         <div class="video-description">
-          
         </div>
 
       </div>
@@ -615,7 +752,6 @@
         </div>
 
         <div class="video-description">
-          
         </div>
 
       </div>
@@ -649,7 +785,6 @@
         </div>
 
         <div class="video-description">
-          
         </div>
 
       </div>
