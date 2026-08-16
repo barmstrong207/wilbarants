@@ -164,16 +164,40 @@
     ================================= */
 
     .individual-heading {
-      text-align: center;
+      display: flex;
+      align-items: center;
+
+      width: 100%;
 
       margin-bottom: 28px;
 
-      color: #aaa;
+      color: #e6b400;
 
-      font-size: .85rem;
+      font-size: .9rem;
       font-weight: bold;
 
       letter-spacing: .16rem;
+
+      white-space: nowrap;
+    }
+
+    .individual-heading::before,
+    .individual-heading::after {
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background: #444;
+    }
+
+    .individual-heading::before {
+      margin-right: 22px;
+    }
+
+    .individual-heading::after {
+      margin-left: 22px;
     }
 
 
@@ -440,6 +464,14 @@
         font-size: 25px;
       }
 
+      .individual-heading::before {
+        margin-right: 14px;
+      }
+
+      .individual-heading::after {
+        margin-left: 14px;
+      }
+
     }
 
 
@@ -671,7 +703,6 @@
         </div>
 
         <div class="whole-thing-title">
-          
         </div>
 
       </div>
