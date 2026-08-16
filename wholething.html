@@ -1,1 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The Whole Thing | Wilba Rants</title>
+
+  <link rel="icon" type="image/png" href="images/WR%20Favicon.png">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      background: #111;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .site-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 24px 60px;
+    }
+
+
+    /* HEADER */
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      letter-spacing: .25rem;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    h1 .rants {
+      color: #e6b400;
+    }
+
+    .tagline {
+      color: #bbb;
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+
+
+    /* NAVIGATION */
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      gap: 18px 30px;
+
+      margin: 35px 0 45px;
+
+      border-bottom: 1px solid #333;
+      padding-bottom: 15px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+
+      font-size: .9rem;
+      font-weight: bold;
+
+      letter-spacing: .12rem;
+
+      transition: color .2s;
+    }
+
+    nav a:hover {
+      color: #e6b400;
+    }
+
+    nav a.active {
+      color: #e6b400;
+    }
+
+    .mobile-only-nav {
+      display: none;
+    }
+
+
+    /* THE WHOLE THING */
+
+    .whole-thing-section {
+      text-align: center;
+
+      width: 100%;
+      max-width: 900px;
+
+      margin: 0 auto;
+    }
+
+    .whole-thing-heading {
+      color: #e6b400;
+
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-style: italic;
+
+      letter-spacing: .12rem;
+
+      margin-bottom: 10px;
+    }
+
+    .whole-thing-subtitle {
+      color: #888;
+
+      font-size: .95rem;
+      font-style: italic;
+
+      margin-bottom: 25px;
+    }
+
+    .whole-thing-card {
+      width: 100%;
+
+      cursor: pointer;
+    }
+
+    .thumbnail {
+      position: relative;
+
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      background: #222;
+
+      border-radius: 8px;
+
+      overflow: hidden;
+
+      box-shadow: 0 10px 35px rgba(0,0,0,.35);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.025);
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.5);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+    }
+
+
+    /* PLAY BUTTON */
+
+    .play-button {
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 72px;
+      height: 72px;
+
+      background: rgba(0,0,0,.7);
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 30px;
+      color: white;
+
+      opacity: 0;
+
+      transition: opacity .2s;
+    }
+
+    .thumbnail:hover .play-button {
+      opacity: 1;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+
+      margin-top: 60px;
+
+      color: #666;
+
+      font-size: .85rem;
+    }
+
+
+    /* VIDEO MODAL */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+      z-index: 1000;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: rgba(0,0,0,.92);
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 40px;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 1100px;
+
+      position: relative;
+    }
+
+    .modal-video {
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      background: #000;
+    }
+
+    .modal-video iframe {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      border: none;
+    }
+
+    .close-button {
+      position: absolute;
+
+      right: 0;
+      top: -45px;
+
+      color: white;
+
+      font-size: 35px;
+
+      cursor: pointer;
+
+      z-index: 1100;
+    }
+
+
+    /* PHONE */
+
+    @media (max-width: 550px) {
+
+      .mobile-only-nav {
+        display: inline;
+      }
+
+      nav {
+        gap: 15px 20px;
+      }
+
+      .whole-thing-heading {
+        font-size: 1.25rem;
+      }
+
+      .whole-thing-subtitle {
+        font-size: .9rem;
+      }
+
+      .play-button {
+        width: 60px;
+        height: 60px;
+
+        font-size: 25px;
+
+        /* Phones don't really have hover */
+        opacity: 1;
+      }
+
+    }
+
+
+    /* MOBILE / TOUCH VIDEO PLAYER */
+
+    @media (hover: none) and (pointer: coarse) {
+
+      .modal {
+        padding: 0;
+
+        width: 100vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        background: #000;
+      }
+
+      .modal-content {
+        width: 100vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        max-width: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-video {
+        width: 100vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        aspect-ratio: auto;
+
+        background: #000;
+      }
+
+      .modal-video iframe {
+        width: 100%;
+        height: 100%;
+      }
+
+      .close-button {
+        position: fixed;
+
+        top: max(12px, env(safe-area-inset-top));
+        right: max(12px, env(safe-area-inset-right));
+
+        width: 44px;
+        height: 44px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(0,0,0,.65);
+
+        border-radius: 50%;
+
+        font-size: 34px;
+
+        z-index: 1200;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="site-wrapper">
+
+
+  <header>
+
+    <div class="brand">
+      BIRD DOG ANIMATION PRESENTS
+    </div>
+
+    <h1>
+      WILBA <span class="rants">RANTS</span>
+    </h1>
+
+    <p class="tagline">
+      Honest conversations between a man and his dog.
+    </p>
+
+  </header>
+
+
+  <!-- NAVIGATION -->
+
+  <nav>
+
+    <a href="index.html">
+      FRESHLY PUBLISHED
+    </a>
+
+    <a
+      href="wholething.html"
+      class="mobile-only-nav active"
+    >
+      THE WHOLE THING
+    </a>
+
+    <a href="classics.html">
+      CLASSIC RANTS
+    </a>
+
+    <a href="about.html">
+      ABOUT WILBA
+    </a>
+
+  </nav>
+
+
+  <main>
+
+    <section class="whole-thing-section">
+
+      <div class="whole-thing-heading">
+        THE WHOLE THING
+      </div>
+
+      <div class="whole-thing-subtitle">
+        Every Freshly Published Rant. One After Another.
+      </div>
+
+
+      <div
+        class="whole-thing-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/9046da8f-c3ed-42de-b6ac-af7857254388')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/WholeThing.png"
+            alt="The Whole Thing"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    © 2026 Bird Dog Cartoons
+  </footer>
+
+
+</div>
+
+
+<!-- VIDEO POPUP -->
+
+<div
+  id="videoModal"
+  class="modal"
+  onclick="closeVideo(event)"
+>
+
+  <div class="modal-content">
+
+    <div
+      class="close-button"
+      onclick="closeVideo()"
+    >
+      ×
+    </div>
+
+    <div
+      id="modalVideo"
+      class="modal-video">
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  function openVideo(videoURL) {
+
+    const modal =
+      document.getElementById("videoModal");
+
+    const video =
+      document.getElementById("modalVideo");
+
+
+    video.innerHTML = `
+
+      <iframe
+        src="${videoURL}"
+        title="The Whole Thing | Wilba Rants"
+        allow="
+          accelerometer;
+          autoplay;
+          encrypted-media;
+          gyroscope;
+          picture-in-picture;
+          fullscreen;
+        "
+        allowfullscreen
+      ></iframe>
+
+    `;
+
+
+    modal.style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+
+  }
+
+
+  function closeVideo(event) {
+
+    const modal =
+      document.getElementById("videoModal");
+
+
+    if (
+      event &&
+      event.target !== modal
+    ) {
+
+      return;
+
+    }
+
+
+    modal.style.display = "none";
+
+
+    document
+      .getElementById("modalVideo")
+      .innerHTML = "";
+
+
+    document.body.style.overflow = "auto";
+
+  }
+
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Escape") {
+
+        closeVideo();
+
+      }
+
+    }
+  );
+
+
+</script>
+
+
+</body>
+
+</html>
