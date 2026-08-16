@@ -62,14 +62,19 @@
       color: #bbb;
       font-size: 1.1rem;
       font-style: italic;
+      text-align: center;
+    }
+
+    .tagline-line {
+      display: inline;
     }
 
 
     /* =================================
-       NAVIGATION
+       DESKTOP NAVIGATION
     ================================= */
 
-    nav {
+    .desktop-nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -81,7 +86,7 @@
       padding-bottom: 15px;
     }
 
-    nav a {
+    .desktop-nav a {
       color: #ffffff;
       text-decoration: none;
 
@@ -93,11 +98,111 @@
       transition: color .2s;
     }
 
-    nav a:hover {
+    .desktop-nav a:hover {
       color: #e6b400;
     }
 
-    nav a.active {
+    .desktop-nav a.active {
+      color: #e6b400;
+    }
+
+
+    /* =================================
+       MOBILE HAMBURGER NAVIGATION
+    ================================= */
+
+    .mobile-nav {
+      display: none;
+
+      margin: 30px 0 40px;
+
+      border-bottom: 1px solid #333;
+
+      padding-bottom: 15px;
+    }
+
+    .mobile-nav-bar {
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu-button {
+      appearance: none;
+
+      background: transparent;
+
+      border: 0;
+
+      color: #ffffff;
+
+      font-size: 32px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      padding: 5px 4px;
+
+      transition: color .2s;
+    }
+
+    .menu-button:hover {
+      color: #e6b400;
+    }
+
+    .mobile-menu {
+      display: none;
+
+      width: 100%;
+
+      margin-top: 15px;
+
+      background: #181818;
+
+      border: 1px solid #333;
+      border-radius: 8px;
+
+      overflow: hidden;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+
+      width: 100%;
+
+      padding: 17px 20px;
+
+      color: #ffffff;
+
+      text-decoration: none;
+
+      font-size: .9rem;
+      font-weight: bold;
+
+      letter-spacing: .12rem;
+
+      text-align: center;
+
+      border-bottom: 1px solid #2d2d2d;
+
+      transition:
+        color .2s,
+        background .2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: #e6b400;
+      background: #202020;
+    }
+
+    .mobile-menu a.active {
       color: #e6b400;
     }
 
@@ -362,12 +467,21 @@
 
     @media (max-width: 550px) {
 
-      .video-grid {
-        grid-template-columns: 1fr;
+      .desktop-nav {
+        display: none;
       }
 
-      nav {
-        gap: 15px 20px;
+      .mobile-nav {
+        display: block;
+      }
+
+      .tagline-line {
+        display: block;
+        text-align: center;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
       }
 
       .classic-intro {
@@ -410,64 +524,120 @@
     </h1>
 
     <p class="tagline">
-      Honest conversations between a man and his dog.
+      <span class="tagline-line">Honest conversations</span>
+      <span class="tagline-line">between a man and his dog.</span>
     </p>
 
   </header>
 
 
   <!-- =================================
-       NAVIGATION
+       DESKTOP NAVIGATION
   ================================= -->
 
- <nav>
+  <nav class="desktop-nav">
 
-  <a href="index.html" id="fresh-link">
-    FRESHLY PUBLISHED
-  </a>
+    <a href="index.html">
+      FRESHLY PUBLISHED
+    </a>
 
-  <a href="classics.html" id="classic-link">
-    CLASSIC RANTS
-  </a>
+    <a
+      href="classics.html"
+      class="active"
+    >
+      CLASSIC RANTS
+    </a>
 
-  <a href="about.html" id="about-link">
-    ABOUT WILBA
-  </a>
+    <a href="about.html">
+      ABOUT WILBA
+    </a>
 
-</nav>
+  </nav>
+
+
+  <!-- =================================
+       MOBILE NAVIGATION
+  ================================= -->
+
+  <div class="mobile-nav">
+
+    <div class="mobile-nav-bar">
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        onclick="toggleMenu()"
+      >
+        ☰
+      </button>
+
+    </div>
+
+
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+    >
+
+      <a href="index.html">
+        FRESHLY PUBLISHED
+      </a>
+
+      <a href="wholething.html">
+        THE WHOLE THING
+      </a>
+
+      <a
+        href="classics.html"
+        class="active"
+      >
+        CLASSIC RANTS
+      </a>
+
+      <a href="about.html">
+        ABOUT WILBA
+      </a>
+
+    </div>
+
+  </div>
 
 
   <!-- =================================
        INTRODUCTION
   ================================= -->
 
- <section class="classic-intro">
+  <section class="classic-intro">
 
-  <h2>
-    THE ORIGINAL WILBA RANTS
-  </h2>
+    <h2>
+      THE ORIGINAL WILBA RANTS
+    </h2>
 
-  <p>
-    The original <em>Wilba Rants</em> were published between
-    July 4, 2014 and July 4, 2015. 
-     </p>
-   
-   <p>
-    The final episode was released shortly after Wilba's passing.
-  </p>
+    <p>
+      The original <em>Wilba Rants</em> were published between
+      July 4, 2014 and July 4, 2015.
+    </p>
 
-  <p>
-    Across these 12 Rants, Wilba wrestles with science, religion,
-    holidays, fatherhood, and just about everything else.
-  </p>
+    <p>
+      The final episode was released shortly after Wilba's passing.
+    </p>
 
-  <p>
-    The crude art and raw animation are part of the charm, because somehow they fit Wilba perfectly.  
-    Those of us involved in making these are incredibly proud of the story we told, and Wilba's friends cherish these Rants deeply. 
-    Thank you for enjoying the company of our good friend with us all these years later.
-  </p>
+    <p>
+      Across these 12 Rants, Wilba wrestles with science, religion,
+      holidays, fatherhood, and just about everything else.
+    </p>
 
-</section>
+    <p>
+      The crude art and raw animation are part of the charm, because somehow they fit Wilba perfectly.
+      Those of us involved in making these are incredibly proud of the story we told, and Wilba's friends cherish these Rants deeply.
+      Thank you for enjoying the company of our good friend with us all these years later.
+    </p>
+
+  </section>
 
 
   <!-- =================================
@@ -479,9 +649,7 @@
     <div class="video-grid">
 
 
-      <!-- =================================
-           CLASSIC RANT 01
-      ================================= -->
+      <!-- CLASSIC RANT 01 -->
 
       <div
         class="video-card"
@@ -512,9 +680,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 02
-      ================================= -->
+      <!-- CLASSIC RANT 02 -->
 
       <div
         class="video-card"
@@ -545,9 +711,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 03
-      ================================= -->
+      <!-- CLASSIC RANT 03 -->
 
       <div
         class="video-card"
@@ -578,9 +742,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 04
-      ================================= -->
+      <!-- CLASSIC RANT 04 -->
 
       <div
         class="video-card"
@@ -611,9 +773,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 05
-      ================================= -->
+      <!-- CLASSIC RANT 05 -->
 
       <div
         class="video-card"
@@ -644,9 +804,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 06
-      ================================= -->
+      <!-- CLASSIC RANT 06 -->
 
       <div
         class="video-card"
@@ -677,9 +835,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 07
-      ================================= -->
+      <!-- CLASSIC RANT 07 -->
 
       <div
         class="video-card"
@@ -710,9 +866,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 08
-      ================================= -->
+      <!-- CLASSIC RANT 08 -->
 
       <div
         class="video-card"
@@ -743,9 +897,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 09
-      ================================= -->
+      <!-- CLASSIC RANT 09 -->
 
       <div
         class="video-card"
@@ -776,9 +928,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 10
-      ================================= -->
+      <!-- CLASSIC RANT 10 -->
 
       <div
         class="video-card"
@@ -809,9 +959,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 11
-      ================================= -->
+      <!-- CLASSIC RANT 11 -->
 
       <div
         class="video-card"
@@ -842,9 +990,7 @@
       </div>
 
 
-      <!-- =================================
-           CLASSIC RANT 12
-      ================================= -->
+      <!-- CLASSIC RANT 12 -->
 
       <div
         class="video-card"
@@ -926,39 +1072,51 @@
 
 
   /* =================================
-     ACTIVE NAVIGATION TAB
+     MOBILE MENU
   ================================= */
 
-const currentPath =
-  window.location.pathname.toLowerCase();
+  function toggleMenu() {
 
-const freshLink =
-  document.getElementById("fresh-link");
+    const menu =
+      document.getElementById("mobileMenu");
 
-const classicLink =
-  document.getElementById("classic-link");
-
-const aboutLink =
-  document.getElementById("about-link");
+    const button =
+      document.getElementById("menuButton");
 
 
-if (currentPath.includes("about")) {
+    const isOpen =
+      menu.classList.toggle("open");
 
-  aboutLink.classList.add("active");
 
-}
+    button.setAttribute(
+      "aria-expanded",
+      isOpen
+    );
 
-else if (currentPath.includes("classics")) {
 
-  classicLink.classList.add("active");
+    if (isOpen) {
 
-}
+      button.innerHTML = "×";
 
-else {
+      button.setAttribute(
+        "aria-label",
+        "Close navigation menu"
+      );
 
-  freshLink.classList.add("active");
+    }
 
-}
+    else {
+
+      button.innerHTML = "☰";
+
+      button.setAttribute(
+        "aria-label",
+        "Open navigation menu"
+      );
+
+    }
+
+  }
 
 
 
