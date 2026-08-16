@@ -37,7 +37,9 @@
     }
 
 
-    /* HEADER */
+    /* =================================
+       HEADER
+    ================================= */
 
     header {
       text-align: center;
@@ -65,12 +67,19 @@
       color: #bbb;
       font-size: 1.1rem;
       font-style: italic;
+      text-align: center;
+    }
+
+    .tagline-line {
+      display: inline;
     }
 
 
-    /* NAVIGATION */
+    /* =================================
+       DESKTOP NAVIGATION
+    ================================= */
 
-    nav {
+    .desktop-nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -83,7 +92,7 @@
       padding-bottom: 15px;
     }
 
-    nav a {
+    .desktop-nav a {
       color: #ffffff;
       text-decoration: none;
 
@@ -95,20 +104,118 @@
       transition: color .2s;
     }
 
-    nav a:hover {
+    .desktop-nav a:hover {
       color: #e6b400;
     }
 
-    nav a.active {
+    .desktop-nav a.active {
       color: #e6b400;
     }
 
-    .mobile-only-nav {
+
+    /* =================================
+       MOBILE HAMBURGER NAVIGATION
+    ================================= */
+
+    .mobile-nav {
       display: none;
+
+      margin: 30px 0 40px;
+
+      border-bottom: 1px solid #333;
+
+      padding-bottom: 15px;
+    }
+
+    .mobile-nav-bar {
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu-button {
+      appearance: none;
+
+      background: transparent;
+
+      border: 0;
+
+      color: #ffffff;
+
+      font-size: 32px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      padding: 5px 4px;
+
+      transition: color .2s;
+    }
+
+    .menu-button:hover {
+      color: #e6b400;
+    }
+
+    .mobile-menu {
+      display: none;
+
+      width: 100%;
+
+      margin-top: 15px;
+
+      background: #181818;
+
+      border: 1px solid #333;
+      border-radius: 8px;
+
+      overflow: hidden;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+
+      width: 100%;
+
+      padding: 17px 20px;
+
+      color: #ffffff;
+
+      text-decoration: none;
+
+      font-size: .9rem;
+      font-weight: bold;
+
+      letter-spacing: .12rem;
+
+      text-align: center;
+
+      border-bottom: 1px solid #2d2d2d;
+
+      transition:
+        color .2s,
+        background .2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: #e6b400;
+      background: #202020;
+    }
+
+    .mobile-menu a.active {
+      color: #e6b400;
     }
 
 
-    /* THE WHOLE THING */
+    /* =================================
+       THE WHOLE THING
+    ================================= */
 
     .whole-thing-section {
       text-align: center;
@@ -183,7 +290,9 @@
     }
 
 
-    /* PLAY BUTTON */
+    /* =================================
+       PLAY BUTTON
+    ================================= */
 
     .play-button {
       position: absolute;
@@ -217,7 +326,9 @@
     }
 
 
-    /* FOOTER */
+    /* =================================
+       FOOTER
+    ================================= */
 
     footer {
       text-align: center;
@@ -230,7 +341,9 @@
     }
 
 
-    /* VIDEO MODAL */
+    /* =================================
+       VIDEO MODAL
+    ================================= */
 
     .modal {
       display: none;
@@ -291,16 +404,23 @@
     }
 
 
-    /* PHONE */
+    /* =================================
+       PHONE
+    ================================= */
 
     @media (max-width: 550px) {
 
-      .mobile-only-nav {
-        display: inline;
+      .desktop-nav {
+        display: none;
       }
 
-      nav {
-        gap: 15px 20px;
+      .mobile-nav {
+        display: block;
+      }
+
+      .tagline-line {
+        display: block;
+        text-align: center;
       }
 
       .whole-thing-heading {
@@ -317,14 +437,15 @@
 
         font-size: 25px;
 
-        /* Phones don't really have hover */
         opacity: 1;
       }
 
     }
 
 
-    /* MOBILE / TOUCH VIDEO PLAYER */
+    /* =================================
+       MOBILE / TOUCH VIDEO PLAYER
+    ================================= */
 
     @media (hover: none) and (pointer: coarse) {
 
@@ -403,6 +524,10 @@
 <div class="site-wrapper">
 
 
+  <!-- =================================
+       HEADER
+  ================================= -->
+
   <header>
 
     <div class="brand">
@@ -414,25 +539,21 @@
     </h1>
 
     <p class="tagline">
-      Honest conversations between a man and his dog.
+      <span class="tagline-line">Honest conversations</span>
+      <span class="tagline-line">between a man and his dog.</span>
     </p>
 
   </header>
 
 
-  <!-- NAVIGATION -->
+  <!-- =================================
+       DESKTOP NAVIGATION
+  ================================= -->
 
-  <nav>
+  <nav class="desktop-nav">
 
     <a href="index.html">
       FRESHLY PUBLISHED
-    </a>
-
-    <a
-      href="wholething.html"
-      class="mobile-only-nav active"
-    >
-      THE WHOLE THING
     </a>
 
     <a href="classics.html">
@@ -445,6 +566,62 @@
 
   </nav>
 
+
+  <!-- =================================
+       MOBILE NAVIGATION
+  ================================= -->
+
+  <div class="mobile-nav">
+
+    <div class="mobile-nav-bar">
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        onclick="toggleMenu()"
+      >
+        ☰
+      </button>
+
+    </div>
+
+
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+    >
+
+      <a href="index.html">
+        FRESHLY PUBLISHED
+      </a>
+
+      <a
+        href="wholething.html"
+        class="active"
+      >
+        THE WHOLE THING
+      </a>
+
+      <a href="classics.html">
+        CLASSIC RANTS
+      </a>
+
+      <a href="about.html">
+        ABOUT WILBA
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- =================================
+       THE WHOLE THING
+  ================================= -->
 
   <main>
 
@@ -484,6 +661,10 @@
   </main>
 
 
+  <!-- =================================
+       FOOTER
+  ================================= -->
+
   <footer>
     © 2026 Bird Dog Cartoons
   </footer>
@@ -492,7 +673,10 @@
 </div>
 
 
-<!-- VIDEO POPUP -->
+
+<!-- =================================
+     VIDEO POPUP
+================================= -->
 
 <div
   id="videoModal"
@@ -511,7 +695,8 @@
 
     <div
       id="modalVideo"
-      class="modal-video">
+      class="modal-video"
+    >
     </div>
 
   </div>
@@ -519,7 +704,61 @@
 </div>
 
 
+
 <script>
+
+
+  /* =================================
+     MOBILE MENU
+  ================================= */
+
+  function toggleMenu() {
+
+    const menu =
+      document.getElementById("mobileMenu");
+
+    const button =
+      document.getElementById("menuButton");
+
+
+    const isOpen =
+      menu.classList.toggle("open");
+
+
+    button.setAttribute(
+      "aria-expanded",
+      isOpen
+    );
+
+
+    if (isOpen) {
+
+      button.innerHTML = "×";
+
+      button.setAttribute(
+        "aria-label",
+        "Close navigation menu"
+      );
+
+    }
+
+    else {
+
+      button.innerHTML = "☰";
+
+      button.setAttribute(
+        "aria-label",
+        "Open navigation menu"
+      );
+
+    }
+
+  }
+
+
+  /* =================================
+     OPEN VIDEO
+  ================================= */
 
   function openVideo(videoURL) {
 
@@ -556,6 +795,10 @@
   }
 
 
+  /* =================================
+     CLOSE VIDEO
+  ================================= */
+
   function closeVideo(event) {
 
     const modal =
@@ -584,6 +827,10 @@
 
   }
 
+
+  /* =================================
+     ESCAPE KEY CLOSES VIDEO
+  ================================= */
 
   document.addEventListener(
     "keydown",
