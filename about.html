@@ -62,14 +62,19 @@
       color: #bbb;
       font-size: 1.1rem;
       font-style: italic;
+      text-align: center;
+    }
+
+    .tagline-line {
+      display: inline;
     }
 
 
     /* =================================
-       NAVIGATION
+       DESKTOP NAVIGATION
     ================================= */
 
-    nav {
+    .desktop-nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -81,7 +86,7 @@
       padding-bottom: 15px;
     }
 
-    nav a {
+    .desktop-nav a {
       color: #ffffff;
       text-decoration: none;
 
@@ -93,11 +98,111 @@
       transition: color .2s;
     }
 
-    nav a:hover {
+    .desktop-nav a:hover {
       color: #e6b400;
     }
 
-    nav a.active {
+    .desktop-nav a.active {
+      color: #e6b400;
+    }
+
+
+    /* =================================
+       MOBILE HAMBURGER NAVIGATION
+    ================================= */
+
+    .mobile-nav {
+      display: none;
+
+      margin: 30px 0 40px;
+
+      border-bottom: 1px solid #333;
+
+      padding-bottom: 15px;
+    }
+
+    .mobile-nav-bar {
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu-button {
+      appearance: none;
+
+      background: transparent;
+
+      border: 0;
+
+      color: #ffffff;
+
+      font-size: 32px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      padding: 5px 4px;
+
+      transition: color .2s;
+    }
+
+    .menu-button:hover {
+      color: #e6b400;
+    }
+
+    .mobile-menu {
+      display: none;
+
+      width: 100%;
+
+      margin-top: 15px;
+
+      background: #181818;
+
+      border: 1px solid #333;
+      border-radius: 8px;
+
+      overflow: hidden;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+
+      width: 100%;
+
+      padding: 17px 20px;
+
+      color: #ffffff;
+
+      text-decoration: none;
+
+      font-size: .9rem;
+      font-weight: bold;
+
+      letter-spacing: .12rem;
+
+      text-align: center;
+
+      border-bottom: 1px solid #2d2d2d;
+
+      transition:
+        color .2s,
+        background .2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: #e6b400;
+      background: #202020;
+    }
+
+    .mobile-menu a.active {
       color: #e6b400;
     }
 
@@ -336,8 +441,17 @@
 
     @media (max-width: 550px) {
 
-      nav {
-        gap: 15px 20px;
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .tagline-line {
+        display: block;
+        text-align: center;
       }
 
       .about-story {
@@ -386,31 +500,87 @@
     </h1>
 
     <p class="tagline">
-      Honest conversations between a man and his dog.
+      <span class="tagline-line">Honest conversations</span>
+      <span class="tagline-line">between a man and his dog.</span>
     </p>
 
   </header>
 
 
   <!-- =================================
-       NAVIGATION
+       DESKTOP NAVIGATION
   ================================= -->
 
-<nav>
+  <nav class="desktop-nav">
 
-  <a href="index.html" id="fresh-link">
-    FRESHLY PUBLISHED
-  </a>
+    <a href="index.html">
+      FRESHLY PUBLISHED
+    </a>
 
-  <a href="classics.html" id="classic-link">
-    CLASSIC RANTS
-  </a>
+    <a href="classics.html">
+      CLASSIC RANTS
+    </a>
 
-  <a href="about.html" id="about-link">
-    ABOUT WILBA
-  </a>
+    <a
+      href="about.html"
+      class="active"
+    >
+      ABOUT WILBA
+    </a>
 
-</nav>
+  </nav>
+
+
+  <!-- =================================
+       MOBILE NAVIGATION
+  ================================= -->
+
+  <div class="mobile-nav">
+
+    <div class="mobile-nav-bar">
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        onclick="toggleMenu()"
+      >
+        ☰
+      </button>
+
+    </div>
+
+
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+    >
+
+      <a href="index.html">
+        FRESHLY PUBLISHED
+      </a>
+
+      <a href="wholething.html">
+        THE WHOLE THING
+      </a>
+
+      <a href="classics.html">
+        CLASSIC RANTS
+      </a>
+
+      <a
+        href="about.html"
+        class="active"
+      >
+        ABOUT WILBA
+      </a>
+
+    </div>
+
+  </div>
 
 
   <!-- =================================
@@ -440,10 +610,10 @@
       <p>
         It began with two friends sitting around talking. Our good friend
         Nick recorded the first one, and when he played it for me, I knew
-        we had to get more of it. 
-         </p>
-      
-       <p>
+        we had to get more of it.
+      </p>
+
+      <p>
         All of it.
       </p>
 
@@ -478,8 +648,6 @@
 
            <img src="wilba1.jpg" alt="Wilba">
       ================================= -->
-
-
 
 
       <p>
@@ -522,14 +690,14 @@
            OPTIONAL PHOTO 2
       ================================= -->
 
-     <div class="photo-block">
+      <div class="photo-block">
 
-  <img
-    src="images/wilba_basement.jpg"
-    alt="Wilba"
-  >
+        <img
+          src="images/wilba_basement.jpg"
+          alt="Wilba"
+        >
 
-</div>
+      </div>
 
 
       <p class="story-beat">
@@ -580,7 +748,6 @@
       <!-- =================================
            OPTIONAL PHOTO 3
       ================================= -->
-
 
 
       <p>
@@ -700,39 +867,51 @@
 
 
   /* =================================
-     ACTIVE NAVIGATION TAB
+     MOBILE MENU
   ================================= */
 
-  const currentPath =
-  window.location.pathname.toLowerCase();
+  function toggleMenu() {
 
-const freshLink =
-  document.getElementById("fresh-link");
+    const menu =
+      document.getElementById("mobileMenu");
 
-const classicLink =
-  document.getElementById("classic-link");
-
-const aboutLink =
-  document.getElementById("about-link");
+    const button =
+      document.getElementById("menuButton");
 
 
-if (currentPath.includes("about")) {
+    const isOpen =
+      menu.classList.toggle("open");
 
-  aboutLink.classList.add("active");
 
-}
+    button.setAttribute(
+      "aria-expanded",
+      isOpen
+    );
 
-else if (currentPath.includes("classics")) {
 
-  classicLink.classList.add("active");
+    if (isOpen) {
 
-}
+      button.innerHTML = "×";
 
-else {
+      button.setAttribute(
+        "aria-label",
+        "Close navigation menu"
+      );
 
-  freshLink.classList.add("active");
+    }
 
-}
+    else {
+
+      button.innerHTML = "☰";
+
+      button.setAttribute(
+        "aria-label",
+        "Open navigation menu"
+      );
+
+    }
+
+  }
 
 
 </script>
