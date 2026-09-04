@@ -30,9 +30,11 @@
        Codes are automatically
        case-insensitive.
 
-       Change version "1" to "2"
-       whenever you want EVERY visitor
-       to be asked for a code again.
+       testingMode: true
+       = gate appears every refresh
+
+       testingMode: false
+       = successful access is remembered
   ================================= -->
 
   <script>
@@ -40,6 +42,8 @@
     window.WILBA_PREVIEW_CONFIG = {
 
       version: "1",
+
+      testingMode: true,
 
       codes: {
 
@@ -52,34 +56,51 @@
     };
 
 
-    /*
-       Check access BEFORE the page paints.
+    /* =================================
+       EARLY ACCESS CHECK
+    ================================= */
 
-       This prevents returning visitors
-       from briefly seeing the gate every
-       time they navigate or refresh.
-    */
+    if (
+      !window.WILBA_PREVIEW_CONFIG.testingMode
+    ) {
 
-/*
-   TESTING MODE
+      try {
 
-   Keep the preview gate locked every
-   time index.html loads so the invitation
-   experience can be tested repeatedly.
+        const savedAccess =
+          localStorage.getItem(
+            "wilbaPreviewAccess"
+          );
 
-   REMOVE THIS TESTING MODE before launch
-   and restore the localStorage access
-   check.
-*/
+        const savedVersion =
+          localStorage.getItem(
+            "wilbaPreviewVersion"
+          );
 
-document.documentElement
-  .classList
-  .add("preview-locked");
 
-      /*
-         If localStorage is unavailable,
-         the invitation gate remains active.
-      */
+        if (
+          savedAccess === "granted" &&
+          savedVersion ===
+            window.WILBA_PREVIEW_CONFIG.version
+        ) {
+
+          document.documentElement
+            .classList
+            .remove(
+              "preview-locked"
+            );
+
+        }
+
+      }
+
+      catch (error) {
+
+        /*
+           If localStorage is unavailable,
+           the invitation gate remains.
+        */
+
+      }
 
     }
 
@@ -211,20 +232,6 @@ document.documentElement
 
     /*
        FUTURE WILBA + DOG ARTWORK
-
-       This container already exists so
-       artwork can be added later without
-       changing the structure of the gate.
-
-       When artwork is ready, place:
-
-       <img
-         src="images/YOUR-IMAGE.png"
-         alt=""
-       >
-
-       inside .preview-artwork and change
-       display:none to display:flex.
     */
 
     .preview-artwork {
@@ -619,7 +626,7 @@ document.documentElement
 
 
     /* =================================
-       MOBILE HAMBURGER NAVIGATION
+       MOBILE NAVIGATION
     ================================= */
 
     .mobile-nav {
@@ -632,40 +639,10 @@ document.documentElement
       padding-bottom: 15px;
     }
 
-    .mobile-nav-bar {
-      display: flex;
-      justify-content: center;
-    }
-
-    .menu-button {
-      appearance: none;
-
-      background: transparent;
-
-      border: 0;
-
-      color: #ffffff;
-
-      font-size: 32px;
-      line-height: 1;
-
-      cursor: pointer;
-
-      padding: 5px 4px;
-
-      transition: color .2s;
-    }
-
-    .menu-button:hover {
-      color: #e6b400;
-    }
-
     .mobile-menu {
-      display: none;
+      display: block;
 
       width: 100%;
-
-      margin-top: 15px;
 
       background: #181818;
 
@@ -673,10 +650,6 @@ document.documentElement
       border-radius: 8px;
 
       overflow: hidden;
-    }
-
-    .mobile-menu.open {
-      display: block;
     }
 
     .mobile-menu a {
@@ -1079,15 +1052,10 @@ document.documentElement
         display: block;
       }
 
-      /* Force tagline into two centered lines */
-
       .tagline-line {
         display: block;
         text-align: center;
       }
-
-      /* The Whole Thing is accessed
-         through the mobile menu */
 
       .whole-thing-section {
         display: none;
@@ -1265,9 +1233,6 @@ document.documentElement
 
     <!-- =================================
          FUTURE WILBA + DOG ARTWORK
-
-         The structure is already here.
-         We can turn this on later.
     ================================= -->
 
     <div
@@ -1300,13 +1265,13 @@ document.documentElement
         BIRD DOG ANIMATION
       </div>
 
-     <h2
-  class="preview-title"
-  id="previewTitle"
->
-  WILBA <span class="gold">RANTS</span><br>
-  PRIVATE PREVIEW
-</h2>
+      <h2
+        class="preview-title"
+        id="previewTitle"
+      >
+        WILBA <span class="gold">RANTS</span><br>
+        PRIVATE PREVIEW
+      </h2>
 
       <div class="preview-divider">
       </div>
@@ -1471,44 +1436,44 @@ document.documentElement
        MOBILE NAVIGATION
   ================================= -->
 
- <div class="mobile-nav">
+  <div class="mobile-nav">
 
-  <div
-    class="mobile-menu open"
-    id="mobileMenu"
-  >
-
-    <a
-      href="index.html"
-      id="mobile-fresh-link"
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
     >
-      FRESHLY PUBLISHED
-    </a>
 
-    <a
-      href="wholething.html"
-      id="mobile-whole-link"
-    >
-      THE WHOLE THING
-    </a>
+      <a
+        href="index.html"
+        id="mobile-fresh-link"
+      >
+        FRESHLY PUBLISHED
+      </a>
 
-    <a
-      href="classics.html"
-      id="mobile-classic-link"
-    >
-      CLASSIC RANTS
-    </a>
+      <a
+        href="wholething.html"
+        id="mobile-whole-link"
+      >
+        THE WHOLE THING
+      </a>
 
-    <a
-      href="about.html"
-      id="mobile-about-link"
-    >
-      ABOUT WILBA
-    </a>
+      <a
+        href="classics.html"
+        id="mobile-classic-link"
+      >
+        CLASSIC RANTS
+      </a>
+
+      <a
+        href="about.html"
+        id="mobile-about-link"
+      >
+        ABOUT WILBA
+      </a>
+
+    </div>
 
   </div>
-
-</div>
 
 
   <main>
@@ -1853,10 +1818,9 @@ document.documentElement
 
 
 
-  /*
-     Remove the error as soon as the
-     visitor starts typing again.
-  */
+  /* =================================
+     REMOVE ERROR WHILE TYPING
+  ================================= */
 
   invitationInput.addEventListener(
     "input",
@@ -1920,13 +1884,11 @@ document.documentElement
 
 
       /*
-         Access is stored here instead of
-         when the code is entered.
+         We still save access normally.
 
-         That guarantees a new visitor
-         actually sees the welcome screen
-         before their browser remembers
-         the invitation.
+         During testingMode, however,
+         index.html deliberately ignores
+         that saved access on refresh.
       */
 
       try {
@@ -1957,12 +1919,6 @@ document.documentElement
       }
 
       catch (error) {
-
-        /*
-           If storage is unavailable,
-           entry still works normally
-           for the current page.
-        */
 
       }
 
@@ -2041,23 +1997,6 @@ document.documentElement
 
   /* =================================
      MANUAL RESET
-
-     WHILE TESTING:
-
-     Open the browser developer console
-     and type:
-
-     resetWilbaPreviewAccess()
-
-     Press Enter.
-
-     The page reloads and the invitation
-     screen returns.
-
-     You can also force EVERYONE to see
-     the invitation gate again by changing
-     the version number near the top of
-     this file from "1" to "2".
   ================================= */
 
   function resetWilbaPreviewAccess() {
@@ -2081,6 +2020,7 @@ document.documentElement
     }
 
     catch (error) {
+
     }
 
 
@@ -2099,102 +2039,112 @@ document.documentElement
 
 
   const desktopFreshLink =
-    document.getElementById("desktop-fresh-link");
+    document.getElementById(
+      "desktop-fresh-link"
+    );
 
   const desktopClassicLink =
-    document.getElementById("desktop-classic-link");
+    document.getElementById(
+      "desktop-classic-link"
+    );
 
   const desktopAboutLink =
-    document.getElementById("desktop-about-link");
+    document.getElementById(
+      "desktop-about-link"
+    );
 
 
   const mobileFreshLink =
-    document.getElementById("mobile-fresh-link");
+    document.getElementById(
+      "mobile-fresh-link"
+    );
 
   const mobileWholeLink =
-    document.getElementById("mobile-whole-link");
+    document.getElementById(
+      "mobile-whole-link"
+    );
 
   const mobileClassicLink =
-    document.getElementById("mobile-classic-link");
+    document.getElementById(
+      "mobile-classic-link"
+    );
 
   const mobileAboutLink =
-    document.getElementById("mobile-about-link");
+    document.getElementById(
+      "mobile-about-link"
+    );
 
 
-  if (currentPath.includes("wholething")) {
+  if (
+    currentPath.includes(
+      "wholething"
+    )
+  ) {
 
-    mobileWholeLink.classList.add("active");
+    mobileWholeLink
+      .classList
+      .add(
+        "active"
+      );
 
   }
 
-  else if (currentPath.includes("about")) {
+  else if (
+    currentPath.includes(
+      "about"
+    )
+  ) {
 
-    desktopAboutLink.classList.add("active");
-    mobileAboutLink.classList.add("active");
+    desktopAboutLink
+      .classList
+      .add(
+        "active"
+      );
+
+    mobileAboutLink
+      .classList
+      .add(
+        "active"
+      );
 
   }
 
-  else if (currentPath.includes("classics")) {
+  else if (
+    currentPath.includes(
+      "classics"
+    )
+  ) {
 
-    desktopClassicLink.classList.add("active");
-    mobileClassicLink.classList.add("active");
+    desktopClassicLink
+      .classList
+      .add(
+        "active"
+      );
+
+    mobileClassicLink
+      .classList
+      .add(
+        "active"
+      );
 
   }
 
   else {
 
-    desktopFreshLink.classList.add("active");
-    mobileFreshLink.classList.add("active");
+    desktopFreshLink
+      .classList
+      .add(
+        "active"
+      );
+
+    mobileFreshLink
+      .classList
+      .add(
+        "active"
+      );
 
   }
 
-
-  /* =================================
-     MOBILE MENU
-  ================================= */
-
-  function toggleMenu() {
-
-    const menu =
-      document.getElementById("mobileMenu");
-
-    const button =
-      document.getElementById("menuButton");
-
-
-    const isOpen =
-      menu.classList.toggle("open");
-
-
-    button.setAttribute(
-      "aria-expanded",
-      isOpen
-    );
-
-
-    if (isOpen) {
-
-      button.innerHTML = "×";
-
-      button.setAttribute(
-        "aria-label",
-        "Close navigation menu"
-      );
-
-    }
-
-    else {
-
-      button.innerHTML = "☰";
-
-      button.setAttribute(
-        "aria-label",
-        "Open navigation menu"
-      );
-
-    }
-
-  }
 
 
   /* =================================
@@ -2204,10 +2154,14 @@ document.documentElement
   function openVideo(videoURL) {
 
     const modal =
-      document.getElementById("videoModal");
+      document.getElementById(
+        "videoModal"
+      );
 
     const video =
-      document.getElementById("modalVideo");
+      document.getElementById(
+        "modalVideo"
+      );
 
 
     video.innerHTML = `
@@ -2229,11 +2183,14 @@ document.documentElement
     `;
 
 
-    modal.style.display = "flex";
+    modal.style.display =
+      "flex";
 
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow =
+      "hidden";
 
   }
+
 
 
   /* =================================
@@ -2243,7 +2200,9 @@ document.documentElement
   function closeVideo(event) {
 
     const modal =
-      document.getElementById("videoModal");
+      document.getElementById(
+        "videoModal"
+      );
 
 
     if (
@@ -2256,17 +2215,23 @@ document.documentElement
     }
 
 
-    modal.style.display = "none";
+    modal.style.display =
+      "none";
 
 
     document
-      .getElementById("modalVideo")
-      .innerHTML = "";
+      .getElementById(
+        "modalVideo"
+      )
+      .innerHTML =
+        "";
 
 
-    document.body.style.overflow = "auto";
+    document.body.style.overflow =
+      "auto";
 
   }
+
 
 
   /* =================================
@@ -2277,7 +2242,10 @@ document.documentElement
     "keydown",
     function(event) {
 
-      if (event.key === "Escape") {
+      if (
+        event.key ===
+        "Escape"
+      ) {
 
         closeVideo();
 
