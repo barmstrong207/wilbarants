@@ -60,33 +60,21 @@
        time they navigate or refresh.
     */
 
-    try {
+/*
+   TESTING MODE
 
-      const savedAccess =
-        localStorage.getItem(
-          "wilbaPreviewAccess"
-        );
+   Keep the preview gate locked every
+   time index.html loads so the invitation
+   experience can be tested repeatedly.
 
-      const savedVersion =
-        localStorage.getItem(
-          "wilbaPreviewVersion"
-        );
+   REMOVE THIS TESTING MODE before launch
+   and restore the localStorage access
+   check.
+*/
 
-      if (
-        savedAccess === "granted" &&
-        savedVersion ===
-          window.WILBA_PREVIEW_CONFIG.version
-      ) {
-
-        document.documentElement
-          .classList
-          .remove("preview-locked");
-
-      }
-
-    }
-
-    catch (error) {
+document.documentElement
+  .classList
+  .add("preview-locked");
 
       /*
          If localStorage is unavailable,
