@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="preview-locked">
 
 <head>
   <meta charset="UTF-8">
@@ -8,6 +8,95 @@
   <title>Wilba Rants | Bird Dog Animation</title>
 
   <link rel="icon" type="image/png" href="images/WR%20Favicon.png">
+
+
+  <!-- =================================
+       PRIVATE PREVIEW CONFIGURATION
+
+       TO ADD MORE INVITATION CODES LATER:
+
+       DOG: {
+         source: "general-preview"
+       },
+
+       KENNY: {
+         source: "kenny-preview"
+       },
+
+       FRIENDS: {
+         source: "friends-preview"
+       }
+
+       Codes are automatically
+       case-insensitive.
+
+       Change version "1" to "2"
+       whenever you want EVERY visitor
+       to be asked for a code again.
+  ================================= -->
+
+  <script>
+
+    window.WILBA_PREVIEW_CONFIG = {
+
+      version: "1",
+
+      codes: {
+
+        DOG: {
+          source: "general-preview"
+        }
+
+      }
+
+    };
+
+
+    /*
+       Check access BEFORE the page paints.
+
+       This prevents returning visitors
+       from briefly seeing the gate every
+       time they navigate or refresh.
+    */
+
+    try {
+
+      const savedAccess =
+        localStorage.getItem(
+          "wilbaPreviewAccess"
+        );
+
+      const savedVersion =
+        localStorage.getItem(
+          "wilbaPreviewVersion"
+        );
+
+      if (
+        savedAccess === "granted" &&
+        savedVersion ===
+          window.WILBA_PREVIEW_CONFIG.version
+      ) {
+
+        document.documentElement
+          .classList
+          .remove("preview-locked");
+
+      }
+
+    }
+
+    catch (error) {
+
+      /*
+         If localStorage is unavailable,
+         the invitation gate remains active.
+      */
+
+    }
+
+  </script>
+
 
   <style>
 
@@ -28,6 +117,436 @@
     body {
       min-height: 100vh;
     }
+
+
+    /* =================================
+       PRIVATE PREVIEW GATE
+    ================================= */
+
+    .preview-gate {
+      position: fixed;
+
+      inset: 0;
+
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+
+      z-index: 10000;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        max(24px, env(safe-area-inset-top))
+        max(20px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(20px, env(safe-area-inset-left));
+
+      background: rgba(0,0,0,.32);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transition:
+        opacity .7s ease,
+        visibility .7s ease;
+    }
+
+    html.preview-locked .preview-gate {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+
+    /*
+       Actual Wilba Rants website remains
+       visible behind the invitation screen,
+       but blurred, darkened and locked.
+    */
+
+    html.preview-locked .site-wrapper {
+      filter:
+        blur(10px)
+        brightness(.48);
+
+      transform: scale(1.015);
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .site-wrapper {
+      transition:
+        filter .8s ease,
+        transform .8s ease;
+    }
+
+    html.preview-locked body {
+      overflow: hidden;
+    }
+
+
+    /* =================================
+       INVITATION CARD
+    ================================= */
+
+    .preview-card {
+      width: min(92vw, 560px);
+
+      max-height: calc(100dvh - 40px);
+
+      overflow-y: auto;
+
+      background: rgba(20,20,20,.975);
+
+      border: 1px solid #3b3b3b;
+
+      border-radius: 12px;
+
+      box-shadow:
+        0 28px 90px rgba(0,0,0,.72);
+
+      padding: 38px;
+
+      position: relative;
+
+      text-align: center;
+
+      scrollbar-width: thin;
+      scrollbar-color: #444 #181818;
+    }
+
+
+    /*
+       FUTURE WILBA + DOG ARTWORK
+
+       This container already exists so
+       artwork can be added later without
+       changing the structure of the gate.
+
+       When artwork is ready, place:
+
+       <img
+         src="images/YOUR-IMAGE.png"
+         alt=""
+       >
+
+       inside .preview-artwork and change
+       display:none to display:flex.
+    */
+
+    .preview-artwork {
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+
+      margin-bottom: 22px;
+    }
+
+    .preview-artwork img {
+      display: block;
+
+      width: 100%;
+      max-width: 350px;
+
+      height: auto;
+
+      object-fit: contain;
+    }
+
+
+    /* =================================
+       INVITATION TYPOGRAPHY
+    ================================= */
+
+    .preview-brand {
+      color: #777;
+
+      font-size: .72rem;
+      font-weight: bold;
+
+      letter-spacing: .2rem;
+
+      margin-bottom: 13px;
+    }
+
+    .preview-title {
+      color: #f5f5f5;
+
+      font-size: clamp(1.45rem, 5vw, 2rem);
+
+      font-weight: 900;
+
+      line-height: 1.2;
+
+      margin-bottom: 18px;
+    }
+
+    .preview-title .gold {
+      color: #e6b400;
+    }
+
+    .preview-divider {
+      width: 52px;
+      height: 2px;
+
+      margin:
+        0 auto
+        22px;
+
+      background: #e6b400;
+    }
+
+    .preview-copy {
+      max-width: 460px;
+
+      margin:
+        0 auto
+        28px;
+
+      color: #c6c6c6;
+
+      font-size: 1rem;
+
+      line-height: 1.65;
+    }
+
+
+    /* =================================
+       INVITATION FORM
+    ================================= */
+
+    .invitation-form {
+      width: 100%;
+
+      text-align: left;
+    }
+
+    .invitation-label {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: #aaa;
+
+      font-size: .78rem;
+      font-weight: bold;
+
+      letter-spacing: .11rem;
+    }
+
+    .invitation-input {
+      width: 100%;
+
+      padding: 15px 16px;
+
+      background: #0d0d0d;
+
+      border: 1px solid #444;
+      border-radius: 7px;
+
+      outline: none;
+
+      color: #f5f5f5;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 1rem;
+
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .invitation-input::placeholder {
+      color: #666;
+    }
+
+    .invitation-input:focus {
+      border-color: #e6b400;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(230,180,0,.10);
+    }
+
+
+    /* =================================
+       INVITATION BUTTONS
+    ================================= */
+
+    .invitation-button,
+    .enter-site-button {
+      appearance: none;
+
+      width: 100%;
+
+      margin-top: 14px;
+
+      padding: 15px 18px;
+
+      border: 1px solid #e6b400;
+      border-radius: 7px;
+
+      background: #e6b400;
+
+      color: #111;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: .82rem;
+      font-weight: 900;
+
+      letter-spacing: .11rem;
+
+      cursor: pointer;
+
+      transition:
+        transform .15s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .invitation-button:hover,
+    .enter-site-button:hover {
+      transform: translateY(-1px);
+
+      background: #f1c00a;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.3);
+    }
+
+    .invitation-button:active,
+    .enter-site-button:active {
+      transform: translateY(0);
+    }
+
+
+    /* =================================
+       FRIENDLY ERROR MESSAGE
+    ================================= */
+
+    .preview-error {
+      min-height: 22px;
+
+      margin-top: 11px;
+
+      color: #d7aaaa;
+
+      font-size: .85rem;
+
+      line-height: 1.4;
+
+      text-align: center;
+
+      opacity: 0;
+
+      transition:
+        opacity .2s ease;
+    }
+
+    .preview-error.visible {
+      opacity: 1;
+    }
+
+
+    /* =================================
+       TWO-STAGE GATE TRANSITION
+    ================================= */
+
+    .gate-stage {
+      opacity: 1;
+
+      transform: translateY(0);
+
+      transition:
+        opacity .35s ease,
+        transform .35s ease;
+    }
+
+    .gate-stage.transitioning-out {
+      opacity: 0;
+
+      transform: translateY(-8px);
+    }
+
+    .welcome-stage {
+      display: none;
+
+      opacity: 0;
+
+      transform: translateY(8px);
+    }
+
+    .welcome-stage.visible {
+      display: block;
+
+      animation:
+        welcomeFadeIn
+        .55s
+        ease
+        forwards;
+    }
+
+    @keyframes welcomeFadeIn {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+
+    }
+
+    .welcome-stage .preview-copy {
+      margin-bottom: 18px;
+    }
+
+    .welcome-stage
+    .preview-copy:last-of-type {
+      margin-bottom: 28px;
+    }
+
+
+    /* =================================
+       FINAL SITE REVEAL
+    ================================= */
+
+    .preview-gate.leaving {
+      opacity: 0 !important;
+
+      visibility: hidden;
+
+      pointer-events: none;
+    }
+
+
+    /* =================================
+       MAIN SITE
+    ================================= */
 
     .site-wrapper {
       width: 100%;
@@ -545,6 +1064,25 @@
 
     @media (max-width: 550px) {
 
+      .preview-card {
+        width: 94vw;
+
+        padding:
+          29px
+          22px
+          26px;
+      }
+
+      .preview-title {
+        font-size: 1.45rem;
+      }
+
+      .preview-copy {
+        font-size: .94rem;
+
+        line-height: 1.6;
+      }
+
       .desktop-nav {
         display: none;
       }
@@ -718,6 +1256,173 @@
 
 <body>
 
+
+
+<!-- =================================
+     PRIVATE PREVIEW INVITATION GATE
+================================= -->
+
+<div
+  id="previewGate"
+  class="preview-gate"
+>
+
+  <div
+    class="preview-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="previewTitle"
+  >
+
+
+    <!-- =================================
+         FUTURE WILBA + DOG ARTWORK
+
+         The structure is already here.
+         We can turn this on later.
+    ================================= -->
+
+    <div
+      class="preview-artwork"
+      id="previewArtwork"
+    >
+
+      <!--
+
+      <img
+        src="images/wilba-preview.png"
+        alt=""
+      >
+
+      -->
+
+    </div>
+
+
+    <!-- =================================
+         STAGE 1 — INVITATION
+    ================================= -->
+
+    <div
+      id="gateStage"
+      class="gate-stage"
+    >
+
+      <div class="preview-brand">
+        BIRD DOG ANIMATION
+      </div>
+
+      <h2
+        class="preview-title"
+        id="previewTitle"
+      >
+        WILBA <span class="gold">RANTS</span>
+        — PRIVATE PREVIEW
+      </h2>
+
+      <div class="preview-divider">
+      </div>
+
+      <p class="preview-copy">
+        If you’re here, someone shared this with you because they value your perspective.
+      </p>
+
+
+      <form
+        class="invitation-form"
+        id="invitationForm"
+      >
+
+        <label
+          class="invitation-label"
+          for="invitationCode"
+        >
+          INVITATION CODE
+        </label>
+
+        <input
+          class="invitation-input"
+          id="invitationCode"
+          type="text"
+          autocomplete="off"
+          autocapitalize="characters"
+          spellcheck="false"
+          placeholder="Enter invitation code"
+          aria-describedby="previewError"
+        >
+
+        <button
+          class="invitation-button"
+          type="submit"
+        >
+          CONTINUE
+        </button>
+
+
+        <div
+          class="preview-error"
+          id="previewError"
+          role="status"
+          aria-live="polite"
+        >
+          That invitation code doesn't seem to be right. Give it another try.
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+    <!-- =================================
+         STAGE 2 — WELCOME
+    ================================= -->
+
+    <div
+      id="welcomeStage"
+      class="welcome-stage"
+    >
+
+      <div class="preview-brand">
+        BIRD DOG ANIMATION
+      </div>
+
+      <h2 class="preview-title">
+        Welcome to the private preview of
+        WILBA <span class="gold">RANTS</span>.
+      </h2>
+
+      <div class="preview-divider">
+      </div>
+
+      <p class="preview-copy">
+        This project is still growing, and I’d genuinely love to hear what you notice — what made you laugh, what worked, what didn’t, or simply what stuck with you.
+      </p>
+
+      <p class="preview-copy">
+        If you know someone whose perspective you value, feel free to pass your invitation along.
+      </p>
+
+      <button
+        class="enter-site-button"
+        type="button"
+        id="enterSiteButton"
+      >
+        ENTER WILBA RANTS
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- =================================
+     ACTUAL WILBA RANTS WEBSITE
+================================= -->
 
 <div class="site-wrapper">
 
@@ -1059,6 +1764,359 @@
 
 
 <script>
+
+
+  /* =================================
+     PRIVATE PREVIEW GATE
+  ================================= */
+
+  let pendingInviteSource = null;
+
+
+  const invitationForm =
+    document.getElementById(
+      "invitationForm"
+    );
+
+
+  const invitationInput =
+    document.getElementById(
+      "invitationCode"
+    );
+
+
+  const previewError =
+    document.getElementById(
+      "previewError"
+    );
+
+
+  const gateStage =
+    document.getElementById(
+      "gateStage"
+    );
+
+
+  const welcomeStage =
+    document.getElementById(
+      "welcomeStage"
+    );
+
+
+  const previewGate =
+    document.getElementById(
+      "previewGate"
+    );
+
+
+  const enterSiteButton =
+    document.getElementById(
+      "enterSiteButton"
+    );
+
+
+
+  /* =================================
+     CODE SUBMISSION
+  ================================= */
+
+  invitationForm.addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const enteredCode =
+        invitationInput
+          .value
+          .trim()
+          .toUpperCase();
+
+
+      const invitation =
+        window
+          .WILBA_PREVIEW_CONFIG
+          .codes[
+            enteredCode
+          ];
+
+
+      if (invitation) {
+
+        pendingInviteSource =
+          invitation.source;
+
+
+        previewError
+          .classList
+          .remove(
+            "visible"
+          );
+
+
+        showPreviewWelcome();
+
+      }
+
+      else {
+
+        previewError
+          .classList
+          .add(
+            "visible"
+          );
+
+
+        invitationInput
+          .focus();
+
+
+        invitationInput
+          .select();
+
+      }
+
+    }
+  );
+
+
+
+  /*
+     Remove the error as soon as the
+     visitor starts typing again.
+  */
+
+  invitationInput.addEventListener(
+    "input",
+    function() {
+
+      previewError
+        .classList
+        .remove(
+          "visible"
+        );
+
+    }
+  );
+
+
+
+  /* =================================
+     SHOW WELCOME MESSAGE
+  ================================= */
+
+  function showPreviewWelcome() {
+
+    gateStage
+      .classList
+      .add(
+        "transitioning-out"
+      );
+
+
+    setTimeout(
+      function() {
+
+        gateStage.style.display =
+          "none";
+
+
+        welcomeStage
+          .classList
+          .add(
+            "visible"
+          );
+
+
+        enterSiteButton.focus();
+
+      },
+      350
+    );
+
+  }
+
+
+
+  /* =================================
+     ENTER WILBA RANTS
+  ================================= */
+
+  enterSiteButton.addEventListener(
+    "click",
+    function() {
+
+
+      /*
+         Access is stored here instead of
+         when the code is entered.
+
+         That guarantees a new visitor
+         actually sees the welcome screen
+         before their browser remembers
+         the invitation.
+      */
+
+      try {
+
+        localStorage.setItem(
+          "wilbaPreviewAccess",
+          "granted"
+        );
+
+
+        localStorage.setItem(
+          "wilbaPreviewVersion",
+          window
+            .WILBA_PREVIEW_CONFIG
+            .version
+        );
+
+
+        if (pendingInviteSource) {
+
+          localStorage.setItem(
+            "wilbaInviteSource",
+            pendingInviteSource
+          );
+
+        }
+
+      }
+
+      catch (error) {
+
+        /*
+           If storage is unavailable,
+           entry still works normally
+           for the current page.
+        */
+
+      }
+
+
+      previewGate
+        .classList
+        .add(
+          "leaving"
+        );
+
+
+      document
+        .documentElement
+        .classList
+        .remove(
+          "preview-locked"
+        );
+
+
+      setTimeout(
+        function() {
+
+          previewGate.style.display =
+            "none";
+
+        },
+        750
+      );
+
+    }
+  );
+
+
+
+  /* =================================
+     PREVIEW INITIALIZATION
+  ================================= */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+      const previewIsLocked =
+        document
+          .documentElement
+          .classList
+          .contains(
+            "preview-locked"
+          );
+
+
+      if (!previewIsLocked) {
+
+        previewGate.style.display =
+          "none";
+
+      }
+
+      else {
+
+        setTimeout(
+          function() {
+
+            invitationInput.focus();
+
+          },
+          250
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /* =================================
+     MANUAL RESET
+
+     WHILE TESTING:
+
+     Open the browser developer console
+     and type:
+
+     resetWilbaPreviewAccess()
+
+     Press Enter.
+
+     The page reloads and the invitation
+     screen returns.
+
+     You can also force EVERYONE to see
+     the invitation gate again by changing
+     the version number near the top of
+     this file from "1" to "2".
+  ================================= */
+
+  function resetWilbaPreviewAccess() {
+
+    try {
+
+      localStorage.removeItem(
+        "wilbaPreviewAccess"
+      );
+
+
+      localStorage.removeItem(
+        "wilbaPreviewVersion"
+      );
+
+
+      localStorage.removeItem(
+        "wilbaInviteSource"
+      );
+
+    }
+
+    catch (error) {
+    }
+
+
+    window.location.reload();
+
+  }
+
 
 
   /* =================================
