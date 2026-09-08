@@ -171,12 +171,6 @@
     }
 
 
-    /*
-       Actual Wilba Rants website remains
-       visible behind the invitation screen,
-       but blurred, darkened and locked.
-    */
-
     html.preview-locked .site-wrapper {
       filter:
         blur(10px)
@@ -229,10 +223,6 @@
       scrollbar-color: #444 #181818;
     }
 
-
-    /*
-       FUTURE WILBA + DOG ARTWORK
-    */
 
     .preview-artwork {
       display: none;
@@ -313,24 +303,26 @@
       line-height: 1.65;
     }
 
-/* =================================
-   PREVIEW CONTACT EMAIL
-================================= */
 
-.preview-contact {
-  margin:
-    4px auto
-    26px;
+    /* =================================
+       PREVIEW CONTACT EMAIL
+    ================================= */
 
-  color: #e6b400;
+    .preview-contact {
+      margin:
+        4px auto
+        26px;
 
-  font-size: .95rem;
-  font-weight: bold;
+      color: #e6b400;
 
-  letter-spacing: .04rem;
+      font-size: .95rem;
+      font-weight: bold;
 
-  text-align: center;
-}
+      letter-spacing: .04rem;
+
+      text-align: center;
+    }
+
 
     /* =================================
        INVITATION FORM
@@ -1231,7 +1223,6 @@
 <body>
 
 
-
 <!-- =================================
      PRIVATE PREVIEW INVITATION GATE
 ================================= -->
@@ -1249,24 +1240,10 @@
   >
 
 
-    <!-- =================================
-         FUTURE WILBA + DOG ARTWORK
-    ================================= -->
-
     <div
       class="preview-artwork"
       id="previewArtwork"
     >
-
-      <!--
-
-      <img
-        src="images/wilba-preview.png"
-        alt=""
-      >
-
-      -->
-
     </div>
 
 
@@ -1367,16 +1344,16 @@
       </div>
 
       <p class="preview-copy">
-  This project is still growing, and I’d genuinely love to hear what you notice — what made you laugh, what worked, what didn’t, or simply what stuck with you.
-</p>
+        This project is still growing, and I’d genuinely love to hear what you notice — what made you laugh, what worked, what didn’t, or simply what stuck with you.
+      </p>
 
-<p class="preview-copy">
-  If you know someone whose perspective you value, feel free to pass your invitation along.
-</p>
+      <p class="preview-copy">
+        If you know someone whose perspective you value, feel free to pass your invitation along.
+      </p>
 
-<p class="preview-contact">
-    contact@wilbarants.com
-</p>
+      <p class="preview-contact">
+        contact@wilbarants.com
+      </p>
 
       <button
         class="enter-site-button"
@@ -1662,9 +1639,7 @@
       </div>
 
 
-    </div>
-
-          <!-- RANT 5 -->
+      <!-- RANT 5 -->
 
       <div
         class="video-card"
@@ -1690,7 +1665,9 @@
 
       </div>
 
+
     </div>
+
 
     <!-- =================================
          MORE RANTS
@@ -1931,14 +1908,6 @@
     "click",
     function() {
 
-
-      /*
-         We still save access normally.
-
-         During testingMode, however,
-         index.html deliberately ignores
-         that saved access on refresh.
-      */
 
       try {
 
