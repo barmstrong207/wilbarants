@@ -1707,11 +1707,11 @@
   <div class="modal-content">
 
     <div
-  class="close-button"
-  onclick="closeVideo(event)"
->
-  ×
-</div>
+      class="close-button"
+      onclick="closeVideo(event)"
+    >
+      ×
+    </div>
 
     <div
       id="modalVideo"
@@ -2169,6 +2169,9 @@
      OPEN VIDEO
   ================================= */
 
+  let videoHistoryActive = false;
+
+
   function openVideo(videoURL) {
 
     const modal =
@@ -2207,6 +2210,52 @@
     document.body.style.overflow =
       "hidden";
 
+
+    if (!videoHistoryActive) {
+
+      history.pushState(
+        {
+          wilbaVideoModal: true
+        },
+        "",
+        window.location.href
+      );
+
+      videoHistoryActive = true;
+
+    }
+
+  }
+
+
+
+  /* =================================
+     HIDE VIDEO MODAL
+  ================================= */
+
+  function hideVideoModal() {
+
+    const modal =
+      document.getElementById(
+        "videoModal"
+      );
+
+
+    modal.style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "modalVideo"
+      )
+      .innerHTML =
+        "";
+
+
+    document.body.style.overflow =
+      "auto";
+
   }
 
 
@@ -2217,49 +2266,67 @@
 
   function closeVideo(event) {
 
-  if (event) {
+    if (event) {
 
-    event.preventDefault();
-    event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
+
+    }
+
+
+    const modal =
+      document.getElementById(
+        "videoModal"
+      );
+
+
+    if (
+      event &&
+      event.target !== modal &&
+      !event.target.classList.contains(
+        "close-button"
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    if (videoHistoryActive) {
+
+      history.back();
+
+    }
+
+    else {
+
+      hideVideoModal();
+
+    }
 
   }
 
 
-  const modal =
-    document.getElementById(
-      "videoModal"
-    );
 
+  /* =================================
+     BACK BUTTON CLOSES VIDEO
+  ================================= */
 
-  if (
-    event &&
-    event.target !== modal &&
-    !event.target.classList.contains(
-      "close-button"
-    )
-  ) {
+  window.addEventListener(
+    "popstate",
+    function() {
 
-    return;
+      if (videoHistoryActive) {
 
-  }
+        videoHistoryActive = false;
 
+        hideVideoModal();
 
-  modal.style.display =
-    "none";
+      }
 
-
-  document
-    .getElementById(
-      "modalVideo"
-    )
-    .innerHTML =
-      "";
-
-
-  document.body.style.overflow =
-    "auto";
-
-}
+    }
+  );
 
 
 
