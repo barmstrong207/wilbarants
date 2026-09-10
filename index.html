@@ -7,79 +7,58 @@
 
   <title>Wilba Rants</title>
 
-  <title>Wilba Rants</title>
+  <!-- =================================
+       SOCIAL SHARE PREVIEW
+  ================================= -->
 
-<!-- =================================
-     SOCIAL SHARE PREVIEW
-================================= -->
+  <meta property="og:title" content="Wilba Rants">
 
-<meta property="og:title" content="Wilba Rants">
+  <meta
+    property="og:description"
+    content="Honest conversations between a man and his dog."
+  >
 
-<meta
-  property="og:description"
-  content="Honest conversations between a man and his dog."
->
+  <meta
+    property="og:image"
+    content="https://wilbarants.com/images/WholeThing.png"
+  >
 
-<meta
-  property="og:image"
-  content="https://wilbarants.com/images/WholeThing.png"
->
+  <meta
+    property="og:url"
+    content="https://wilbarants.com/"
+  >
 
-<meta
-  property="og:url"
-  content="https://wilbarants.com/"
->
+  <meta property="og:type" content="website">
 
-<meta property="og:type" content="website">
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
 
-<meta name="twitter:card" content="summary_large_image">
+  <meta
+    name="twitter:title"
+    content="Wilba Rants"
+  >
 
-<meta
-  name="twitter:title"
-  content="Wilba Rants"
->
+  <meta
+    name="twitter:description"
+    content="Honest conversations between a man and his dog."
+  >
 
-<meta
-  name="twitter:description"
-  content="Honest conversations between a man and his dog."
->
+  <meta
+    name="twitter:image"
+    content="https://wilbarants.com/images/WholeThing.png"
+  >
 
-<meta
-  name="twitter:image"
-  content="https://wilbarants.com/images/WholeThing.png"
->
-
-
-<link rel="icon" type="image/png" href="images/WR%20Favicon.png">
-
-  <link rel="icon" type="image/png" href="images/WR%20Favicon.png">
+  <link
+    rel="icon"
+    type="image/png"
+    href="images/WR%20Favicon.png"
+  >
 
 
   <!-- =================================
        PRIVATE PREVIEW CONFIGURATION
-
-       TO ADD MORE INVITATION CODES LATER:
-
-       DOG: {
-         source: "general-preview"
-       },
-
-       KENNY: {
-         source: "kenny-preview"
-       },
-
-       FRIENDS: {
-         source: "friends-preview"
-       }
-
-       Codes are automatically
-       case-insensitive.
-
-       testingMode: true
-       = gate appears every refresh
-
-       testingMode: false
-       = successful access is remembered
   ================================= -->
 
   <script>
@@ -139,11 +118,6 @@
       }
 
       catch (error) {
-
-        /*
-           If localStorage is unavailable,
-           the invitation gate remains.
-        */
 
       }
 
@@ -215,7 +189,6 @@
       pointer-events: auto;
     }
 
-
     html.preview-locked .site-wrapper {
       filter:
         blur(10px)
@@ -267,7 +240,6 @@
       scrollbar-width: thin;
       scrollbar-color: #444 #181818;
     }
-
 
     .preview-artwork {
       display: none;
@@ -747,7 +719,7 @@
 
 
     /* =================================
-       THE WHOLE THING
+       THE WHOLE THING — DESKTOP
     ================================= */
 
     .whole-thing-section {
@@ -796,6 +768,44 @@
       font-weight: bold;
 
       text-align: left;
+    }
+
+
+    /* =================================
+       MOBILE FEATURED — START HERE
+    ================================= */
+
+    .mobile-whole-thing-feature {
+      display: none;
+    }
+
+    .mobile-start-here {
+      color: #e6b400;
+
+      font-size: .75rem;
+      font-weight: 900;
+
+      letter-spacing: .18rem;
+
+      margin-bottom: 10px;
+    }
+
+    .mobile-whole-thing-title {
+      font-size: 1.3rem;
+      font-weight: 900;
+
+      margin-bottom: 12px;
+    }
+
+    .mobile-whole-thing-copy {
+      color: #999;
+
+      font-size: .9rem;
+      font-style: italic;
+
+      line-height: 1.4;
+
+      margin-top: 14px;
     }
 
 
@@ -934,31 +944,55 @@
       font-size: 30px;
     }
 
+
+    /* =================================
+       COMING SOON WATERMARK
+    ================================= */
+
     .coming-soon-watermark {
-  position: absolute;
+      position: absolute;
 
-  top: 50%;
-  left: 50%;
+      top: 50%;
+      left: 50%;
 
-  transform: translate(-50%, -50%) rotate(-8deg);
+      transform:
+        translate(-50%, -50%)
+        rotate(-8deg);
 
-  color: #e6b400;
+      color: #e6b400;
 
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  font-weight: 900;
-  letter-spacing: .15rem;
+      font-size:
+        clamp(
+          1.2rem,
+          3vw,
+          2rem
+        );
 
-  padding: 10px 18px;
+      font-weight: 900;
 
-  border: 4px solid #e6b400;
-  border-radius: 4px;
+      letter-spacing: .15rem;
 
-  background: rgba(0, 0, 0, .65);
+      padding: 10px 18px;
 
-  white-space: nowrap;
+      border:
+        4px solid
+        #e6b400;
 
-  pointer-events: none;
-}
+      border-radius: 4px;
+
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .65
+        );
+
+      white-space: nowrap;
+
+      pointer-events: none;
+    }
+
 
     /* =================================
        VIDEO INFORMATION
@@ -1080,14 +1114,16 @@
 
       font-size: .85rem;
     }
-footer a {
-  color: #e6b400;
-  text-decoration: none;
-}
 
-footer a:hover {
-  text-decoration: underline;
-}
+    footer a {
+      color: #e6b400;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
 
     /* =================================
        TABLET
@@ -1096,7 +1132,8 @@ footer a:hover {
     @media (max-width: 850px) {
 
       .video-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .whole-thing-section {
@@ -1141,12 +1178,62 @@ footer a:hover {
 
       .tagline-line {
         display: block;
+
         text-align: center;
       }
+
+
+      /* Hide desktop Whole Thing */
 
       .whole-thing-section {
         display: none;
       }
+
+
+      /* Featured mobile Whole Thing */
+
+      .mobile-whole-thing-feature {
+        display: block;
+
+        margin:
+          8px
+          0
+          50px;
+
+        padding: 18px;
+
+        border:
+          2px solid
+          #e6b400;
+
+        border-radius: 10px;
+
+        background: #181818;
+
+        text-align: center;
+
+        cursor: pointer;
+      }
+
+      .mobile-whole-thing-feature
+      .thumbnail {
+        box-shadow:
+          0
+          10px
+          30px
+          rgba(0,0,0,.45);
+      }
+
+      .mobile-whole-thing-feature
+      .play-button {
+        opacity: 1;
+
+        width: 64px;
+        height: 64px;
+
+        font-size: 27px;
+      }
+
 
       .video-grid {
         grid-template-columns: 1fr;
@@ -1218,8 +1305,17 @@ footer a:hover {
       .close-button {
         position: fixed;
 
-        top: max(12px, env(safe-area-inset-top));
-        right: max(12px, env(safe-area-inset-right));
+        top:
+          max(
+            12px,
+            env(safe-area-inset-top)
+          );
+
+        right:
+          max(
+            12px,
+            env(safe-area-inset-right)
+          );
 
         width: 44px;
         height: 44px;
@@ -1228,7 +1324,13 @@ footer a:hover {
         align-items: center;
         justify-content: center;
 
-        background: rgba(0,0,0,.65);
+        background:
+          rgba(
+            0,
+            0,
+            0,
+            .65
+          );
 
         border-radius: 50%;
 
@@ -1247,10 +1349,14 @@ footer a:hover {
        LANDSCAPE FALLBACK
     ================================= */
 
-    @media (max-width: 1024px) and (orientation: landscape) {
+    @media
+      (max-width: 1024px)
+      and
+      (orientation: landscape) {
 
       .modal {
         padding: 0;
+
         background: #000;
       }
 
@@ -1284,8 +1390,17 @@ footer a:hover {
       .close-button {
         position: fixed;
 
-        top: max(12px, env(safe-area-inset-top));
-        right: max(12px, env(safe-area-inset-right));
+        top:
+          max(
+            12px,
+            env(safe-area-inset-top)
+          );
+
+        right:
+          max(
+            12px,
+            env(safe-area-inset-right)
+          );
 
         z-index: 1200;
       }
@@ -1341,7 +1456,11 @@ footer a:hover {
         class="preview-title"
         id="previewTitle"
       >
-        WILBA <span class="gold">RANTS</span><br>
+        WILBA
+        <span class="gold">
+          RANTS
+        </span>
+        <br>
         PRIVATE PREVIEW
       </h2>
 
@@ -1414,7 +1533,10 @@ footer a:hover {
 
       <h2 class="preview-title">
         Welcome to the private preview of
-        WILBA <span class="gold">RANTS</span>.
+        WILBA
+        <span class="gold">
+          RANTS
+        </span>.
       </h2>
 
       <div class="preview-divider">
@@ -1467,12 +1589,22 @@ footer a:hover {
     </div>
 
     <h1>
-      WILBA <span class="rants">RANTS</span>
+      WILBA
+      <span class="rants">
+        RANTS
+      </span>
     </h1>
 
     <p class="tagline">
-      <span class="tagline-line">Honest conversations</span>
-      <span class="tagline-line">between a man and his dog.</span>
+
+      <span class="tagline-line">
+        Honest conversations
+      </span>
+
+      <span class="tagline-line">
+        between a man and his dog.
+      </span>
+
     </p>
 
   </header>
@@ -1527,13 +1659,6 @@ footer a:hover {
       </a>
 
       <a
-        href="wholething.html"
-        id="mobile-whole-link"
-      >
-        THE WHOLE THING
-      </a>
-
-      <a
         href="classics.html"
         id="mobile-classic-link"
       >
@@ -1556,7 +1681,7 @@ footer a:hover {
 
 
     <!-- =================================
-         THE WHOLE THING
+         THE WHOLE THING — DESKTOP
     ================================= -->
 
     <section class="whole-thing-section">
@@ -1594,6 +1719,43 @@ footer a:hover {
       </div>
 
     </section>
+
+
+    <!-- =================================
+         MOBILE FEATURED — START HERE
+    ================================= -->
+
+    <div
+      class="mobile-whole-thing-feature"
+      onclick="openVideo('https://player.mediadelivery.net/play/726343/9046da8f-c3ed-42de-b6ac-af7857254388')"
+    >
+
+      <div class="mobile-start-here">
+        START HERE
+      </div>
+
+      <div class="mobile-whole-thing-title">
+        THE WHOLE THING
+      </div>
+
+      <div class="thumbnail">
+
+        <img
+          src="images/WholeThing.png"
+          alt="The Whole Thing"
+        >
+
+        <div class="play-button">
+          ▶
+        </div>
+
+      </div>
+
+      <div class="mobile-whole-thing-copy">
+        Every Freshly Published Rant. One After Another.
+      </div>
+
+    </div>
 
 
     <!-- =================================
@@ -1743,30 +1905,32 @@ footer a:hover {
       </div>
 
 
-<!-- RANT 6 -->
+      <!-- RANT 6 -->
 
-<div class="video-card">
+      <div class="video-card">
 
-  <div class="thumbnail">
+        <div class="thumbnail">
 
-    <img
-      src="images/GrassSnow.png"
-      alt="Grass and Snow"
-    >
+          <img
+            src="images/GrassSnow.png"
+            alt="Grass and Snow"
+          >
 
-    <div class="coming-soon-watermark">
-      COMING SOON
+          <div class="coming-soon-watermark">
+            COMING SOON
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Grass and Snow
+        </div>
+
+      </div>
+
+
     </div>
 
-  </div>
-
-  <div class="video-title">
-    Grass and Snow
-  </div>
-
-</div>
-      
-</div> <!-- END VIDEO GRID -->
 
     <!-- =================================
          MORE RANTS
@@ -1784,15 +1948,26 @@ footer a:hover {
        FOOTER
   ================================= -->
 
-<footer>
-  <div>
-    <a href="mailto:contact@wilbarants.com">contact@wilbarants.com</a>
-  </div>
+  <footer>
 
-  <div>
-    © 2026 Brent Armstrong. All Rights Reserved.
-  </div>
-</footer>
+    <div>
+
+      <a
+        href="mailto:contact@wilbarants.com"
+      >
+        contact@wilbarants.com
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 Brent Armstrong. All Rights Reserved.
+    </div>
+
+  </footer>
+
+
+</div>
 
 
 
@@ -2179,11 +2354,6 @@ footer a:hover {
       "mobile-fresh-link"
     );
 
-  const mobileWholeLink =
-    document.getElementById(
-      "mobile-whole-link"
-    );
-
   const mobileClassicLink =
     document.getElementById(
       "mobile-classic-link"
@@ -2196,20 +2366,6 @@ footer a:hover {
 
 
   if (
-    currentPath.includes(
-      "wholething"
-    )
-  ) {
-
-    mobileWholeLink
-      .classList
-      .add(
-        "active"
-      );
-
-  }
-
-  else if (
     currentPath.includes(
       "about"
     )
