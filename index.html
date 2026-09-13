@@ -719,10 +719,6 @@
       display: none;
 
       margin: 30px 0 40px;
-
-      border-bottom: 1px solid #333;
-
-      padding-bottom: 15px;
     }
 
     .mobile-menu {
@@ -774,6 +770,31 @@
 
     .mobile-menu a.active {
       color: #e6b400;
+    }
+
+    /*
+       Make The Whole Thing visually distinct
+       from the normal navigation links.
+    */
+
+    .whole-thing-mobile-link {
+      color: #e6b400 !important;
+
+      background: #202020;
+
+      font-weight: 900 !important;
+
+      letter-spacing: .15rem !important;
+    }
+
+    .whole-thing-mobile-link::before {
+      content: "START HERE  •  ";
+
+      color: #888;
+
+      font-size: .68rem;
+
+      letter-spacing: .1rem;
     }
 
 
@@ -1626,6 +1647,13 @@
       class="mobile-menu"
       id="mobileMenu"
     >
+
+      <a
+        href="wholething.html"
+        class="whole-thing-mobile-link"
+      >
+        THE WHOLE THING
+      </a>
 
       <a
         href="index.html"
