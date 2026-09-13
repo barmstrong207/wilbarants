@@ -772,33 +772,6 @@
       color: #e6b400;
     }
 
-    /*
-       Make The Whole Thing visually distinct
-       from the normal navigation links.
-    */
-
-    .whole-thing-mobile-link {
-      color: #e6b400 !important;
-
-      background: #202020;
-
-      font-weight: 900 !important;
-
-      letter-spacing: .15rem !important;
-    }
-
-   .whole-thing-mobile-link::before {
-  content: "";
-
-  color: #aaa;
-
-  font-size: .78rem;
-
-  font-weight: 700;
-
-  letter-spacing: .08rem;
-}
-
 
     /* =================================
        THE WHOLE THING — DESKTOP
@@ -1652,7 +1625,7 @@
 
       <a
         href="wholething.html"
-        class="whole-thing-mobile-link"
+        id="mobile-whole-link"
       >
         THE WHOLE THING
       </a>
@@ -2191,8 +2164,8 @@
 
 
       /*
-         On a visitor's first mobile visit,
-         The Whole Thing becomes the front door.
+         On the first mobile visit,
+         send the visitor to The Whole Thing.
       */
 
       if (
@@ -2358,6 +2331,11 @@
     );
 
 
+  const mobileWholeLink =
+    document.getElementById(
+      "mobile-whole-link"
+    );
+
   const mobileFreshLink =
     document.getElementById(
       "mobile-fresh-link"
@@ -2375,6 +2353,20 @@
 
 
   if (
+    currentPath.includes(
+      "wholething"
+    )
+  ) {
+
+    mobileWholeLink
+      .classList
+      .add(
+        "active"
+      );
+
+  }
+
+  else if (
     currentPath.includes(
       "about"
     )
