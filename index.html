@@ -81,6 +81,43 @@
 
 
     /* =================================
+       MOBILE FIRST-VISIT EXPERIENCE
+    ================================= */
+
+    window.isWilbaMobile =
+      function() {
+
+        return window.matchMedia(
+          "(max-width: 550px)"
+        ).matches;
+
+      };
+
+
+    window.shouldShowMobileIntro =
+      function() {
+
+        try {
+
+          return (
+            window.isWilbaMobile() &&
+            localStorage.getItem(
+              "wilbaMobileIntroSeen"
+            ) !== "true"
+          );
+
+        }
+
+        catch (error) {
+
+          return false;
+
+        }
+
+      };
+
+
+    /* =================================
        EARLY ACCESS CHECK
     ================================= */
 
@@ -112,6 +149,28 @@
             .remove(
               "preview-locked"
             );
+
+
+          /*
+             Returning preview access,
+             but first mobile site visit:
+             send them to The Whole Thing.
+          */
+
+          if (
+            window.shouldShowMobileIntro()
+          ) {
+
+            localStorage.setItem(
+              "wilbaMobileIntroSeen",
+              "true"
+            );
+
+            window.location.replace(
+              "wholething.html"
+            );
+
+          }
 
         }
 
@@ -772,44 +831,6 @@
 
 
     /* =================================
-       MOBILE FEATURED — START HERE
-    ================================= */
-
-    .mobile-whole-thing-feature {
-      display: none;
-    }
-
-    .mobile-start-here {
-      color: #e6b400;
-
-      font-size: .75rem;
-      font-weight: 900;
-
-      letter-spacing: .18rem;
-
-      margin-bottom: 10px;
-    }
-
-    .mobile-whole-thing-title {
-      font-size: 1.3rem;
-      font-weight: 900;
-
-      margin-bottom: 12px;
-    }
-
-    .mobile-whole-thing-copy {
-      color: #999;
-
-      font-size: .9rem;
-      font-style: italic;
-
-      line-height: 1.4;
-
-      margin-top: 14px;
-    }
-
-
-    /* =================================
        INDIVIDUAL RANTS HEADING
     ================================= */
 
@@ -1188,49 +1209,6 @@
       .whole-thing-section {
         display: none;
       }
-
-
-      /* Featured mobile Whole Thing */
-
-      .mobile-whole-thing-feature {
-  display: block;
-
-  margin:
-    8px
-    0
-    50px;
-
-  padding: 0;
-
-  border: none;
-
-  background: transparent;
-
-  text-align: center;
-
-  cursor: pointer;
-}
-
-.mobile-whole-thing-feature .thumbnail {
-  border: 3px solid #e6b400;
-
-  border-radius: 8px;
-
-  box-shadow:
-    0
-    10px
-    30px
-    rgba(0,0,0,.45);
-}
-
-.mobile-whole-thing-feature .play-button {
-  opacity: 1;
-
-  width: 64px;
-  height: 64px;
-
-  font-size: 27px;
-}
 
 
       .video-grid {
@@ -1720,43 +1698,6 @@
 
 
     <!-- =================================
-         MOBILE FEATURED — START HERE
-    ================================= -->
-
-    <div
-      class="mobile-whole-thing-feature"
-      onclick="openVideo('https://player.mediadelivery.net/play/726343/e7c18755-3190-401f-b69b-396832ab2a73')"
-    >
-
-      <div class="mobile-start-here">
-        START HERE
-      </div>
-
-      <div class="mobile-whole-thing-title">
-        THE WHOLE THING
-      </div>
-
-      <div class="thumbnail">
-
-        <img
-          src="images/WholeThing.png"
-          alt="The Whole Thing"
-        >
-
-        <div class="play-button">
-          ▶
-        </div>
-
-      </div>
-
-      <div class="mobile-whole-thing-copy">
-        Every Freshly Published Rant. One After Another.
-      </div>
-
-    </div>
-
-
-    <!-- =================================
          INDIVIDUAL RANTS
     ================================= -->
 
@@ -1905,31 +1846,30 @@
 
       <!-- RANT 6 -->
 
-     <!-- RANT 6 -->
+      <div
+        class="video-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/e60e7bb0-e32f-4410-8c62-8f606147e8b4')"
+      >
 
-<div
-  class="video-card"
-  onclick="openVideo('https://player.mediadelivery.net/play/726343/e60e7bb0-e32f-4410-8c62-8f606147e8b4')"
->
+        <div class="thumbnail">
 
-  <div class="thumbnail">
+          <img
+            src="images/GrassSnow.png"
+            alt="Grass and Snow"
+          >
 
-    <img
-      src="images/GrassSnow.png"
-      alt="Grass and Snow"
-    >
+          <div class="play-button">
+            ▶
+          </div>
 
-    <div class="play-button">
-      ▶
-    </div>
+        </div>
 
-  </div>
+        <div class="video-title">
+          Grass and Snow
+        </div>
 
-  <div class="video-title">
-    Grass and Snow
-  </div>
+      </div>
 
-</div>
 
     </div>
 
@@ -2220,6 +2160,38 @@
       }
 
 
+      /*
+         On a visitor's first mobile visit,
+         The Whole Thing becomes the front door.
+      */
+
+      if (
+        window.shouldShowMobileIntro()
+      ) {
+
+        try {
+
+          localStorage.setItem(
+            "wilbaMobileIntroSeen",
+            "true"
+          );
+
+        }
+
+        catch (error) {
+
+        }
+
+
+        window.location.replace(
+          "wholething.html"
+        );
+
+        return;
+
+      }
+
+
       previewGate
         .classList
         .add(
@@ -2312,6 +2284,11 @@
 
       localStorage.removeItem(
         "wilbaInviteSource"
+      );
+
+
+      localStorage.removeItem(
+        "wilbaMobileIntroSeen"
       );
 
     }
