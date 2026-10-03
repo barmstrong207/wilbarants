@@ -1,35 +1,2618 @@
-/* =================================
-   MOBILE FIRST-VISIT EXPERIENCE
-================================= */
+<!DOCTYPE html>
+<html lang="en" class="preview-locked">
 
-window.isWilbaMobile =
-  function() {
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    return window.matchMedia(
-      "(max-width: 550px)"
-    ).matches;
+  <title>Wilba Rants</title>
 
-  };
+  <!-- =================================
+       SOCIAL SHARE PREVIEW
+  ================================= -->
+
+  <meta property="og:title" content="Wilba Rants">
+
+  <meta
+    property="og:description"
+    content="Honest conversations between a man and his dog."
+  >
+
+  <meta
+    property="og:image"
+    content="https://wilbarants.com/images/WholeThing.png"
+  >
+
+  <meta
+    property="og:url"
+    content="https://wilbarants.com/"
+  >
+
+  <meta property="og:type" content="website">
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Wilba Rants"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Honest conversations between a man and his dog."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://wilbarants.com/images/WholeThing.png"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="images/WR%20Favicon.png"
+  >
 
 
-window.shouldShowMobileIntro =
-  function() {
+  <!-- =================================
+       PRIVATE PREVIEW CONFIGURATION
+  ================================= -->
+
+  <script>
+
+    window.WILBA_PREVIEW_CONFIG = {
+
+      version: "1",
+
+      testingMode: false,
+
+      codes: {
+
+        DOG: {
+          source: "general-preview"
+        }
+
+      }
+
+    };
+
+
+    /* =================================
+       MOBILE FIRST-VISIT EXPERIENCE
+    ================================= */
+
+    window.isWilbaMobile =
+      function() {
+
+        return window.matchMedia(
+          "(max-width: 550px)"
+        ).matches;
+
+      };
+
+
+    window.shouldShowMobileIntro =
+      function() {
+
+        try {
+
+          return (
+            window.isWilbaMobile() &&
+            localStorage.getItem(
+              "wilbaMobileIntroSeen"
+            ) !== "true"
+          );
+
+        }
+
+        catch (error) {
+
+          return false;
+
+        }
+
+      };
+
+
+    /* =================================
+       EARLY ACCESS CHECK
+    ================================= */
+
+    if (
+      !window.WILBA_PREVIEW_CONFIG.testingMode
+    ) {
+
+      try {
+
+        const savedAccess =
+          localStorage.getItem(
+            "wilbaPreviewAccess"
+          );
+
+        const savedVersion =
+          localStorage.getItem(
+            "wilbaPreviewVersion"
+          );
+
+
+        if (
+          savedAccess === "granted" &&
+          savedVersion ===
+            window.WILBA_PREVIEW_CONFIG.version
+        ) {
+
+          document.documentElement
+            .classList
+            .remove(
+              "preview-locked"
+            );
+
+
+          /*
+             Returning preview access,
+             but first mobile site visit:
+             send them to The Whole Thing.
+          */
+
+          if (
+            window.shouldShowMobileIntro()
+          ) {
+
+            localStorage.setItem(
+              "wilbaMobileIntroSeen",
+              "true"
+            );
+
+            window.location.replace(
+              "wholething.html"
+            );
+
+          }
+
+        }
+
+      }
+
+      catch (error) {
+
+      }
+
+    }
+
+  </script>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      background: #111;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+
+    /* =================================
+       PRIVATE PREVIEW GATE
+    ================================= */
+
+    .preview-gate {
+      position: fixed;
+
+      inset: 0;
+
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+
+      z-index: 10000;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        max(24px, env(safe-area-inset-top))
+        max(20px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(20px, env(safe-area-inset-left));
+
+      background: rgba(0,0,0,.32);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transition:
+        opacity .7s ease,
+        visibility .7s ease;
+    }
+
+    html.preview-locked .preview-gate {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    html.preview-locked .site-wrapper {
+      filter:
+        blur(10px)
+        brightness(.48);
+
+      transform: scale(1.015);
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .site-wrapper {
+      transition:
+        filter .8s ease,
+        transform .8s ease;
+    }
+
+    html.preview-locked body {
+      overflow: hidden;
+    }
+
+
+    /* =================================
+       INVITATION CARD
+    ================================= */
+
+    .preview-card {
+      width: min(92vw, 560px);
+
+      max-height: calc(100dvh - 40px);
+
+      overflow-y: auto;
+
+      background: rgba(20,20,20,.975);
+
+      border: 1px solid #3b3b3b;
+
+      border-radius: 12px;
+
+      box-shadow:
+        0 28px 90px rgba(0,0,0,.72);
+
+      padding: 38px;
+
+      position: relative;
+
+      text-align: center;
+
+      scrollbar-width: thin;
+      scrollbar-color: #444 #181818;
+    }
+
+    .preview-artwork {
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+
+      margin-bottom: 22px;
+    }
+
+    .preview-artwork img {
+      display: block;
+
+      width: 100%;
+      max-width: 350px;
+
+      height: auto;
+
+      object-fit: contain;
+    }
+
+
+    /* =================================
+       INVITATION TYPOGRAPHY
+    ================================= */
+
+    .preview-brand {
+      color: #777;
+
+      font-size: .72rem;
+      font-weight: bold;
+
+      letter-spacing: .2rem;
+
+      margin-bottom: 13px;
+    }
+
+    .preview-title {
+      color: #f5f5f5;
+
+      font-size: clamp(1.45rem, 5vw, 2rem);
+
+      font-weight: 900;
+
+      line-height: 1.2;
+
+      margin-bottom: 18px;
+    }
+
+    .preview-title .gold {
+      color: #e6b400;
+    }
+
+    .preview-divider {
+      width: 52px;
+      height: 2px;
+
+      margin:
+        0 auto
+        22px;
+
+      background: #e6b400;
+    }
+
+    .preview-copy {
+      max-width: 460px;
+
+      margin:
+        0 auto
+        28px;
+
+      color: #c6c6c6;
+
+      font-size: 1rem;
+
+      line-height: 1.65;
+    }
+
+
+    /* =================================
+       PREVIEW CONTACT EMAIL
+    ================================= */
+
+    .preview-contact {
+      margin:
+        4px auto
+        26px;
+
+      color: #e6b400;
+
+      font-size: .95rem;
+      font-weight: bold;
+
+      letter-spacing: .04rem;
+
+      text-align: center;
+    }
+
+
+    /* =================================
+       INVITATION FORM
+    ================================= */
+
+    .invitation-form {
+      width: 100%;
+
+      text-align: left;
+    }
+
+    .invitation-label {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: #aaa;
+
+      font-size: .78rem;
+      font-weight: bold;
+
+      letter-spacing: .11rem;
+    }
+
+    .invitation-input {
+      width: 100%;
+
+      padding: 15px 16px;
+
+      background: #0d0d0d;
+
+      border: 1px solid #444;
+      border-radius: 7px;
+
+      outline: none;
+
+      color: #f5f5f5;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 1rem;
+
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .invitation-input::placeholder {
+      color: #666;
+    }
+
+    .invitation-input:focus {
+      border-color: #e6b400;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(230,180,0,.10);
+    }
+
+
+    /* =================================
+       INVITATION BUTTONS
+    ================================= */
+
+    .invitation-button,
+    .enter-site-button {
+      appearance: none;
+
+      width: 100%;
+
+      margin-top: 14px;
+
+      padding: 15px 18px;
+
+      border: 1px solid #e6b400;
+      border-radius: 7px;
+
+      background: #e6b400;
+
+      color: #111;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: .82rem;
+      font-weight: 900;
+
+      letter-spacing: .11rem;
+
+      cursor: pointer;
+
+      transition:
+        transform .15s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .invitation-button:hover,
+    .enter-site-button:hover {
+      transform: translateY(-1px);
+
+      background: #f1c00a;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.3);
+    }
+
+    .invitation-button:active,
+    .enter-site-button:active {
+      transform: translateY(0);
+    }
+
+
+    /* =================================
+       FRIENDLY ERROR MESSAGE
+    ================================= */
+
+    .preview-error {
+      min-height: 22px;
+
+      margin-top: 11px;
+
+      color: #d7aaaa;
+
+      font-size: .85rem;
+
+      line-height: 1.4;
+
+      text-align: center;
+
+      opacity: 0;
+
+      transition:
+        opacity .2s ease;
+    }
+
+    .preview-error.visible {
+      opacity: 1;
+    }
+
+
+    /* =================================
+       TWO-STAGE GATE TRANSITION
+    ================================= */
+
+    .gate-stage {
+      opacity: 1;
+
+      transform: translateY(0);
+
+      transition:
+        opacity .35s ease,
+        transform .35s ease;
+    }
+
+    .gate-stage.transitioning-out {
+      opacity: 0;
+
+      transform: translateY(-8px);
+    }
+
+    .welcome-stage {
+      display: none;
+
+      opacity: 0;
+
+      transform: translateY(8px);
+    }
+
+    .welcome-stage.visible {
+      display: block;
+
+      animation:
+        welcomeFadeIn
+        .55s
+        ease
+        forwards;
+    }
+
+    @keyframes welcomeFadeIn {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+
+    }
+
+    .welcome-stage .preview-copy {
+      margin-bottom: 18px;
+    }
+
+    .welcome-stage
+    .preview-copy:last-of-type {
+      margin-bottom: 28px;
+    }
+
+
+    /* =================================
+       FINAL SITE REVEAL
+    ================================= */
+
+    .preview-gate.leaving {
+      opacity: 0 !important;
+
+      visibility: hidden;
+
+      pointer-events: none;
+    }
+
+
+    /* =================================
+       MAIN SITE
+    ================================= */
+
+    .site-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 24px 60px;
+    }
+
+
+    /* =================================
+       HEADER
+    ================================= */
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      letter-spacing: .25rem;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    h1 .rants {
+      color: #e6b400;
+    }
+
+    .tagline {
+      color: #bbb;
+      font-size: 1.1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .tagline-line {
+      display: inline;
+    }
+
+
+    /* =================================
+       DESKTOP NAVIGATION
+    ================================= */
+
+    .desktop-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px 30px;
+
+      margin: 35px 0 45px;
+
+      border-bottom: 1px solid #333;
+      padding-bottom: 15px;
+    }
+
+    .desktop-nav a {
+      color: #ffffff;
+      text-decoration: none;
+
+      font-size: .9rem;
+      font-weight: bold;
+      letter-spacing: .12rem;
+
+      transition: color .2s;
+    }
+
+    .desktop-nav a:hover {
+      color: #e6b400;
+    }
+
+    .desktop-nav a.active {
+      color: #e6b400;
+    }
+
+
+    /* =================================
+       MOBILE NAVIGATION
+    ================================= */
+
+    .mobile-nav {
+      display: none;
+
+      margin: 30px 0 40px;
+    }
+
+    .mobile-menu {
+      display: block;
+
+      width: 100%;
+
+      background: #181818;
+
+      border: 1px solid #333;
+      border-radius: 8px;
+
+      overflow: hidden;
+    }
+
+    .mobile-menu a {
+      display: block;
+
+      width: 100%;
+
+      padding: 17px 20px;
+
+      color: #ffffff;
+
+      text-decoration: none;
+
+      font-size: .9rem;
+      font-weight: bold;
+
+      letter-spacing: .12rem;
+
+      text-align: center;
+
+      border-bottom: 1px solid #2d2d2d;
+
+      transition:
+        color .2s,
+        background .2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: #e6b400;
+      background: #202020;
+    }
+
+    .mobile-menu a.active {
+      color: #e6b400;
+    }
+
+
+    /* =================================
+       THE WHOLE THING — DESKTOP
+    ================================= */
+
+    .whole-thing-section {
+      margin-bottom: 65px;
+      text-align: center;
+    }
+
+    .whole-thing-heading {
+      color: #e6b400;
+
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-style: italic;
+
+      letter-spacing: .12rem;
+
+      margin-bottom: 10px;
+    }
+
+    .whole-thing-subtitle {
+      color: #888;
+
+      font-size: .95rem;
+      font-style: italic;
+
+      margin-bottom: 25px;
+    }
+
+    .whole-thing-card {
+      width: 100%;
+      max-width: 900px;
+
+      margin: 0 auto;
+
+      cursor: pointer;
+    }
+
+    .whole-thing-card .thumbnail {
+      box-shadow: 0 10px 35px rgba(0,0,0,.35);
+    }
+
+    .whole-thing-title {
+      margin-top: 14px;
+
+      font-size: 1.2rem;
+      font-weight: bold;
+
+      text-align: left;
+    }
+
+
+    /* =================================
+       INDIVIDUAL RANTS HEADING
+    ================================= */
+
+    .individual-heading {
+      display: flex;
+      align-items: center;
+
+      width: 100%;
+
+      margin-bottom: 28px;
+
+      color: #e6b400;
+
+      font-size: .9rem;
+      font-weight: bold;
+
+      letter-spacing: .16rem;
+
+      white-space: nowrap;
+    }
+
+    .individual-heading::before,
+    .individual-heading::after {
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background: #444;
+    }
+
+    .individual-heading::before {
+      margin-right: 22px;
+    }
+
+    .individual-heading::after {
+      margin-left: 22px;
+    }
+
+
+    /* =================================
+       VIDEO GRID
+    ================================= */
+
+    .video-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 28px;
+    }
+
+    .video-card {
+      cursor: pointer;
+    }
+
+    .thumbnail {
+      position: relative;
+
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      background: #222;
+
+      border-radius: 8px;
+
+      overflow: hidden;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.025);
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.5);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+    }
+
+
+    /* =================================
+       PLAY ICON
+    ================================= */
+
+    .play-button {
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 60px;
+      height: 60px;
+
+      background: rgba(0,0,0,.7);
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 25px;
+      color: white;
+
+      opacity: 0;
+
+      transition: opacity .2s;
+    }
+
+    .thumbnail:hover .play-button {
+      opacity: 1;
+    }
+
+    .whole-thing-card .play-button {
+      width: 72px;
+      height: 72px;
+
+      font-size: 30px;
+    }
+
+
+    /* =================================
+       COMING SOON WATERMARK
+    ================================= */
+
+    .coming-soon-watermark {
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+
+      transform:
+        translate(-50%, -50%)
+        rotate(-8deg);
+
+      color: #e6b400;
+
+      font-size:
+        clamp(
+          1.2rem,
+          3vw,
+          2rem
+        );
+
+      font-weight: 900;
+
+      letter-spacing: .15rem;
+
+      padding: 10px 18px;
+
+      border:
+        4px solid
+        #e6b400;
+
+      border-radius: 4px;
+
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .65
+        );
+
+      white-space: nowrap;
+
+      pointer-events: none;
+    }
+
+
+    /* =================================
+       VIDEO INFORMATION
+    ================================= */
+
+    .video-title {
+      margin-top: 12px;
+
+      font-size: 1.05rem;
+      font-weight: bold;
+    }
+
+    .video-description {
+      margin-top: 5px;
+
+      color: #888;
+
+      font-size: .9rem;
+    }
+
+
+    /* =================================
+       MORE RANTS
+    ================================= */
+
+    .more-rants {
+      text-align: center;
+
+      margin-top: 55px;
+
+      color: #e6b400;
+
+      font-size: 1rem;
+      font-weight: bold;
+
+      letter-spacing: .15rem;
+    }
+
+
+    /* =================================
+       VIDEO MODAL
+    ================================= */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+      z-index: 1000;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: rgba(0,0,0,.92);
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 40px;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 1100px;
+
+      position: relative;
+    }
+
+    .modal-video {
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      background: #000;
+    }
+
+    .modal-video iframe {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      border: none;
+    }
+
+    .close-button {
+      position: absolute;
+
+      right: 0;
+      top: -45px;
+
+      color: white;
+
+      font-size: 35px;
+
+      cursor: pointer;
+
+      transition: color .2s;
+
+      z-index: 1100;
+    }
+
+    .close-button:hover {
+      color: #e6b400;
+    }
+
+
+    /* =================================
+       FOOTER
+    ================================= */
+
+    footer {
+      text-align: center;
+
+      margin-top: 60px;
+
+      color: #666;
+
+      font-size: .85rem;
+    }
+
+    footer a {
+      color: #e6b400;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* =================================
+       TABLET
+    ================================= */
+
+    @media (max-width: 850px) {
+
+      .video-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .whole-thing-section {
+        margin-bottom: 55px;
+      }
+
+    }
+
+
+    /* =================================
+       PHONE
+    ================================= */
+
+    @media (max-width: 550px) {
+
+      .preview-card {
+        width: 94vw;
+
+        padding:
+          29px
+          22px
+          26px;
+      }
+
+      .preview-title {
+        font-size: 1.45rem;
+      }
+
+      .preview-copy {
+        font-size: .94rem;
+
+        line-height: 1.6;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .tagline-line {
+        display: block;
+
+        text-align: center;
+      }
+
+
+      /* Hide desktop Whole Thing */
+
+      .whole-thing-section {
+        display: none;
+      }
+
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .individual-heading::before {
+        margin-right: 14px;
+      }
+
+      .individual-heading::after {
+        margin-left: 14px;
+      }
+
+    }
+
+
+    /* =================================
+       MOBILE / TOUCH VIDEO PLAYER
+    ================================= */
+
+    @media (hover: none) and (pointer: coarse) {
+
+      .modal {
+        padding: 0;
+
+        width: 100vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        background: #000;
+      }
+
+      .modal-content {
+        width: 100vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        max-width: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: relative;
+      }
+
+      .modal-video {
+        width: 100vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        aspect-ratio: auto;
+
+        background: #000;
+      }
+
+      .modal-video iframe {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        border: 0;
+      }
+
+      .close-button {
+        position: fixed;
+
+        top:
+          max(
+            12px,
+            env(safe-area-inset-top)
+          );
+
+        right:
+          max(
+            12px,
+            env(safe-area-inset-right)
+          );
+
+        width: 44px;
+        height: 44px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background:
+          rgba(
+            0,
+            0,
+            0,
+            .65
+          );
+
+        border-radius: 50%;
+
+        color: #fff;
+
+        font-size: 34px;
+        line-height: 1;
+
+        z-index: 1200;
+      }
+
+    }
+
+
+    /* =================================
+       LANDSCAPE FALLBACK
+    ================================= */
+
+    @media
+      (max-width: 1024px)
+      and
+      (orientation: landscape) {
+
+      .modal {
+        padding: 0;
+
+        background: #000;
+      }
+
+      .modal-content {
+        width: 100vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        max-width: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-video {
+        width: 100vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        aspect-ratio: auto;
+      }
+
+      .modal-video iframe {
+        width: 100%;
+        height: 100%;
+      }
+
+      .close-button {
+        position: fixed;
+
+        top:
+          max(
+            12px,
+            env(safe-area-inset-top)
+          );
+
+        right:
+          max(
+            12px,
+            env(safe-area-inset-right)
+          );
+
+        z-index: 1200;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     PRIVATE PREVIEW INVITATION GATE
+================================= -->
+
+<div
+  id="previewGate"
+  class="preview-gate"
+>
+
+  <div
+    class="preview-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="previewTitle"
+  >
+
+
+    <div
+      class="preview-artwork"
+      id="previewArtwork"
+    >
+    </div>
+
+
+    <!-- =================================
+         STAGE 1 — INVITATION
+    ================================= -->
+
+    <div
+      id="gateStage"
+      class="gate-stage"
+    >
+
+      <div class="preview-brand">
+        BIRD DOG ANIMATION
+      </div>
+
+      <h2
+        class="preview-title"
+        id="previewTitle"
+      >
+        WILBA
+        <span class="gold">
+          RANTS
+        </span>
+        <br>
+        PRIVATE PREVIEW
+      </h2>
+
+      <div class="preview-divider">
+      </div>
+
+      <p class="preview-copy">
+        If you’re here, someone shared this with you because they value your perspective.
+      </p>
+
+
+      <form
+        class="invitation-form"
+        id="invitationForm"
+      >
+
+        <label
+          class="invitation-label"
+          for="invitationCode"
+        >
+          INVITATION CODE
+        </label>
+
+        <input
+          class="invitation-input"
+          id="invitationCode"
+          type="text"
+          autocomplete="off"
+          autocapitalize="characters"
+          spellcheck="false"
+          placeholder="Enter invitation code"
+          aria-describedby="previewError"
+        >
+
+        <button
+          class="invitation-button"
+          type="submit"
+        >
+          CONTINUE
+        </button>
+
+
+        <div
+          class="preview-error"
+          id="previewError"
+          role="status"
+          aria-live="polite"
+        >
+          That invitation code doesn't seem to be right. Give it another try.
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+    <!-- =================================
+         STAGE 2 — WELCOME
+    ================================= -->
+
+    <div
+      id="welcomeStage"
+      class="welcome-stage"
+    >
+
+      <div class="preview-brand">
+        BIRD DOG ANIMATION
+      </div>
+
+      <h2 class="preview-title">
+        Welcome to the private preview of
+        WILBA
+        <span class="gold">
+          RANTS
+        </span>.
+      </h2>
+
+      <div class="preview-divider">
+      </div>
+
+      <p class="preview-copy">
+        This project is still growing, and I’d genuinely love to hear what you notice — what made you laugh, what worked, what didn’t, or simply what stuck with you.
+      </p>
+
+      <p class="preview-copy">
+        If you know someone whose perspective you value, feel free to pass your invitation along.
+      </p>
+
+      <p class="preview-contact">
+        contact@wilbarants.com
+      </p>
+
+      <button
+        class="enter-site-button"
+        type="button"
+        id="enterSiteButton"
+      >
+        ENTER WILBA RANTS
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- =================================
+     ACTUAL WILBA RANTS WEBSITE
+================================= -->
+
+<div class="site-wrapper">
+
+
+  <!-- =================================
+       HEADER
+  ================================= -->
+
+  <header>
+
+    <div class="brand">
+      BIRD DOG ANIMATION PRESENTS
+    </div>
+
+    <h1>
+      WILBA
+      <span class="rants">
+        RANTS
+      </span>
+    </h1>
+
+    <p class="tagline">
+
+      <span class="tagline-line">
+        Honest conversations
+      </span>
+
+      <span class="tagline-line">
+        between a man and his dog.
+      </span>
+
+    </p>
+
+  </header>
+
+
+  <!-- =================================
+       DESKTOP NAVIGATION
+  ================================= -->
+
+  <nav class="desktop-nav">
+
+    <a
+      href="index.html"
+      id="desktop-fresh-link"
+    >
+      FRESHLY PUBLISHED
+    </a>
+
+    <a
+      href="classics.html"
+      id="desktop-classic-link"
+    >
+      CLASSIC RANTS
+    </a>
+
+    <a
+      href="about.html"
+      id="desktop-about-link"
+    >
+      ABOUT WILBA
+    </a>
+
+  </nav>
+
+
+  <!-- =================================
+       MOBILE NAVIGATION
+  ================================= -->
+
+  <div class="mobile-nav">
+
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+    >
+
+      <a
+        href="wholething.html"
+        id="mobile-whole-link"
+      >
+        THE WHOLE THING
+      </a>
+
+      <a
+        href="index.html"
+        id="mobile-fresh-link"
+      >
+        FRESHLY PUBLISHED
+      </a>
+
+      <a
+        href="classics.html"
+        id="mobile-classic-link"
+      >
+        CLASSIC RANTS
+      </a>
+
+      <a
+        href="about.html"
+        id="mobile-about-link"
+      >
+        ABOUT WILBA
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <main>
+
+
+    <!-- =================================
+         THE WHOLE THING — DESKTOP
+    ================================= -->
+
+    <section class="whole-thing-section">
+
+      <div class="whole-thing-heading">
+        THE WHOLE THING
+      </div>
+
+      <div class="whole-thing-subtitle">
+        Every Freshly Published Rant. One After Another.
+      </div>
+
+
+      <div
+        class="whole-thing-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/e7c18755-3190-401f-b69b-396832ab2a73')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/WholeThing.png"
+            alt="The Whole Thing"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="whole-thing-title">
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         INDIVIDUAL RANTS
+    ================================= -->
+
+    <div class="individual-heading">
+      INDIVIDUAL RANTS
+    </div>
+
+
+    <div class="video-grid">
+
+
+      <!-- RANT 1 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/a456a645-b0d6-4299-b771-c8095e7e645e')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/Breathe.png"
+            alt="Dad! Can You Breathe Son?!"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Dad! Can You Breathe Son?!
+        </div>
+
+      </div>
+
+
+      <!-- RANT 2 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/bcba5cf7-eb65-485b-aab4-7870cde8c0b9')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/MGDThumbnail.png"
+            alt="Money, Gold, and Diamonds"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Money, Gold, and Diamonds
+        </div>
+
+      </div>
+
+
+      <!-- RANT 3 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/709dbe88-e433-4528-96a5-a6350169b9b9')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/5_Days_Thumbnail.png"
+            alt="Five Days"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Five Days
+        </div>
+
+      </div>
+
+
+      <!-- RANT 4 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/73dcfa50-00e1-4448-847c-0898571f140e')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/pigtails.png"
+            alt="Pigtails"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Pigtails
+        </div>
+
+      </div>
+
+
+      <!-- RANT 5 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/58b840c8-789a-4a1d-a28b-d073de0f10b9')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/Maintenance.png"
+            alt="Keep Up With The Nature"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Keep Up With The Nature
+        </div>
+
+      </div>
+
+
+      <!-- RANT 6 -->
+
+      <div
+        class="video-card"
+        onclick="openVideo('https://player.mediadelivery.net/play/726343/e60e7bb0-e32f-4410-8c62-8f606147e8b4')"
+      >
+
+        <div class="thumbnail">
+
+          <img
+            src="images/GrassSnow.png"
+            alt="Grass and Snow"
+          >
+
+          <div class="play-button">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="video-title">
+          Grass and Snow
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- =================================
+         MORE RANTS
+    ================================= -->
+
+    <div class="more-rants">
+      MORE RANTS COMING SOON...
+    </div>
+
+
+  </main>
+
+
+  <!-- =================================
+       FOOTER
+  ================================= -->
+
+  <footer>
+
+    <div>
+
+      <a
+        href="mailto:contact@wilbarants.com"
+      >
+        contact@wilbarants.com
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 Brent Armstrong. All Rights Reserved.
+    </div>
+
+  </footer>
+
+
+</div>
+
+
+
+<!-- =================================
+     VIDEO POPUP
+================================= -->
+
+<div
+  id="videoModal"
+  class="modal"
+  onclick="closeVideo(event)"
+>
+
+  <div class="modal-content">
+
+    <div
+      class="close-button"
+      onclick="closeVideo(event)"
+    >
+      ×
+    </div>
+
+    <div
+      id="modalVideo"
+      class="modal-video"
+    >
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+
+  /* =================================
+     PRIVATE PREVIEW GATE
+  ================================= */
+
+  let pendingInviteSource = null;
+
+
+  const invitationForm =
+    document.getElementById(
+      "invitationForm"
+    );
+
+
+  const invitationInput =
+    document.getElementById(
+      "invitationCode"
+    );
+
+
+  const previewError =
+    document.getElementById(
+      "previewError"
+    );
+
+
+  const gateStage =
+    document.getElementById(
+      "gateStage"
+    );
+
+
+  const welcomeStage =
+    document.getElementById(
+      "welcomeStage"
+    );
+
+
+  const previewGate =
+    document.getElementById(
+      "previewGate"
+    );
+
+
+  const enterSiteButton =
+    document.getElementById(
+      "enterSiteButton"
+    );
+
+
+
+  /* =================================
+     CODE SUBMISSION
+  ================================= */
+
+  invitationForm.addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const enteredCode =
+        invitationInput
+          .value
+          .trim()
+          .toUpperCase();
+
+
+      const invitation =
+        window
+          .WILBA_PREVIEW_CONFIG
+          .codes[
+            enteredCode
+          ];
+
+
+      if (invitation) {
+
+        pendingInviteSource =
+          invitation.source;
+
+
+        previewError
+          .classList
+          .remove(
+            "visible"
+          );
+
+
+        showPreviewWelcome();
+
+      }
+
+      else {
+
+        previewError
+          .classList
+          .add(
+            "visible"
+          );
+
+
+        invitationInput
+          .focus();
+
+
+        invitationInput
+          .select();
+
+      }
+
+    }
+  );
+
+
+
+  /* =================================
+     REMOVE ERROR WHILE TYPING
+  ================================= */
+
+  invitationInput.addEventListener(
+    "input",
+    function() {
+
+      previewError
+        .classList
+        .remove(
+          "visible"
+        );
+
+    }
+  );
+
+
+
+  /* =================================
+     SHOW WELCOME MESSAGE
+  ================================= */
+
+  function showPreviewWelcome() {
+
+    gateStage
+      .classList
+      .add(
+        "transitioning-out"
+      );
+
+
+    setTimeout(
+      function() {
+
+        gateStage.style.display =
+          "none";
+
+
+        welcomeStage
+          .classList
+          .add(
+            "visible"
+          );
+
+
+        enterSiteButton.focus();
+
+      },
+      350
+    );
+
+  }
+
+
+
+  /* =================================
+     ENTER WILBA RANTS
+  ================================= */
+
+  enterSiteButton.addEventListener(
+    "click",
+    function() {
+
+
+      try {
+
+        localStorage.setItem(
+          "wilbaPreviewAccess",
+          "granted"
+        );
+
+
+        localStorage.setItem(
+          "wilbaPreviewVersion",
+          window
+            .WILBA_PREVIEW_CONFIG
+            .version
+        );
+
+
+        if (pendingInviteSource) {
+
+          localStorage.setItem(
+            "wilbaInviteSource",
+            pendingInviteSource
+          );
+
+        }
+
+      }
+
+      catch (error) {
+
+      }
+
+
+      /*
+         On the first mobile visit,
+         send the visitor to The Whole Thing.
+      */
+
+      if (
+        window.shouldShowMobileIntro()
+      ) {
+
+        try {
+
+          localStorage.setItem(
+            "wilbaMobileIntroSeen",
+            "true"
+          );
+
+        }
+
+        catch (error) {
+
+        }
+
+
+        window.location.replace(
+          "wholething.html"
+        );
+
+        return;
+
+      }
+
+
+      previewGate
+        .classList
+        .add(
+          "leaving"
+        );
+
+
+      document
+        .documentElement
+        .classList
+        .remove(
+          "preview-locked"
+        );
+
+
+      setTimeout(
+        function() {
+
+          previewGate.style.display =
+            "none";
+
+        },
+        750
+      );
+
+    }
+  );
+
+
+
+  /* =================================
+     PREVIEW INITIALIZATION
+  ================================= */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+      const previewIsLocked =
+        document
+          .documentElement
+          .classList
+          .contains(
+            "preview-locked"
+          );
+
+
+      if (!previewIsLocked) {
+
+        previewGate.style.display =
+          "none";
+
+      }
+
+      else {
+
+        setTimeout(
+          function() {
+
+            invitationInput.focus();
+
+          },
+          250
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /* =================================
+     MANUAL RESET
+  ================================= */
+
+  function resetWilbaPreviewAccess() {
 
     try {
 
-      return (
-        window.isWilbaMobile() &&
-        localStorage.getItem(
-          "wilbaMobileIntroSeen"
-        ) !== "true"
+      localStorage.removeItem(
+        "wilbaPreviewAccess"
+      );
+
+
+      localStorage.removeItem(
+        "wilbaPreviewVersion"
+      );
+
+
+      localStorage.removeItem(
+        "wilbaInviteSource"
+      );
+
+
+      localStorage.removeItem(
+        "wilbaMobileIntroSeen"
       );
 
     }
 
     catch (error) {
 
-      return false;
+    }
+
+
+    window.location.reload();
+
+  }
+
+
+
+  /* =================================
+     ACTIVE NAVIGATION
+  ================================= */
+
+  const currentPath =
+    window.location.pathname.toLowerCase();
+
+
+  const desktopFreshLink =
+    document.getElementById(
+      "desktop-fresh-link"
+    );
+
+  const desktopClassicLink =
+    document.getElementById(
+      "desktop-classic-link"
+    );
+
+  const desktopAboutLink =
+    document.getElementById(
+      "desktop-about-link"
+    );
+
+
+  const mobileWholeLink =
+    document.getElementById(
+      "mobile-whole-link"
+    );
+
+  const mobileFreshLink =
+    document.getElementById(
+      "mobile-fresh-link"
+    );
+
+  const mobileClassicLink =
+    document.getElementById(
+      "mobile-classic-link"
+    );
+
+  const mobileAboutLink =
+    document.getElementById(
+      "mobile-about-link"
+    );
+
+
+  if (
+    currentPath.includes(
+      "wholething"
+    )
+  ) {
+
+    mobileWholeLink
+      .classList
+      .add(
+        "active"
+      );
+
+  }
+
+  else if (
+    currentPath.includes(
+      "about"
+    )
+  ) {
+
+    desktopAboutLink
+      .classList
+      .add(
+        "active"
+      );
+
+    mobileAboutLink
+      .classList
+      .add(
+        "active"
+      );
+
+  }
+
+  else if (
+    currentPath.includes(
+      "classics"
+    )
+  ) {
+
+    desktopClassicLink
+      .classList
+      .add(
+        "active"
+      );
+
+    mobileClassicLink
+      .classList
+      .add(
+        "active"
+      );
+
+  }
+
+  else {
+
+    desktopFreshLink
+      .classList
+      .add(
+        "active"
+      );
+
+    mobileFreshLink
+      .classList
+      .add(
+        "active"
+      );
+
+  }
+
+
+
+  /* =================================
+     OPEN VIDEO
+  ================================= */
+
+  let videoHistoryActive = false;
+
+
+  function openVideo(videoURL) {
+
+    const modal =
+      document.getElementById(
+        "videoModal"
+      );
+
+    const video =
+      document.getElementById(
+        "modalVideo"
+      );
+
+
+    video.innerHTML = `
+
+      <iframe
+        src="${videoURL}"
+        title="Wilba Rants Video Player"
+        allow="
+          accelerometer;
+          autoplay;
+          encrypted-media;
+          gyroscope;
+          picture-in-picture;
+          fullscreen;
+        "
+        allowfullscreen
+      ></iframe>
+
+    `;
+
+
+    modal.style.display =
+      "flex";
+
+    document.body.style.overflow =
+      "hidden";
+
+
+    if (!videoHistoryActive) {
+
+      history.pushState(
+        {
+          wilbaVideoModal: true
+        },
+        "",
+        window.location.href
+      );
+
+      videoHistoryActive = true;
 
     }
 
-  };
+  }
+
+
+
+  /* =================================
+     HIDE VIDEO MODAL
+  ================================= */
+
+  function hideVideoModal() {
+
+    const modal =
+      document.getElementById(
+        "videoModal"
+      );
+
+
+    modal.style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "modalVideo"
+      )
+      .innerHTML =
+        "";
+
+
+    document.body.style.overflow =
+      "auto";
+
+  }
+
+
+
+  /* =================================
+     CLOSE VIDEO
+  ================================= */
+
+  function closeVideo(event) {
+
+    if (event) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+    }
+
+
+    const modal =
+      document.getElementById(
+        "videoModal"
+      );
+
+
+    if (
+      event &&
+      event.target !== modal &&
+      !event.target.classList.contains(
+        "close-button"
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    if (videoHistoryActive) {
+
+      history.back();
+
+    }
+
+    else {
+
+      hideVideoModal();
+
+    }
+
+  }
+
+
+
+  /* =================================
+     BACK BUTTON CLOSES VIDEO
+  ================================= */
+
+  window.addEventListener(
+    "popstate",
+    function() {
+
+      if (videoHistoryActive) {
+
+        videoHistoryActive = false;
+
+        hideVideoModal();
+
+      }
+
+    }
+  );
+
+
+
+  /* =================================
+     ESCAPE KEY CLOSES VIDEO
+  ================================= */
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key ===
+        "Escape"
+      ) {
+
+        closeVideo();
+
+      }
+
+    }
+  );
+
+
+</script>
+
+
+</body>
+
+</html>
